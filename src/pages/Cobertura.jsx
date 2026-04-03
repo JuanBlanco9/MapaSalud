@@ -48,6 +48,7 @@ function mostrarDato(valor, fallback) {
 // ── Badge de nivel de cobertura ─────────────────────────────────
 
 const nivelStyles = {
+  // Oncologia
   nacional: {
     bg: "bg-verde-50",
     border: "border-verde-200",
@@ -68,6 +69,21 @@ const nivelStyles = {
     text: "text-red-600",
     badge: "bg-red-100 text-red-600",
     dot: "bg-red-500",
+  },
+  // Diabetes / generico
+  ley: {
+    bg: "bg-verde-50",
+    border: "border-verde-200",
+    text: "text-verde-700",
+    badge: "bg-verde-100 text-verde-700",
+    dot: "bg-verde-500",
+  },
+  pmo: {
+    bg: "bg-verde-50",
+    border: "border-verde-200",
+    text: "text-verde-700",
+    badge: "bg-verde-100 text-verde-700",
+    dot: "bg-verde-500",
   },
 };
 
