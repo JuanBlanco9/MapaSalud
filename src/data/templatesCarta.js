@@ -86,23 +86,23 @@ DNI [COMPLETAR]`;
 De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
 A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: INTIMACION A COBERTURA DE ${tratamiento.toUpperCase()} — DIABETES TIPO 1
+OBJETO: SOLICITUD DE COBERTURA DE ${tratamiento.toUpperCase()} — DIABETES TIPO 1
 
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) a fin de intimarles fehacientemente para que en el plazo improrrogable de CUARENTA Y OCHO (48) HORAS procedan a autorizar y brindar cobertura integral de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la cobertura de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
 
-La cobertura solicitada se encuentra amparada por:
+El tratamiento prescripto se enmarca en la normativa vigente sobre diabetes:
 
-- Ley 23.753 Art. 5: obliga a los agentes del Seguro de Salud a proveer cobertura integral de la diabetes, incluyendo "toda otra medicacion, elementos e insumos necesarios para su tratamiento"
-- Ley 26.914 Art. 1 (modifica Ley 23.753): amplia la cobertura al 100% incluyendo "equipos y dispositivos para su uso", expresion que conforme jurisprudencia reiterada incluye sensores de monitoreo continuo de glucosa y bombas de infusion de insulina
-- Art. 42 de la Constitucion Nacional (derecho a la salud)
-- Art. 43 de la Constitucion Nacional (accion de amparo)
-- Ley 26.682 (Marco regulatorio de medicina prepaga)
+- Ley 23.753 Art. 5: establece la cobertura integral de la diabetes, incluyendo medicacion, elementos e insumos necesarios para su tratamiento.
+- Ley 26.914 Art. 1 (modifica Ley 23.753): amplia la cobertura incluyendo "equipos y dispositivos", expresion que la jurisprudencia reiterada de la Justicia Federal ha interpretado como inclusiva de los sistemas de monitoreo continuo de glucosa.
+- Res. 2091/2025: establece la cobertura del 100% de sensores de monitoreo continuo sistema flash para personas insulinodependientes.
+- Art. 42 de la Constitucion Nacional (derecho a la salud).
+- Ley 26.682 Art. 7 (cobertura minima PMO para prepagas).
 
-La jurisprudencia argentina ha resuelto en numerosos fallos que la expresion "equipos y dispositivos" de la Ley 26.914 incluye los sistemas de monitoreo continuo de glucosa, ordenando su cobertura al 100% cuando existe indicacion medica.
+Solicito se considere la presente peticion y se proceda a autorizar la cobertura conforme la normativa citada, en un plazo razonable.
 
-De no dar cumplimiento en el plazo indicado, me reservo el derecho de iniciar la accion de amparo prevista en el Art. 43 de la Constitucion Nacional, con mas los danos y perjuicios que su conducta omisiva me ocasione, incluyendo dano moral.
+En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
 
-Queda Ud. debidamente intimado/a.
+Sin otro particular, saludo a Uds. atentamente.
 
 ${fecha}
 [COMPLETAR NOMBRE COMPLETO]
@@ -115,24 +115,21 @@ DNI [COMPLETAR]`;
 De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
 A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: INTIMACION A COBERTURA DE TRATAMIENTO — ${tratamiento.toUpperCase()}
+OBJETO: SOLICITUD DE COBERTURA DE TRATAMIENTO — ${tratamiento.toUpperCase()}
 
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) a fin de intimarles fehacientemente para que en el plazo improrrogable de CUARENTA Y OCHO (48) HORAS procedan a autorizar y brindar cobertura integral del tratamiento de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la cobertura del tratamiento de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
 
-Dicho tratamiento se encuentra contemplado en el Programa Medico Obligatorio (Res. 201/2002, Art. 7.3) y en el Listado Complementario de Medicamentos Oncologicos (Res. 3377/2022), resultando medicamente necesario y urgente segun criterio de mi medico tratante.
+El tratamiento prescripto se enmarca en los protocolos aprobados por ANMAT y las guias de practica clinica vigentes, correspondiendo su cobertura integral conforme el Programa Medico Obligatorio (Res. 201/2002, punto 7.3: medicamentos oncologicos al 100% segun protocolos aprobados por la autoridad de aplicacion).
 
-Hago saber que la negativa de su parte vulnera mis derechos consagrados en:
-- Art. 42 de la Constitucion Nacional (derecho a la salud)
-- Art. 43 de la Constitucion Nacional (accion de amparo)
-- Ley 26.682 (Marco regulatorio de medicina prepaga)
-- Ley 23.660 (Obras Sociales)
-- Res. 1926/2024 (exencion de coseguros para oncologia)
+Asimismo, la Res. 1926/2024 del Ministerio de Salud establece la exencion de coseguros para tratamientos oncologicos. La Ley 26.682 Art. 7 obliga a las empresas de medicina prepaga a cubrir como minimo el PMO vigente.
 
-La jurisprudencia argentina ha establecido reiteradamente que el PMO constituye un piso de prestaciones minimas y no un techo, debiendo las obras sociales cubrir tratamientos con indicacion medica aun cuando no esten expresamente incluidos en el listado.
+La jurisprudencia reiterada de la Justicia Federal ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo, y que las obras sociales deben fundar por escrito sus decisiones denegatorias, especificando los motivos medicos, tecnicos y legales que sustentan su negativa.
 
-De no dar cumplimiento en el plazo indicado, me reservo el derecho de iniciar la accion de amparo prevista en el Art. 43 de la Constitucion Nacional, con mas los danos y perjuicios que su conducta omisiva me ocasione, incluyendo dano moral.
+Solicito se considere la presente peticion y se proceda a autorizar la cobertura conforme la normativa citada, en un plazo razonable.
 
-Queda Ud. debidamente intimado/a.
+En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
+
+Sin otro particular, saludo a Uds. atentamente.
 
 ${fecha}
 [COMPLETAR NOMBRE COMPLETO]
