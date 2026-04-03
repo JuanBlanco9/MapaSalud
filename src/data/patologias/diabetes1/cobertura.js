@@ -20,9 +20,11 @@ export const nivelCobertura = {
   "Agujas para lapiceras de insulina (100% cobertura)": "ley",
   "Jeringas de insulina (si no usa lapicera)": "ley",
 
-  // Sensores — la batalla principal
-  "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": "gestion",
-  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": "gestion",
+  // Sensores flash — Res 2091/2025: 100% cobertura para insulinodependientes
+  "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": "ley",
+  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": "ley",
+
+  // Sensores Dexcom — no incluidos expresamente en Res 2091/2025 (dice "flash")
   "Dexcom G6 — sensor continuo con alertas": "gestion",
   "Dexcom G7 — sensor continuo, mas pequeno": "gestion",
 
@@ -32,7 +34,7 @@ export const nivelCobertura = {
   "Omnipod 5 (bomba sin tubo, asa cerrada con Dexcom)": "gestion",
   "Tandem t:slim X2 con Control-IQ": "gestion",
 
-  // Insumos de bomba — depende de si la bomba fue aprobada
+  // Insumos de bomba
   "Sets de infusion para bomba de insulina": "gestion",
   "Reservorios/cartuchos para bomba": "gestion",
 };
@@ -71,9 +73,9 @@ export function getNivelDroga(nombre) {
 
 export const nivelesInfo = {
   ley: {
-    label: "Cubierto — Ley 23.753",
+    label: "Cubierto por ley — 100%",
     descripcion:
-      "La ley obliga a todas las obras sociales y prepagas a cubrirlo al 100%. Si te lo niegan, es ilegal.",
+      "Ley 23.753, Ley 26.914 y Res. 2091/2025 obligan a TODAS las OS, prepagas y PAMI a cubrirlo al 100%. Si te lo niegan, es ilegal.",
     color: "verde",
   },
   pmo: {
@@ -85,40 +87,46 @@ export const nivelesInfo = {
   gestion: {
     label: "Requiere gestion",
     descripcion:
-      "Cobertura no garantizada por ley. Muchas OS lo cubren con indicacion medica, pero frecuente motivo de amparo. La Ley 26.914 se usa como argumento legal.",
+      "No incluido expresamente en Res. 2091/2025. Muchas OS cubren con indicacion medica, pero puede requerir reclamo o amparo. Jurisprudencia favorable.",
     color: "rojo",
   },
 };
 
 export const pmo = {
   baseLegal:
-    "Ley 23.753: cobertura 100% de insulinas, insumos de monitoreo, y medicacion para diabetes. Ley 26.914: amplia cobertura a nuevas tecnologias y tratamientos. PMO Art. 7.2: medicamentos cronicos prevalentes al 70%, pero diabetes tiene cobertura especial del 100%.",
+    "Ley 23.753 + Ley 26.914: cobertura 100% de insulinas, insumos, y tecnologia para diabetes. Res. 2091/2025 (julio 2025): cobertura 100% de sensores flash CGM para insulinodependientes, embarazadas, y quienes planifiquen embarazo. Aplica a TODAS las OS, prepagas, PAMI, IOSFA, y obras sociales universitarias. Diagnostico de diabetes valido de por vida.",
   coseguros:
-    "Insulinas e insumos basicos: 0% coseguro (cobertura total por ley). Sensores y bombas: coseguro variable o cobertura parcial segun OS.",
+    "Insulinas, insumos basicos y sensores flash: 0% coseguro (cobertura total por ley). Bombas de insulina y sensores Dexcom: coseguro variable segun OS.",
   tratamientos: [
     {
       tipo: "Insulinas (basal y rapida)",
       cobertura: "100%",
       autorizacionPrevia: false,
-      nota: "Ley 23.753 obliga cobertura total. Glargina, detemir, lispro, aspart, glulisina. Degludec y ultrarapidas: algunas OS requieren justificacion.",
+      nota: "Ley 23.753 obliga cobertura total. Glargina ($525.000/caja), lispro ($348.000/caja), aspart, glulisina, detemir, degludec. PAMI: $0 con empadronamiento.",
     },
     {
       tipo: "Insumos de monitoreo",
       cobertura: "100%",
       autorizacionPrevia: false,
-      nota: "Tiras reactivas (400/mes minimo segun guias), lancetas, glucometro. Ley 23.753.",
+      nota: "Tiras reactivas, lancetas, glucometro. Ley 23.753. Cantidades segun prescripcion medica.",
     },
     {
-      tipo: "Sensor de glucosa continuo (CGM)",
+      tipo: "Sensor flash CGM (FreeStyle Libre)",
+      cobertura: "100%",
+      autorizacionPrevia: true,
+      nota: "Res. 2091/2025 (julio 2025): cobertura 100% para insulinodependientes. Reemplazo la Res. 2820/2022. Precio particular: ~$79.000/sensor (14 dias). Si te lo niegan, cita la Res. 2091/2025.",
+    },
+    {
+      tipo: "Sensor CGM con alertas (Dexcom)",
       cobertura: "Variable",
       autorizacionPrevia: true,
-      nota: "FreeStyle Libre y Dexcom: cobertura NO garantizada por ley. Muchas OS cubren con indicacion medica. Causa principal de amparos en diabetes. Ley 26.914 como argumento.",
+      nota: "Dexcom G6/G7 no incluido expresamente en Res. 2091/2025 (que dice 'flash'). Disponibilidad limitada en ARG. Jurisprudencia favorable usando Ley 26.914.",
     },
     {
       tipo: "Bomba de insulina (ISCI)",
       cobertura: "Variable",
       autorizacionPrevia: true,
-      nota: "Requiere indicacion del equipo de diabetes. Cobertura variable: algunas OS cubren, muchas requieren amparo. Incluye insumos (sets, reservorios).",
+      nota: "Medtronic 780G, Omnipod, Tandem. Requiere indicacion del equipo de diabetes. Muchas OS cubren, algunas requieren amparo. Precio no publicado (referencia internacional: USD 1.600-5.800).",
     },
     {
       tipo: "Educacion diabetologica",

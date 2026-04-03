@@ -41,8 +41,11 @@ export const textosLegales = {
   ley_26914_art2_diabetes:
     `Ley 26.914 Art. 2: "Los gastos que demande el cumplimiento de la presente ley se imputaran a las partidas que se determinen a tal efecto en la Ley de Presupuesto General de la Administracion Nacional." Esto implica que el Estado asume la responsabilidad presupuestaria de la cobertura tecnologica.`,
 
+  res_2091_2025_diabetes:
+    `Resolucion 2091/2025 Ministerio de Salud (1 de julio 2025): Establece cobertura del 100% de sensores de monitoreo continuo sistema flash para personas insulinodependientes, embarazadas, y quienes planifiquen embarazo. Aplica a TODOS los agentes del sistema: obras sociales (Ley 23.660/23.661), prepagas (Ley 26.682), PAMI (Ley 19.032), obra social del Poder Judicial, IOSFA, y obras sociales universitarias (Ley 24.741). El diagnostico de diabetes es valido de por vida — no requiere recertificacion. Reemplaza la Res. 2820/2022.`,
+
   jurisprudencia_sensor_cgm:
-    `Jurisprudencia reiterada en materia de sensores CGM: Multiples fallos de Camaras Federales han ordenado a obras sociales y prepagas cubrir sensores de monitoreo continuo de glucosa (FreeStyle Libre, Dexcom) al 100%, fundamentando en la Ley 26.914 y en el derecho a la salud del Art. 42 CN. Los tribunales han interpretado que la expresion "equipos y dispositivos" de la Ley 26.914 incluye los CGM, especialmente cuando el medico tratante los indica y se demuestra que mejoran el control glucemico y reducen hipoglucemias.`,
+    `Jurisprudencia reiterada en materia de sensores CGM: Multiples fallos de Camaras Federales (Salta 2025, Mendoza 2024, Rio Negro) han ordenado a obras sociales y prepagas cubrir sensores de monitoreo continuo de glucosa al 100%. Desde la Res. 2091/2025, la cobertura de sensores flash es obligatoria por resolucion ministerial y ya no requiere amparo.`,
 
   jurisprudencia_piso:
     `Principio jurisprudencial reiterado: "El PMO constituye un piso de prestaciones minimas y no un techo. Las obras sociales y prepagas deben cubrir tratamientos no incluidos en el PMO cuando hay indicacion medica y existe riesgo para la vida o la salud del paciente." (CSJN, reiterado en multiples fallos de Camaras Federales)`,
@@ -77,6 +80,7 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
       textosLegales.ley_23753_diabetes,
       textosLegales.ley_26914_diabetes,
       textosLegales.ley_26914_art2_diabetes,
+      textosLegales.res_2091_2025_diabetes,
       textosLegales.jurisprudencia_sensor_cgm
     );
   }
