@@ -25,6 +25,7 @@ import {
 import { obrasSociales } from "../data/coberturas";
 import { cargarPatologia } from "../data/patologias";
 import { generarMapaPDF } from "../utils/generarPDF";
+import { getOrganizaciones } from "../data/organizacionesPorPatologia";
 import AsistenteReclamo from "../components/AsistenteReclamo";
 
 // ── Helper: mostrar TODO como "en verificacion" ─────────────────
@@ -951,7 +952,7 @@ function Paso3({ os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, con
         </div>
       </section>
 
-      {/* Seccion E: Contactos utiles */}
+      {/* Seccion E: Contactos utiles — dinamicos por patologia */}
       <section className="mb-8">
         <h3 className="text-xl font-bold text-azul-700 mb-4 flex items-center gap-2">
           <Phone className="w-5 h-5" />
@@ -959,69 +960,79 @@ function Paso3({ os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, con
         </h3>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          <div className="bg-white border border-gris-200 rounded-xl p-5">
-            <p className="font-semibold text-gris-800 mb-1">
-              Superintendencia de Servicios de Salud
-            </p>
-            <p className="text-sm text-gris-600 mb-2">
-              Reclamos contra obras sociales
-            </p>
-            <a
-              href="tel:08002227258"
-              className="text-azul-600 font-medium text-sm no-underline"
-            >
-              0800-222-72583
-            </a>
-          </div>
-          <div className="bg-white border border-gris-200 rounded-xl p-5">
-            <p className="font-semibold text-gris-800 mb-1">LALCEC</p>
-            <p className="text-sm text-gris-600 mb-2">
-              Asesoramiento oncologico gratuito
-            </p>
-            <a
-              href="tel:08002221166"
-              className="text-azul-600 font-medium text-sm no-underline"
-            >
-              0800-222-1166
-            </a>
-          </div>
-
-          {!esPublico && (
-            <>
-              <div className="bg-white border border-gris-200 rounded-xl p-5">
-                <p className="font-semibold text-gris-800 mb-1">
-                  Auditoria medica de {os.nombre}
-                </p>
-                <p className="text-sm text-gris-600 mb-1">Telefono</p>
-                {os.auditoria.telefono ? (
-                  <a
-                    href={`tel:${os.auditoria.telefono.replace(/[^0-9+]/g, "")}`}
-                    className="text-azul-600 font-medium text-sm no-underline"
-                  >
-                    {os.auditoria.telefono}
-                  </a>
-                ) : (
-                  <Verificando />
-                )}
-              </div>
-              <div className="bg-white border border-gris-200 rounded-xl p-5">
-                <p className="font-semibold text-gris-800 mb-1">
-                  Auditoria medica de {os.nombre}
-                </p>
-                <p className="text-sm text-gris-600 mb-1">Email</p>
-                {os.auditoria.email ? (
+          {/* Auditoria de la OS */}
+          {!esPublico && os.auditoria?.telefono && (
+            <div className="bg-white border border-azul-200 rounded-xl p-5">
+              <p className="font-semibold text-gris-800 mb-1">
+                Auditoria medica — {os.nombre}
+              </p>
+              <p className="text-sm text-gris-600 mb-2">
+                Para autorizar o reclamar tu tratamiento
+              </p>
+              <a
+                href={`tel:${os.auditoria.telefono.replace(/[^0-9+]/g, "")}`}
+                className="text-azul-600 font-medium text-sm no-underline"
+              >
+                {os.auditoria.telefono}
+              </a>
+              {os.auditoria.email && (
+                <p className="mt-1">
                   <a
                     href={`mailto:${os.auditoria.email}`}
-                    className="text-azul-600 font-medium text-sm no-underline"
+                    className="text-azul-600 text-sm no-underline"
                   >
                     {os.auditoria.email}
                   </a>
-                ) : (
-                  <Verificando />
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Organizaciones por patologia */}
+          {getOrganizaciones(config.id).map((org) => (
+            <div key={org.nombre} className="bg-white border border-gris-200 rounded-xl p-5">
+              <p className="font-semibold text-gris-800 mb-1">{org.nombre}</p>
+              <p className="text-sm text-gris-600 mb-2">{org.descripcion}</p>
+              <div className="space-y-1">
+                {org.telefono && (
+                  <a
+                    href={`tel:${org.telefono.replace(/[^0-9+]/g, "")}`}
+                    className="block text-azul-600 font-medium text-sm no-underline"
+                  >
+                    {org.telefono}
+                  </a>
+                )}
+                {org.whatsapp && (
+                  <a
+                    href={`https://wa.me/${org.whatsapp.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-verde-600 text-sm no-underline"
+                  >
+                    WhatsApp: {org.whatsapp}
+                  </a>
+                )}
+                {org.email && (
+                  <a
+                    href={`mailto:${org.email}`}
+                    className="block text-azul-600 text-sm no-underline"
+                  >
+                    {org.email}
+                  </a>
+                )}
+                {org.web && (
+                  <a
+                    href={`https://${org.web}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-gris-500 text-sm no-underline"
+                  >
+                    {org.web}
+                  </a>
                 )}
               </div>
-            </>
-          )}
+            </div>
+          ))}
         </div>
       </section>
 
