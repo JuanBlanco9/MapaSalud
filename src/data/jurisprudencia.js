@@ -141,7 +141,135 @@ export const jurisprudenciaDiabetesBomba = [
   },
 ];
 
-// ── Oncologia — fallos provinciales específicos ─────────────────
+// ── Oncologia — quimioterapia denegada ──────────────────────────
+
+export const jurisprudenciaOncoQT = [
+  {
+    caratula: "N.N. c/ Obra Social s/ Amparo (caso Brigatinib)",
+    tribunal: "Camara Federal de Apelaciones de Cordoba, Sala A (Navarro, Avalos, Montesi)",
+    fecha: "10/2024",
+    ordeno: "Cobertura 100% de Brigatinib 180 mg para cancer de pulmon estadio IV con metastasis oseas. La OS habia rechazado alegando que no correspondia al estadio. Cautelar del Juz. Fed. N.2 Cordoba (Sanchez Freytes, 06/05/2024).",
+    tipo: "ONCO_QT",
+    provincia: "Cordoba",
+    fuente: "Infobae Judiciales",
+  },
+  {
+    caratula: "N.N. c/ ASE y OMINT SA s/ Amparo (caso Pertuzumab)",
+    tribunal: "Corte de Justicia de Salta",
+    fecha: "s/f",
+    ordeno: "Cobertura inmediata de poliquimioterapia Docetaxel + Trastuzumab + Pertuzumab para progresion oncologica. Rechazo recursos de ASE y OMINT.",
+    tipo: "ONCO_QT",
+    provincia: "Salta",
+    fuente: "CIJ",
+  },
+];
+
+// ── Oncologia — estudios diagnosticos denegados ─────────────────
+
+export const jurisprudenciaOncoEstudio = [
+  {
+    caratula: "N.N. c/ Asociacion Mutual Sancor Salud s/ Amparo (Oncotype DX)",
+    tribunal: "Juzgado Federal de San Martin (Juez Oscar Papavero)",
+    fecha: "03/2026",
+    ordeno: "Cobertura del Oncotype DX para paciente de 38 anos con cancer de mama. Sancor habia rechazado alegando 'insuficiente evidencia'. Cuerpo Medico Forense confirmo que la indicacion es pertinente.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "Buenos Aires",
+    fuente: "Justicia de Primera",
+  },
+  {
+    caratula: "N.N. c/ OSDE s/ Amparo de salud (reintegro Oncotype DX)",
+    tribunal: "Camara Nacional de Apelaciones en lo Civil y Comercial Federal, Sala III (Gottardi, Perozziello Vizier, Nallar)",
+    fecha: "11/2025",
+    ordeno: "Reintegro de $1.622.337,75 a paciente con cancer de mama por denegacion de Oncotype DX. Las tres salas de la Camara ya reconocian cobertura.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "CABA",
+    fuente: "Justicia de Primera",
+  },
+  {
+    caratula: "N.N. c/ Medife Asociacion Civil s/ Amparo (estudio BRCA 1/2)",
+    tribunal: "Camara Segunda del Trabajo de Bariloche (Rio Negro)",
+    fecha: "03/2023",
+    ordeno: "Cobertura 100% del estudio genetico BRCA 1 y 2 en 5 dias habiles, con multa de $2.000/dia por incumplimiento. Medife habia rechazado alegando que 'no era indispensable'. Paciente con cancer, recaida y metastasis.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "Rio Negro",
+    fuente: "Poder Judicial Rio Negro",
+  },
+  {
+    caratula: "N.N. c/ Sancor Salud s/ Amparo (Oncotype DX + Goserelina)",
+    tribunal: "Camara Federal de Apelaciones de Resistencia (Alcala, Garcia)",
+    fecha: "01/2026",
+    ordeno: "Cobertura integral de Goserelina 3,6 mg + Oncotype DX para cancer de mama estadio III con metastasis ganglionar. Incluyo traslado y alojamiento a Cordoba.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "Chaco",
+    fuente: "Litigio.com.ar",
+  },
+];
+
+// ── Oncologia — cirugia / reconstruccion mamaria ────────────────
+
+export const jurisprudenciaOncoCirugia = [
+  {
+    caratula: "C.R.C.A. c/ Asociacion Mutual Sancor Salud s/ Amparo Ley 16.986",
+    tribunal: "Camara Federal de Apelaciones de Parana",
+    fecha: "02/10/2020",
+    ordeno: "Cobertura 100% de mastectomia radical derecha + mastectomia profilactica izquierda + reconstruccion inmediata con dos protesis expansoras. Cancer de mama triple negativo, estadio III.",
+    tipo: "ONCO_CIRUGIA",
+    provincia: "Entre Rios",
+    fuente: "Microjuris Argentina",
+  },
+  {
+    caratula: "N.N. c/ OSPAC s/ Amparo (cirugia preventiva mama)",
+    tribunal: "Juzgado Federal de Rosario",
+    fecha: "2025",
+    ordeno: "Cobertura de adenomastectomia preventiva + reseccion remanente mamario + reconstruccion con implante y malla. OSPAC habia aprobado la extraccion pero rechazado la reconstruccion.",
+    tipo: "ONCO_CIRUGIA",
+    provincia: "Santa Fe",
+    fuente: "Version Rosario",
+  },
+];
+
+// ── Fallos por obra social específica ───────────────────────────
+
+export const jurisprudenciaPorOS = {
+  "Swiss Medical": {
+    caratula: "C., G. A. y otro c/ Swiss Medical SA s/ Amparo de salud",
+    tribunal: "Corte Suprema de Justicia de la Nacion",
+    cita: "FA24000017",
+    fecha: "12/03/2024",
+    ordeno: "Fallo CSJN sobre continuidad de cobertura por patologias graves. Derecho a la continuidad del servicio de salud.",
+    fuente: "SAIJ",
+  },
+  "OSECAC": {
+    caratula: "G. D. S. c/ OSECAC y otro s/ Amparo",
+    tribunal: "Camara Federal de Apelaciones de Mar del Plata (Expediente 13.796)",
+    fecha: "24/05/2012",
+    ordeno: "Cobertura de medicamentos al 100% para paciente con discapacidad. Condena extendida al Estado Nacional como responsable subsidiario.",
+    fuente: "Biblioteca Camara Federal Mar del Plata",
+  },
+  "Galeno": {
+    caratula: "Seidenari, Edelweis Irene Eulogia c/ Galeno Argentina S.A. s/ Amparo",
+    tribunal: "CSJN (Fallos 344:1308)",
+    fecha: "03/06/2021",
+    ordeno: "Eliminar adicionales discriminatorios por franja etaria para afiliada mayor de 65 anos con mas de 10 anos de antiguedad.",
+    fuente: "MPF",
+  },
+};
+
+// ── Tucuman — fallos específicos ────────────────────────────────
+
+export const jurisprudenciaTucuman = [
+  {
+    caratula: "Gomez, Elsa Dora c/ IPSST y Provincia de Tucuman s/ Amparo",
+    tribunal: "Poder Judicial de Tucuman",
+    fecha: "s/f",
+    ordeno: "Cobertura integral de tratamiento de cancer de mama incluyendo radioterapia con acelerador lineal bajo tecnica 3D conformacional y toda medicacion que la enfermedad requiera.",
+    tipo: "ONCO_QT",
+    provincia: "Tucuman",
+    fuente: "Comunicacion Tucuman / Blog Derecho a la Salud",
+  },
+];
+
+// ── Oncologia — fallos provinciales adicionales (dirigida/general)
 
 export const jurisprudenciaOncologiaEspecifica = [
   {
@@ -300,8 +428,11 @@ export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
 
   if (patologiaId === "oncologia") {
     resultado.especificos = [
-      ...principiosGenerales.filter((f) => f.aplicaA.includes("oncologia")),
+      ...jurisprudenciaOncoQT,
+      ...jurisprudenciaOncoEstudio,
+      ...jurisprudenciaOncoCirugia,
       ...jurisprudenciaOncologiaEspecifica,
+      ...jurisprudenciaTucuman.filter((f) => f.tipo?.startsWith("ONCO")),
     ];
   }
 
