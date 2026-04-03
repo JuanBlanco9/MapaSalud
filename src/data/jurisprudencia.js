@@ -269,6 +269,160 @@ export const jurisprudenciaTucuman = [
   },
 ];
 
+// ── Oncologia — terapia dirigida / inmunoterapia ────────────────
+
+export const jurisprudenciaOncoDirigida = [
+  {
+    caratula: "Amparo c/ Obra Social UNR (Trastuzumab Emtansina)",
+    tribunal: "Camara Federal de Apelaciones de Rosario",
+    fecha: "2018",
+    ordeno: "Cobertura integral de Trastuzumab Emtansina (Kadcyla) 3.6 mg/kg cada 21 dias + acido zoledronico + goserelina + tamoxifeno para cancer de mama HER2+ metastasico.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Santa Fe",
+    fuente: "Version Rosario",
+  },
+  {
+    caratula: "Expediente QXP 8159/21 (cancer renal, Pembrolizumab no ANMAT)",
+    tribunal: "Juzgado Civil, Comercial y Laboral de Esquina, Corrientes (Jueza Silvero)",
+    fecha: "17/12/2021",
+    ordeno: "Condeno a OSDE a proveer Pembrolizumab para cancer renal, aun sin aprobacion ANMAT para esa indicacion en Argentina. Aprobado en EE.UU. y UE. Costo ~$600.000/ampolla.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Corrientes",
+    fuente: "Poder Judicial de Corrientes / Microjuris",
+  },
+  {
+    caratula: "Amparo c/ PAMI (Trastuzumab Deruxtecan / Enhertu, Rosario)",
+    tribunal: "Juzgado Federal de Rosario",
+    fecha: "11/2024",
+    ordeno: "Cobertura 100% de Trastuzumab Deruxtecan (Enhertu) 100 mg, 4 ampollas cada 21 dias para cancer de mama HER2+ metastasico. Costo ~$6.000.000/ciclo.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Santa Fe",
+    fuente: "El Ciudadano Web / Version Rosario",
+  },
+  {
+    caratula: "Amparo c/ OSDE (Trastuzumab Deruxtecan, Chaco)",
+    tribunal: "Camara Federal de Apelaciones de Resistencia (Garcia, Bosch)",
+    fecha: "09/04/2025",
+    ordeno: "Confirmo cautelar que ordeno a OSDE cobertura 100% de Trastuzumab-Deruxtecan (Enhertu). Rechazo argumento de desequilibrio financiero: 'en materia de salud el tratamiento adecuado no admite demoras'.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Chaco",
+    fuente: "Litigio.com.ar",
+  },
+  {
+    caratula: "Amparo c/ PAMI (Pembrolizumab ca. uterino, Rosario)",
+    tribunal: "Juzgado Federal N.1 de Rosario",
+    fecha: "2020",
+    ordeno: "Cobertura 100% de Pembrolizumab como ultimo recurso para cancer uterino avanzado. No estaba en protocolos PAMI (Disp. 35/17).",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Santa Fe",
+    fuente: "Version Rosario",
+  },
+  {
+    caratula: "R. CH., G. c/ Min. Salud Pcia. Salta s/ Amparo (medicamento no registrado ANMAT)",
+    tribunal: "Camara de Apelaciones de Salta",
+    fecha: "26/04/2024",
+    ordeno: "Cobertura de medicamento no registrado en ANMAT pero aprobado en UE con respaldo cientifico. Negar cobertura por falta de certeza absoluta es incompatible con cobertura integral.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Salta",
+    fuente: "Microjuris Argentina",
+  },
+];
+
+// ── Oncologia — PET/CT denegado (OSECAC) ────────────────────────
+
+export const jurisprudenciaOncoEstudioPET = [
+  {
+    caratula: "Amparo c/ OSECAC (PET-TC oncologico, Rio Negro)",
+    tribunal: "Juzgado de Primera Instancia de General Roca, Rio Negro",
+    fecha: "2021",
+    ordeno: "Autorizacion y cobertura de PET-TC en 3 dias, con astreintes de $10.000/dia y apercibimiento de desobediencia. OSECAC no habia respondido la solicitud desde febrero.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "Rio Negro",
+    fuente: "Poder Judicial de Rio Negro",
+  },
+];
+
+// ── Oncologia — cirugia reconstruccion (Swiss Medical + OSDE) ───
+
+export const jurisprudenciaOncoCirugiaAdicional = [
+  {
+    caratula: "G.G.B. c/ Swiss Medical S.A. s/ Accion declarativa de derecho",
+    tribunal: "Camara Federal de Apelaciones de Rosario",
+    fecha: "11/02/2016",
+    ordeno: "Cobertura integral de lipotransferencia mamaria bilateral como reconstruccion reparadora (no estetica) bajo Ley 26.872, para paciente con secuelas de cirugia conservadora.",
+    tipo: "ONCO_CIRUGIA",
+    provincia: "Santa Fe",
+    fuente: "Microjuris Argentina",
+  },
+  {
+    caratula: "Amparo c/ OSDE (reconstruccion mamaria con protesis, La Plata)",
+    tribunal: "Camara Federal de Apelaciones de La Plata",
+    fecha: "2022",
+    ordeno: "Cirugia de reconstruccion mamaria con protesis al 100% bajo Ley 26.872. OSDE habia rechazado alegando que era estetica, no funcional.",
+    tipo: "ONCO_CIRUGIA",
+    provincia: "Buenos Aires",
+    fuente: "Comercio y Justicia",
+  },
+];
+
+// ── Diabetes — bomba de insulina adicional ──────────────────────
+
+export const jurisprudenciaDiabetesBombaAdicional = [
+  {
+    caratula: "M.A.N. c/ OS Union del Personal Civil de la Nacion s/ Amparo de salud",
+    tribunal: "Camara Nacional de Apelaciones en lo Civil y Comercial Federal",
+    fecha: "01/08/2017",
+    ordeno: "Cobertura 100% de microinfusora Paradigm Veo 754 Medtronic con bolo inteligente, medicion continua, alarma y corte automatico. La OS habia ofrecido modelo distinto al prescripto.",
+    tipo: "DIABETES_BOMBA",
+    provincia: "Nacional",
+    fuente: "Microjuris Argentina",
+  },
+  {
+    caratula: "Z., Y. E. c/ Union Personal s/ Amparo (Expediente 12548/2021)",
+    tribunal: "Primera y segunda instancia",
+    fecha: "2021",
+    ordeno: "Cobertura 100% de bomba Medtronic prescripta. La OS habia ofrecido alternativa (Accu-Check Solo) que el medico considero menos adecuada. El medico tratante prevalece.",
+    tipo: "DIABETES_BOMBA",
+    provincia: "Nacional",
+    fuente: "Amparando Salud",
+  },
+];
+
+// ── Diabetes — insulina / insumos denegados adicional ───────────
+
+export const jurisprudenciaDiabetesInsulinaAdicional = [
+  {
+    caratula: "Amparo c/ PAMI (insulina Glargina Basaglar + Sitagliptina)",
+    tribunal: "No especificado (referido Microjuris)",
+    fecha: "02/2020",
+    ordeno: "Cobertura integral 100% de insulina Glargina Basaglar y Sitagliptina. La OS no puede sustituir la medicacion prescripta por el tratante.",
+    tipo: "DIABETES_INSULINA",
+    provincia: "Nacional",
+    fuente: "Microjuris Argentina",
+  },
+  {
+    caratula: "Amparo c/ OSDE (FreeStyle Libre, Parana)",
+    tribunal: "Juzgado Federal de Primera Instancia de Parana N.2 (Juez Alonso)",
+    fecha: "2019",
+    ordeno: "Cobertura integral, inmediata, permanente y gratuita del kit FreeStyle Libre (lector + 2 sensores) para paciente con diabetes T1 que planificaba embarazo.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "Entre Rios",
+    fuente: "ElEntreRios.com",
+  },
+];
+
+// ── IOMA — fallo específico (competencia, no fondo) ─────────────
+
+export const jurisprudenciaIOMA = {
+  caratula: "D., M. P. N. c/ I.O.M.A. s/ Amparo (CSJ 2116/2022/CS1)",
+  tribunal: "CSJN (competencia) — origen jurisdiccion provincial Buenos Aires",
+  fecha: "2022",
+  ordeno: "Paciente con cancer de mama triple negativo reclamo Atezolizumab + Nab-Paclitaxel. CSJN resolvio cuestion de competencia. Nota: no hay fallo de fondo verificable contra IOMA por denegacion oncologica.",
+  tipo: "ONCO_QT",
+  provincia: "Buenos Aires",
+  fuente: "Dictamen MPF",
+};
+
 // ── Oncologia — fallos provinciales adicionales (dirigida/general)
 
 export const jurisprudenciaOncologiaEspecifica = [
@@ -421,7 +575,9 @@ export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
       resultado.especificos = [
         ...jurisprudenciaDiabetesSensor,
         ...jurisprudenciaDiabetesBomba,
+        ...jurisprudenciaDiabetesBombaAdicional,
         ...jurisprudenciaDiabetesProvincial,
+        ...jurisprudenciaDiabetesInsulinaAdicional,
       ];
     }
   }
@@ -429,8 +585,11 @@ export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
   if (patologiaId === "oncologia") {
     resultado.especificos = [
       ...jurisprudenciaOncoQT,
+      ...jurisprudenciaOncoDirigida,
       ...jurisprudenciaOncoEstudio,
+      ...jurisprudenciaOncoEstudioPET,
       ...jurisprudenciaOncoCirugia,
+      ...jurisprudenciaOncoCirugiaAdicional,
       ...jurisprudenciaOncologiaEspecifica,
       ...jurisprudenciaTucuman.filter((f) => f.tipo?.startsWith("ONCO")),
     ];
