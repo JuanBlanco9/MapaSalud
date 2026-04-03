@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   FileText,
   Copy,
@@ -7,6 +7,9 @@ import {
   Loader2,
   AlertTriangle,
   ArrowLeft,
+  ArrowRight,
+  Eraser,
+  PenTool,
 } from "lucide-react";
 import { getTextosParaCarta } from "../data/textosLegales";
 import { generarTemplateFallback } from "../data/templatesCarta";
@@ -20,16 +23,11 @@ const PREGUNTAS_RESPUESTA = [
 
 function determinarTipoDocumento(respuestaOS) {
   switch (respuestaOS) {
-    case "sin_respuesta":
-      return "seguimiento";
-    case "negativa_verbal":
-      return "pedir_negativa";
-    case "negativa_escrita":
-      return "carta_documento";
-    case "aprobado_no_entregan":
-      return "intimacion_entrega";
-    default:
-      return "carta_documento";
+    case "sin_respuesta": return "seguimiento";
+    case "negativa_verbal": return "pedir_negativa";
+    case "negativa_escrita": return "carta_documento";
+    case "aprobado_no_entregan": return "intimacion_entrega";
+    default: return "carta_documento";
   }
 }
 
@@ -39,6 +37,150 @@ const TIPO_LABELS = {
   carta_documento: "Carta documento de intimacion",
   intimacion_entrega: "Carta documento por falta de entrega",
 };
+
+// ── Barra de progreso del asistente ─────────────────────────────
+
+function ProgresoCarta({ paso }) {
+  const pasos = ["Situacion", "Tus datos", "Carta lista"];
+  return (
+    <div className="flex items-center justify-center gap-0 mb-8">
+      {pasos.map((label, i) => (
+        <div key={label} className="flex items-center">
+          <div className="flex flex-col items-center">
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
+                paso > i + 1
+                  ? "bg-verde-500 text-white"
+                  : paso === i + 1
+                  ? "bg-azul-700 text-white"
+                  : "bg-gris-200 text-gris-500"
+              }`}
+            >
+              {paso > i + 1 ? <Check className="w-4 h-4" /> : i + 1}
+            </div>
+            <span className={`text-xs mt-1 ${paso >= i + 1 ? "text-azul-700 font-medium" : "text-gris-400"}`}>
+              {label}
+            </span>
+          </div>
+          {i < pasos.length - 1 && (
+            <div className={`w-10 sm:w-16 h-0.5 mb-5 mx-1 ${paso > i + 1 ? "bg-verde-500" : "bg-gris-200"}`} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ── Panel de firma ──────────────────────────────────────────────
+
+function PanelFirma({ onFirmaChange }) {
+  const canvasRef = useRef(null);
+  const [drawing, setDrawing] = useState(false);
+  const [hasFirma, setHasFirma] = useState(false);
+
+  const getPos = useCallback((e) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height),
+    };
+  }, []);
+
+  const startDraw = useCallback((e) => {
+    e.preventDefault();
+    const ctx = canvasRef.current.getContext("2d");
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    setDrawing(true);
+  }, [getPos]);
+
+  const draw = useCallback((e) => {
+    if (!drawing) return;
+    e.preventDefault();
+    const ctx = canvasRef.current.getContext("2d");
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  }, [drawing, getPos]);
+
+  const endDraw = useCallback(() => {
+    if (!drawing) return;
+    setDrawing(false);
+    setHasFirma(true);
+    onFirmaChange(canvasRef.current.toDataURL("image/png"));
+  }, [drawing, onFirmaChange]);
+
+  const limpiar = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setHasFirma(false);
+    onFirmaChange(null);
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.strokeStyle = "#1a1a1a";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+  }, []);
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <label className="text-sm font-medium text-gris-700 flex items-center gap-1.5">
+          <PenTool className="w-4 h-4" />
+          Firma (opcional)
+        </label>
+        {hasFirma && (
+          <span className="text-xs text-verde-600 font-medium flex items-center gap-1">
+            <Check className="w-3 h-3" /> Firma agregada
+          </span>
+        )}
+      </div>
+      <div className="relative border border-gris-200 rounded-lg bg-white overflow-hidden">
+        {!hasFirma && !drawing && (
+          <p className="absolute inset-0 flex items-center justify-center text-gris-300 text-sm pointer-events-none select-none">
+            Firma aqui
+          </p>
+        )}
+        <canvas
+          ref={canvasRef}
+          width={800}
+          height={300}
+          className="w-full h-[150px] touch-none cursor-crosshair"
+          onMouseDown={startDraw}
+          onMouseMove={draw}
+          onMouseUp={endDraw}
+          onMouseLeave={endDraw}
+          onTouchStart={startDraw}
+          onTouchMove={draw}
+          onTouchEnd={endDraw}
+        />
+      </div>
+      {hasFirma && (
+        <button
+          type="button"
+          onClick={limpiar}
+          className="flex items-center gap-1.5 text-gris-500 hover:text-gris-700 text-xs mt-2 cursor-pointer bg-transparent border-none"
+        >
+          <Eraser className="w-3 h-3" /> Borrar firma
+        </button>
+      )}
+      <p className="text-xs text-gris-400 mt-1">
+        Tu firma se usa unicamente para generar el documento. No se almacena en ningun servidor.
+      </p>
+    </div>
+  );
+}
+
+// ── Componente principal ────────────────────────────────────────
 
 export default function AsistenteReclamo({
   os,
@@ -50,20 +192,43 @@ export default function AsistenteReclamo({
   patologiaId,
   onBack,
 }) {
-  const [step, setStep] = useState("preguntas"); // preguntas | generando | resultado
+  const [step, setStep] = useState("preguntas"); // preguntas | datos | generando | resultado
   const [yaSolicito, setYaSolicito] = useState(null);
   const [respuestaOS, setRespuestaOS] = useState(null);
   const [fechaSolicitud, setFechaSolicitud] = useState("");
   const [documento, setDocumento] = useState("");
   const [copiado, setCopiado] = useState(false);
   const [usandoFallback, setUsandoFallback] = useState(false);
+  const [firmaDataUrl, setFirmaDataUrl] = useState(null);
+
+  // Datos del paciente
+  const [datos, setDatos] = useState({
+    nombre: "",
+    dni: "",
+    domicilio: "",
+    telefono: "",
+    email: "",
+    medico: "",
+    matricula: "",
+  });
 
   const tipoDocumento = determinarTipoDocumento(respuestaOS);
-  const puedeGenerar = yaSolicito !== null && (yaSolicito === false || respuestaOS !== null);
+  const puedeIrADatos = yaSolicito !== null && (yaSolicito === false || respuestaOS !== null);
+  const datosCompletos =
+    datos.nombre.trim() &&
+    datos.dni.trim() &&
+    datos.domicilio.trim() &&
+    datos.medico.trim() &&
+    datos.matricula.trim();
+
+  function handleDato(campo, valor) {
+    setDatos((prev) => ({ ...prev, [campo]: valor }));
+  }
 
   async function generar() {
     setStep("generando");
     const textos = getTextosParaCarta(patologiaId, nivelCobertura);
+    const tipoDoc = yaSolicito === false ? "carta_documento" : tipoDocumento;
 
     const payload = {
       obraSocial: os.nombre,
@@ -72,10 +237,11 @@ export default function AsistenteReclamo({
       subtipo: subtipo.nombre,
       tratamiento,
       nivelCobertura,
-      tipoDocumento: yaSolicito === false ? "carta_documento" : tipoDocumento,
+      tipoDocumento: tipoDoc,
       fechaSolicitud: fechaSolicitud || null,
       textosLegales: textos,
       patologiaId,
+      datosPaciente: datos,
     };
 
     try {
@@ -92,21 +258,33 @@ export default function AsistenteReclamo({
       setDocumento(data.texto);
       setUsandoFallback(false);
     } catch {
-      // Fallback a template estático
-      const fallback = generarTemplateFallback({
+      let fallback = generarTemplateFallback({
         obraSocial: os.nombre,
         plan: plan?.nombre || null,
         diagnostico: cancer.nombre,
         subtipo: subtipo.nombre,
         tratamiento,
         fechaSolicitud: fechaSolicitud || null,
-        tipoDocumento: yaSolicito === false ? "carta_documento" : tipoDocumento,
+        tipoDocumento: tipoDoc,
         patologiaId,
       });
+      // Replace placeholders with real data
+      fallback = reemplazarDatos(fallback, datos);
       setDocumento(fallback);
       setUsandoFallback(true);
     }
     setStep("resultado");
+  }
+
+  function reemplazarDatos(texto, d) {
+    return texto
+      .replace(/\[COMPLETAR NOMBRE COMPLETO\]|\[COMPLETAR NOMBRE\]/g, d.nombre || "[COMPLETAR NOMBRE]")
+      .replace(/\[COMPLETAR\] *\n *DNI/g, `${d.dni}\nDNI`)
+      .replace(/DNI \[COMPLETAR\]/g, `DNI ${d.dni || "[COMPLETAR DNI]"}`)
+      .replace(/\[COMPLETAR DOMICILIO\]/g, d.domicilio || "[COMPLETAR DOMICILIO]")
+      .replace(/\[COMPLETAR NOMBRE DEL MEDICO\]/g, d.medico || "[COMPLETAR MEDICO]")
+      .replace(/\[COMPLETAR MATRICULA\]/g, d.matricula || "[COMPLETAR MATRICULA]")
+      .replace(/\[COMPLETAR NUMERO DE AFILIADO\]/g, "[COMPLETAR NUMERO DE AFILIADO]");
   }
 
   function copiar() {
@@ -125,7 +303,37 @@ export default function AsistenteReclamo({
     URL.revokeObjectURL(url);
   }
 
-  // ── Pantalla de preguntas ───────────────────────────────────
+  async function descargarPDF() {
+    const { jsPDF } = await import("jspdf");
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const MARGIN = 20;
+    const W = 170;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const lines = doc.splitTextToSize(documento, W);
+    let y = 25;
+    for (const line of lines) {
+      if (y > 270) { doc.addPage(); y = 25; }
+      doc.text(line, MARGIN, y);
+      y += 5;
+    }
+    // Firma
+    if (firmaDataUrl) {
+      if (y > 240) { doc.addPage(); y = 25; }
+      y += 5;
+      doc.addImage(firmaDataUrl, "PNG", MARGIN, y, 60, 22);
+      y += 26;
+      doc.setFontSize(9);
+      doc.text(datos.nombre, MARGIN, y);
+      y += 4;
+      doc.text(`DNI: ${datos.dni}`, MARGIN, y);
+    }
+    doc.save(`MapaSalud_reclamo_${os.nombre.replace(/[^a-zA-Z0-9]/g, "_")}.pdf`);
+  }
+
+  const pasoNum = step === "preguntas" ? 1 : step === "datos" ? 2 : 3;
+
+  // ── PASO 1: Preguntas ─────────────────────────────────────────
   if (step === "preguntas") {
     return (
       <div className="max-w-3xl mx-auto px-4 py-8">
@@ -136,6 +344,8 @@ export default function AsistenteReclamo({
           <ArrowLeft className="w-4 h-4" />
           Volver a mi mapa
         </button>
+
+        <ProgresoCarta paso={1} />
 
         <div className="text-center mb-8">
           <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -151,7 +361,6 @@ export default function AsistenteReclamo({
         </div>
 
         <div className="space-y-6">
-          {/* Pregunta 1 */}
           <div className="bg-white border border-gris-200 rounded-xl p-5">
             <p className="font-semibold text-gris-800 mb-3">
               ¿Ya pediste este tratamiento formalmente a {os.nombre}?
@@ -163,10 +372,7 @@ export default function AsistenteReclamo({
               ].map((opt) => (
                 <button
                   key={String(opt.val)}
-                  onClick={() => {
-                    setYaSolicito(opt.val);
-                    if (!opt.val) setRespuestaOS(null);
-                  }}
+                  onClick={() => { setYaSolicito(opt.val); if (!opt.val) setRespuestaOS(null); }}
                   className={`flex-1 py-3 px-4 rounded-lg border text-sm font-medium cursor-pointer transition-colors min-h-[44px] ${
                     yaSolicito === opt.val
                       ? "bg-azul-700 text-white border-azul-700"
@@ -179,12 +385,9 @@ export default function AsistenteReclamo({
             </div>
           </div>
 
-          {/* Pregunta 2 — solo si ya solicitó */}
           {yaSolicito === true && (
             <div className="bg-white border border-gris-200 rounded-xl p-5">
-              <p className="font-semibold text-gris-800 mb-3">
-                ¿Que te respondieron?
-              </p>
+              <p className="font-semibold text-gris-800 mb-3">¿Que te respondieron?</p>
               <div className="space-y-2">
                 {PREGUNTAS_RESPUESTA.map((opt) => (
                   <button
@@ -203,113 +406,170 @@ export default function AsistenteReclamo({
             </div>
           )}
 
-          {/* Pregunta 3 — fecha */}
           {yaSolicito === true && respuestaOS && (
             <div className="bg-white border border-gris-200 rounded-xl p-5">
-              <p className="font-semibold text-gris-800 mb-3">
-                ¿Cuando hiciste la solicitud?
-              </p>
+              <p className="font-semibold text-gris-800 mb-3">¿Cuando hiciste la solicitud?</p>
               <input
                 type="date"
                 value={fechaSolicitud}
                 onChange={(e) => setFechaSolicitud(e.target.value)}
                 className="w-full py-3 px-4 border border-gris-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-azul-500 min-h-[44px]"
               />
-              <p className="text-xs text-gris-400 mt-2">
-                Si no recordas la fecha exacta, dejalo vacio y completalo despues en el documento.
-              </p>
             </div>
           )}
 
-          {/* Resumen + botón generar */}
-          {puedeGenerar && (
-            <div className="bg-azul-50 border border-azul-100 rounded-xl p-5">
-              <p className="text-sm text-azul-700 mb-3">
-                <strong>Vamos a generar:</strong>{" "}
-                {yaSolicito === false
-                  ? TIPO_LABELS.carta_documento
-                  : TIPO_LABELS[tipoDocumento]}
-              </p>
-              <button
-                onClick={generar}
-                className="w-full bg-azul-700 hover:bg-azul-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]"
-              >
-                Generar documento
-              </button>
-            </div>
+          {puedeIrADatos && (
+            <button
+              onClick={() => { setStep("datos"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="w-full flex items-center justify-center gap-2 bg-azul-700 hover:bg-azul-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]"
+            >
+              Siguiente: tus datos
+              <ArrowRight className="w-4 h-4" />
+            </button>
           )}
         </div>
       </div>
     );
   }
 
-  // ── Pantalla de carga ───────────────────────────────────────
-  if (step === "generando") {
+  // ── PASO 2: Datos personales + firma ──────────────────────────
+  if (step === "datos") {
+    const campos = [
+      { id: "nombre", label: "Nombre completo", required: true, type: "text", placeholder: "Juan Carlos Lopez" },
+      { id: "dni", label: "DNI", required: true, type: "text", placeholder: "28.456.789" },
+      { id: "domicilio", label: "Domicilio", required: true, type: "text", placeholder: "Av. Corrientes 1234, CABA" },
+      { id: "telefono", label: "Telefono", required: false, type: "tel", placeholder: "+54 11 1234-5678" },
+      { id: "email", label: "Email", required: false, type: "email", placeholder: "juan@email.com" },
+      { id: "medico", label: "Nombre del medico tratante", required: true, type: "text", placeholder: "Dra. Maria Garcia" },
+      { id: "matricula", label: "Matricula del medico", required: true, type: "text", placeholder: "MP 12345" },
+    ];
+
     return (
-      <div className="max-w-3xl mx-auto px-4 py-24 text-center">
-        <Loader2 className="w-10 h-10 text-azul-500 animate-spin mx-auto mb-4" />
-        <p className="text-gris-600 text-lg">
-          Generando tu documento...
-        </p>
-        <p className="text-gris-400 text-sm mt-2">
-          Esto puede tardar unos segundos.
-        </p>
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        <button
+          onClick={() => setStep("preguntas")}
+          className="flex items-center gap-1.5 text-azul-600 hover:text-azul-700 mb-6 text-sm cursor-pointer bg-transparent border-none"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Volver a la situacion
+        </button>
+
+        <ProgresoCarta paso={2} />
+
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gris-900 mb-2">
+            Tus datos para la carta
+          </h2>
+          <p className="text-gris-500 text-sm">
+            Estos datos se usan solo para generar el documento. No se almacenan en ningun servidor.
+          </p>
+        </div>
+
+        <div className="bg-azul-50 border border-azul-100 rounded-lg p-3 mb-6 text-sm text-azul-700">
+          <strong>Vamos a generar:</strong>{" "}
+          {yaSolicito === false ? TIPO_LABELS.carta_documento : TIPO_LABELS[tipoDocumento]}
+          {" "}para {os.nombre}
+        </div>
+
+        <div className="space-y-4">
+          {campos.map((c) => (
+            <div key={c.id}>
+              <label className="block text-sm font-medium text-gris-700 mb-1">
+                {c.label} {c.required && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type={c.type}
+                value={datos[c.id]}
+                onChange={(e) => handleDato(c.id, e.target.value)}
+                placeholder={c.placeholder}
+                className="w-full py-3 px-4 border border-gris-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-azul-500 min-h-[44px]"
+              />
+            </div>
+          ))}
+
+          {/* Panel de firma */}
+          <div className="pt-4 border-t border-gris-200">
+            <PanelFirma onFirmaChange={setFirmaDataUrl} />
+          </div>
+
+          {/* Botón generar */}
+          <button
+            onClick={generar}
+            disabled={!datosCompletos}
+            className={`w-full flex items-center justify-center gap-2 font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px] ${
+              datosCompletos
+                ? "bg-azul-700 hover:bg-azul-800 text-white"
+                : "bg-gris-200 text-gris-400 cursor-not-allowed"
+            }`}
+          >
+            Generar documento
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     );
   }
 
-  // ── Pantalla de resultado ───────────────────────────────────
+  // ── Pantalla de carga ─────────────────────────────────────────
+  if (step === "generando") {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-24 text-center">
+        <ProgresoCarta paso={3} />
+        <Loader2 className="w-10 h-10 text-azul-500 animate-spin mx-auto mb-4" />
+        <p className="text-gris-600 text-lg">Generando tu documento...</p>
+        <p className="text-gris-400 text-sm mt-2">Esto puede tardar unos segundos.</p>
+      </div>
+    );
+  }
+
+  // ── PASO 3: Resultado ─────────────────────────────────────────
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       <button
-        onClick={() => setStep("preguntas")}
+        onClick={() => setStep("datos")}
         className="flex items-center gap-1.5 text-azul-600 hover:text-azul-700 mb-6 text-sm cursor-pointer bg-transparent border-none"
       >
         <ArrowLeft className="w-4 h-4" />
-        Cambiar respuestas
+        Modificar datos
       </button>
+
+      <ProgresoCarta paso={3} />
 
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gris-900 mb-2">
           Tu documento esta listo
         </h2>
         <p className="text-sm text-gris-600">
-          {yaSolicito === false
-            ? TIPO_LABELS.carta_documento
-            : TIPO_LABELS[tipoDocumento]}{" "}
-          para {os.nombre}
+          {yaSolicito === false ? TIPO_LABELS.carta_documento : TIPO_LABELS[tipoDocumento]}
+          {" "}para {os.nombre}
         </p>
       </div>
 
       {usandoFallback && (
         <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mb-4 text-sm text-naranja-600">
-          <strong>Nota:</strong> Se uso un modelo predefinido. Completa los
-          campos marcados [COMPLETAR] con tus datos.
+          <strong>Nota:</strong> Se uso un modelo predefinido. Verifica que todos los datos esten correctos.
         </div>
       )}
 
-      {/* Documento editable */}
       <textarea
         value={documento}
         onChange={(e) => setDocumento(e.target.value)}
         className="w-full h-96 p-4 border border-gris-200 rounded-xl text-sm font-mono leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-azul-500"
       />
 
-      {/* Botones */}
+      {firmaDataUrl && (
+        <div className="mt-3 p-3 bg-gris-50 rounded-lg">
+          <p className="text-xs text-gris-500 mb-2">Firma (se incluye en el PDF):</p>
+          <img src={firmaDataUrl} alt="Firma" className="h-12 object-contain" />
+        </div>
+      )}
+
       <div className="flex flex-col sm:flex-row gap-3 mt-4">
         <button
           onClick={copiar}
           className="flex-1 inline-flex items-center justify-center gap-2 bg-azul-700 hover:bg-azul-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]"
         >
-          {copiado ? (
-            <>
-              <Check className="w-4 h-4" /> Copiado
-            </>
-          ) : (
-            <>
-              <Copy className="w-4 h-4" /> Copiar texto
-            </>
-          )}
+          {copiado ? (<><Check className="w-4 h-4" /> Copiado</>) : (<><Copy className="w-4 h-4" /> Copiar texto</>)}
         </button>
         <button
           onClick={descargar}
@@ -317,9 +577,14 @@ export default function AsistenteReclamo({
         >
           <Download className="w-4 h-4" /> Descargar .txt
         </button>
+        <button
+          onClick={descargarPDF}
+          className="flex-1 inline-flex items-center justify-center gap-2 bg-verde-500 hover:bg-verde-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]"
+        >
+          <Download className="w-4 h-4" /> PDF {firmaDataUrl ? "con firma" : ""}
+        </button>
       </div>
 
-      {/* Disclaimer */}
       <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mt-6 text-sm text-gris-700">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-naranja-500 shrink-0 mt-0.5" />
@@ -332,19 +597,16 @@ export default function AsistenteReclamo({
         </div>
       </div>
 
-      {/* Accion siguiente */}
       <div className="mt-6 bg-verde-50 border border-verde-200 rounded-xl p-5">
-        <p className="font-semibold text-verde-800 mb-2">
-          Proximo paso
-        </p>
+        <p className="font-semibold text-verde-800 mb-2">Proximo paso</p>
         <p className="text-sm text-verde-700">
           {tipoDocumento === "pedir_negativa"
             ? "Envia este email a la auditoria medica de tu obra social. Si no responden en 48 horas, el siguiente paso es la carta documento."
             : tipoDocumento === "seguimiento"
             ? "Envia este email a la auditoria medica. Si no responden, el siguiente paso es una carta documento formal."
             : tipoDocumento === "intimacion_entrega"
-            ? "Envia esta carta documento por correo postal certificado. Guarda el comprobante de envio — lo vas a necesitar si inicias un amparo."
-            : "Envia esta carta documento por correo postal certificado. Si no responden en 48 horas, el siguiente paso es el amparo judicial. Contacta a la Defensoria del Pueblo (gratis) o a un abogado."}
+            ? "Envia esta carta documento por correo postal certificado. Guarda el comprobante de envio."
+            : "Envia esta carta documento por correo postal certificado. Si no responden en 48 horas, contacta a la Defensoria del Pueblo (gratis) o a un abogado para iniciar el amparo."}
         </p>
         {os.auditoria?.telefono && (
           <p className="text-sm text-verde-600 mt-2">

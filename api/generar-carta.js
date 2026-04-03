@@ -39,15 +39,28 @@ export default async function handler(req) {
       fechaSolicitud,
       textosLegales,
       patologiaId,
+      datosPaciente,
     } = body;
 
     const tipoDesc = TIPOS_DOCUMENTO[tipoDocumento] || tipoDocumento;
+
+    const dp = datosPaciente || {};
+    const datosBloque = dp.nombre ? `
+DATOS DEL PACIENTE (usar estos datos reales, NO inventar ni usar placeholders):
+- Nombre completo: ${dp.nombre}
+- DNI: ${dp.dni}
+- Domicilio: ${dp.domicilio}
+${dp.telefono ? `- Telefono: ${dp.telefono}` : ""}
+${dp.email ? `- Email: ${dp.email}` : ""}
+- Medico tratante: ${dp.medico}
+- Matricula del medico: ${dp.matricula}` : "";
 
     const systemPrompt = `Sos un asistente legal especializado en derecho a la salud en Argentina.
 Tu rol es redactar comunicaciones formales para pacientes que necesitan reclamar cobertura medica a sus obras sociales o prepagas.
 
 REGLAS ESTRICTAS:
-- NUNCA inventes datos del paciente, del medico, ni de la obra social. Si falta un dato, usa [COMPLETAR EN MAYUSCULAS] como placeholder.
+- USA LOS DATOS REALES DEL PACIENTE que te proveo. No uses placeholders como [COMPLETAR] para datos que ya tengas.
+- Si falta un dato que NO te provei, usa [COMPLETAR EN MAYUSCULAS] como placeholder.
 - Cita los articulos de ley TEXTUALMENTE como te los proveo. No parafrasees ni modifiques las citas legales.
 - El tono es formal, firme, y respetuoso. Nunca agresivo ni amenazante.
 - Maximo 500 palabras.
@@ -56,6 +69,7 @@ REGLAS ESTRICTAS:
 - Establece un plazo de respuesta de 48 horas.
 - Menciona las consecuencias legales de no responder (amparo judicial, danos y perjuicios).
 - No uses lenguaje inclusivo con x o @.
+${datosBloque}
 
 TEXTOS LEGALES EXACTOS PARA CITAR:
 ${textosLegales.join("\n\n")}`;
