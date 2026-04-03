@@ -1,4 +1,3 @@
-import jsPDF from "jspdf";
 import { getNivelDroga, nivelesInfo } from "../data/coberturas";
 
 const MARGIN = 20;
@@ -23,7 +22,8 @@ function nivelText(nombre) {
   return "[REQUIERE GESTION]";
 }
 
-export function generarMapaPDF({ os, plan, cancer, subtipo, pmo }) {
+export async function generarMapaPDF({ os, plan, cancer, subtipo, pmo }) {
+  const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "mm", format: "a4" });
   const fecha = new Date().toLocaleDateString("es-AR", {
     day: "2-digit",

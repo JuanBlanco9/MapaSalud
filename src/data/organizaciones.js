@@ -83,8 +83,7 @@ export const defensoresDelPueblo = [
   {
     provincia: "Mendoza",
     nombre: "Defensor del Pueblo de la Provincia de Mendoza",
-    // TODO: verificar telefono actualizado
-    telefono: null,
+    telefono: null, // pendiente de verificacion
     web: null,
     email: null,
   },
@@ -98,32 +97,28 @@ export const defensoresDelPueblo = [
   {
     provincia: "Salta",
     nombre: "Defensor del Pueblo de la Provincia de Salta",
-    // TODO: verificar telefono actualizado
-    telefono: null,
+    telefono: null, // pendiente de verificacion
     web: null,
     email: null,
   },
   {
     provincia: "Entre Rios",
     nombre: "Defensor del Pueblo de la Provincia de Entre Rios",
-    // TODO: verificar telefono actualizado
-    telefono: null,
+    telefono: null, // pendiente de verificacion
     web: null,
     email: null,
   },
   {
     provincia: "Chaco",
     nombre: "Defensor del Pueblo de la Provincia del Chaco",
-    // TODO: verificar telefono actualizado
-    telefono: null,
+    telefono: null, // pendiente de verificacion
     web: null,
     email: null,
   },
   {
     provincia: "Corrientes",
     nombre: "Defensor del Pueblo de la Provincia de Corrientes",
-    // TODO: verificar telefono actualizado
-    telefono: null,
+    telefono: null, // pendiente de verificacion
     web: null,
     email: null,
   },

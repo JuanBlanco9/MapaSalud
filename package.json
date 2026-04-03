@@ -1,13 +1,32 @@
 {
   "name": "mapasalud",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Herramienta gratuita de navegacion del sistema de salud argentino para pacientes oncologicos y con enfermedades cronicas. Cobertura, derechos, amparos, y asistente de reclamos.",
   "type": "module",
+  "license": "MIT",
+  "author": "MapaSalud Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mapasalud/mapasalud"
+  },
+  "keywords": [
+    "salud",
+    "argentina",
+    "oncologia",
+    "diabetes",
+    "cobertura",
+    "obras-sociales",
+    "prepagas",
+    "pmo",
+    "amparo",
+    "derechos-pacientes",
+    "open-source"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "jspdf": "^4.2.1",
