@@ -36,7 +36,13 @@ export const textosLegales = {
     `Ley 23.753 Art. 5 (Diabetes): "Los agentes del Seguro de Salud comprendidos en la Ley 23.660 deberan proveer la cobertura integral de la diabetes, incluyendo insulinas, antidiabeticos orales, reactivos de autocontrol, y toda otra medicacion, elementos e insumos necesarios para su tratamiento."`,
 
   ley_26914_diabetes:
-    `Ley 26.914 (modifica Ley 23.753): Amplia la cobertura al 100% de "insulinas, analogos de insulina y medicacion oral, reactivos de autocontrol y todo otro tipo de elementos que la autoridad de aplicacion determine para el tratamiento de la diabetes, incluyendo la provision de equipos y dispositivos para su uso." Incorpora tecnologias de monitoreo y administracion.`,
+    `Ley 26.914 Art. 1 (modifica Ley 23.753): Amplia la cobertura al 100% de "insulinas, analogos de insulina y medicacion oral, reactivos de autocontrol y todo otro tipo de elementos que la autoridad de aplicacion determine para el tratamiento de la diabetes, incluyendo la provision de equipos y dispositivos para su uso." La expresion "equipos y dispositivos" incluye sensores de monitoreo continuo de glucosa y bombas de infusion de insulina.`,
+
+  ley_26914_art2_diabetes:
+    `Ley 26.914 Art. 2: "Los gastos que demande el cumplimiento de la presente ley se imputaran a las partidas que se determinen a tal efecto en la Ley de Presupuesto General de la Administracion Nacional." Esto implica que el Estado asume la responsabilidad presupuestaria de la cobertura tecnologica.`,
+
+  jurisprudencia_sensor_cgm:
+    `Jurisprudencia reiterada en materia de sensores CGM: Multiples fallos de Camaras Federales han ordenado a obras sociales y prepagas cubrir sensores de monitoreo continuo de glucosa (FreeStyle Libre, Dexcom) al 100%, fundamentando en la Ley 26.914 y en el derecho a la salud del Art. 42 CN. Los tribunales han interpretado que la expresion "equipos y dispositivos" de la Ley 26.914 incluye los CGM, especialmente cuando el medico tratante los indica y se demuestra que mejoran el control glucemico y reducen hipoglucemias.`,
 
   jurisprudencia_piso:
     `Principio jurisprudencial reiterado: "El PMO constituye un piso de prestaciones minimas y no un techo. Las obras sociales y prepagas deben cubrir tratamientos no incluidos en el PMO cuando hay indicacion medica y existe riesgo para la vida o la salud del paciente." (CSJN, reiterado en multiples fallos de Camaras Federales)`,
@@ -69,7 +75,9 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
   if (patologiaId === "diabetes1") {
     base.push(
       textosLegales.ley_23753_diabetes,
-      textosLegales.ley_26914_diabetes
+      textosLegales.ley_26914_diabetes,
+      textosLegales.ley_26914_art2_diabetes,
+      textosLegales.jurisprudencia_sensor_cgm
     );
   }
 

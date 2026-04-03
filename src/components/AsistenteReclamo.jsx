@@ -101,6 +101,7 @@ export default function AsistenteReclamo({
         tratamiento,
         fechaSolicitud: fechaSolicitud || null,
         tipoDocumento: yaSolicito === false ? "carta_documento" : tipoDocumento,
+        patologiaId,
       });
       setDocumento(fallback);
       setUsandoFallback(true);

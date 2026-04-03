@@ -14,6 +14,7 @@ export function generarTemplateFallback({
   tratamiento,
   fechaSolicitud,
   tipoDocumento,
+  patologiaId,
 }) {
   const os = `${obraSocial}${plan ? ` (${plan})` : ""}`;
   const fechaSol = fechaSolicitud || "[COMPLETAR FECHA]";
@@ -78,7 +79,37 @@ ${fecha}
 DNI [COMPLETAR]`;
   }
 
-  // Default: carta_documento
+  // Default: carta_documento — bifurca por patologia
+  if (patologiaId === "diabetes1") {
+    return `CARTA DOCUMENTO
+
+De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
+A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
+
+OBJETO: INTIMACION A COBERTURA DE ${tratamiento.toUpperCase()} — DIABETES TIPO 1
+
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) a fin de intimarles fehacientemente para que en el plazo improrrogable de CUARENTA Y OCHO (48) HORAS procedan a autorizar y brindar cobertura integral de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
+
+La cobertura solicitada se encuentra amparada por:
+
+- Ley 23.753 Art. 5: obliga a los agentes del Seguro de Salud a proveer cobertura integral de la diabetes, incluyendo "toda otra medicacion, elementos e insumos necesarios para su tratamiento"
+- Ley 26.914 Art. 1 (modifica Ley 23.753): amplia la cobertura al 100% incluyendo "equipos y dispositivos para su uso", expresion que conforme jurisprudencia reiterada incluye sensores de monitoreo continuo de glucosa y bombas de infusion de insulina
+- Art. 42 de la Constitucion Nacional (derecho a la salud)
+- Art. 43 de la Constitucion Nacional (accion de amparo)
+- Ley 26.682 (Marco regulatorio de medicina prepaga)
+
+La jurisprudencia argentina ha resuelto en numerosos fallos que la expresion "equipos y dispositivos" de la Ley 26.914 incluye los sistemas de monitoreo continuo de glucosa, ordenando su cobertura al 100% cuando existe indicacion medica.
+
+De no dar cumplimiento en el plazo indicado, me reservo el derecho de iniciar la accion de amparo prevista en el Art. 43 de la Constitucion Nacional, con mas los danos y perjuicios que su conducta omisiva me ocasione, incluyendo dano moral.
+
+Queda Ud. debidamente intimado/a.
+
+${fecha}
+[COMPLETAR NOMBRE COMPLETO]
+DNI [COMPLETAR]`;
+  }
+
+  // Oncologia / generico
   return `CARTA DOCUMENTO
 
 De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]

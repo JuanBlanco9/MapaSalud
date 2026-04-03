@@ -19,9 +19,10 @@ export const tipos = [
           "HbA1c (hemoglobina glicosilada) cada 3 meses",
           "Glucemia en ayunas",
           "Perfil lipidico anual",
+          "Funcion renal (creatinina, microalbuminuria) anual",
         ],
         opcionesNuevas: [
-          "Insulina semanal (Icodec/Awiqli — no disponible en ARG aun)",
+          "Insulina semanal Icodec (Awiqli — aprobada FDA 2024, no disponible en ARG)",
         ],
       },
       {
@@ -38,9 +39,9 @@ export const tipos = [
           "Insulina Aspart ultrarapida (Fiasp)",
         ],
         estudios: [
-          "Automonitoreo glucemico (tiras reactivas o sensor continuo)",
+          "Automonitoreo glucemico (minimo 4 veces/dia)",
           "HbA1c cada 3 meses",
-          "Fructosamina (si HbA1c no es confiable)",
+          "Tiempo en rango si usa sensor (objetivo > 70%)",
         ],
         opcionesNuevas: [],
       },
@@ -66,7 +67,8 @@ export const tipos = [
         estudios: [
           "Informe de variabilidad glucemica (AGP / Ambulatory Glucose Profile)",
           "Tiempo en rango (TIR) — objetivo > 70%",
-          "HbA1c correlacionada con GMI del sensor",
+          "Registro de hipoglucemias severas (argumento clave para el amparo)",
+          "HbA1c actual y tendencia de los ultimos 12 meses",
         ],
         opcionesNuevas: [
           "Dexcom ONE+ (version accesible del G7)",
@@ -87,12 +89,12 @@ export const tipos = [
         ],
         estudios: [
           "Evaluacion por equipo de diabetes para indicacion de bomba",
-          "Capacitacion en conteo de carbohidratos",
-          "HbA1c y registro de hipoglucemias severas",
+          "Capacitacion en conteo de carbohidratos (requisito previo)",
+          "HbA1c y registro de hipoglucemias severas (justificacion para OS)",
+          "Informe de diabetologo/endocrinologo explicando por que la bomba es necesaria",
         ],
         opcionesNuevas: [
-          "Omnipod 5 con algoritmo propio (disponibilidad limitada en ARG)",
-          "Sistemas DIY de asa cerrada (Loop, AndroidAPS — no aprobados por ANMAT)",
+          "Sistemas DIY de asa cerrada (Loop, AndroidAPS — no aprobados ANMAT, usados por comunidad)",
         ],
       },
     ],
@@ -113,7 +115,7 @@ export const tipos = [
         terapiasDirigidas: [],
         estudios: [
           "Automonitoreo 4-8 veces/dia (pre y postprandial)",
-          "Registro de glucemias para ajuste de dosis",
+          "Registro de glucemias para ajuste de dosis con el medico",
         ],
         opcionesNuevas: [],
       },
