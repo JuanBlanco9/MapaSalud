@@ -157,12 +157,40 @@ function DrogaConNivel({ nombre, getNivel, niveles }) {
           {fund.datosLitigiosidad && (
             <p className="text-xs text-gris-500 mt-1">{fund.datosLitigiosidad}</p>
           )}
-          {fund.fallosRelacionados && (
-            <p className="text-xs text-azul-600 mt-1">
-              {fund.fallosRelacionados} fallo{fund.fallosRelacionados > 1 ? "s" : ""} judicial{fund.fallosRelacionados > 1 ? "es" : ""} verificado{fund.fallosRelacionados > 1 ? "s" : ""}
-            </p>
+          {fund.fallos && fund.fallos.length > 0 && (
+            <div className="mt-2">
+              <p className="text-xs font-semibold text-gris-600 mb-1">
+                Fallos judiciales ({fund.fallos.length}):
+              </p>
+              {fund.fallos.map((f, i) => (
+                <a
+                  key={i}
+                  href={f.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-azul-600 hover:text-azul-700 no-underline hover:underline mt-0.5"
+                >
+                  {f.titulo} — {f.tribunal}
+                </a>
+              ))}
+            </div>
           )}
-          <p className="text-xs text-gris-400 mt-1">Fuente: {fund.fuente}</p>
+          {fund.normativa && fund.normativa.length > 0 && (
+            <div className="mt-2">
+              <p className="text-xs font-semibold text-gris-600 mb-1">Normativa:</p>
+              {fund.normativa.map((n, i) => (
+                <a
+                  key={i}
+                  href={n.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-azul-600 hover:text-azul-700 no-underline hover:underline mt-0.5"
+                >
+                  {n.titulo}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

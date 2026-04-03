@@ -185,73 +185,166 @@ export const dificultadInfo = {
 // para mostrar en el boton (i) de la UI.
 
 export const fundamentacion = {
-  // Oncologia — dificil
   "Palbociclib": {
-    dificultad: "tramite",
-    porque: "Esta en el vademecum nacional (Res. 3377/2022) y tiene 12+ marcas biosimilares que bajaron el precio. Pero requiere autorizacion de auditoria medica en todas las OS.",
-    datosLitigiosidad: "Entre los medicamentos mas litigados a nivel nacional (Registro Nacional SSS, 2024).",
-    fuente: "Registro Nacional de Amparos SSS / preciosdemedicamentos.com.ar",
+    porque: "En vademecum nacional (Res. 3377/2022), 12+ biosimilares. Requiere auditoria medica.",
+    datosLitigiosidad: "Entre los mas litigados a nivel nacional (Registro Nacional SSS, 2024).",
+    fallos: [
+      {
+        titulo: "R.E.V. c/ Incluir Salud (Palbociclib + Letrozol, ca. mama)",
+        url: "https://www.cij.gov.ar/scp/d/sentencia-SGU-89083ab5-7a4d-45cb-94aa-f792c81d0e73.pdf",
+        tribunal: "Cam. Fed. La Plata, Sala II, 2020",
+      },
+    ],
+    normativa: [
+      { titulo: "Res. 3377/2022 — Listado Complementario", url: "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=376215" },
+    ],
   },
   "Pembrolizumab": {
-    dificultad: "tramite",
-    porque: "En vademecum nacional para indicaciones aprobadas por ANMAT. Biosimilar Pembrox (Elea, 2025) bajo precios. Pero la cobertura depende de la indicacion exacta, biomarcadores (PD-L1), y protocolo.",
-    datosLitigiosidad: "Alto costo (~$21M ARS/ciclo). Multiples amparos registrados, especialmente para indicaciones no estandar.",
-    fallosRelacionados: 3,
-    fuente: "OLEGISAR / Kairos / fallos verificados en jurisprudencia.js",
+    porque: "En vademecum para indicaciones ANMAT. Biosimilar Pembrox (2025) bajo precios. Cobertura depende de indicacion, PD-L1, protocolo.",
+    datosLitigiosidad: "~$21M ARS/ciclo. Multiples amparos, especialmente indicaciones no estandar.",
+    fallos: [
+      {
+        titulo: "Amparo c/ Economicas Salud (Pembrolizumab ca. uterino, Rosario)",
+        url: "https://www.abogadosrosario.com/noticias/leer/13177-ordenan-prestadora-salud-cubrir-medicacio-oncologica.html",
+        tribunal: "Juz. Fed. Rosario, 2024",
+      },
+      {
+        titulo: "Amparo c/ PAMI (Pembrolizumab ca. uterino, Rosario)",
+        url: "https://www.versionrosario.com.ar/pami-debera-cubrir-a-una-afiliada-un-costoso-medicamento-oncologico/",
+        tribunal: "Juz. Fed. N.1 Rosario, 2020",
+      },
+      {
+        titulo: "OSDE condenada a proveer Pembrolizumab (cancer renal, Corrientes)",
+        url: "http://www.juscorrientes.gov.ar/prensa/condenan-a-osde-a-proveer-un-medicamento-no-autorizado-por-la-anmat-argentina-a-paciente-con-cancer/",
+        tribunal: "Juz. CyCL Esquina, Corrientes, 17/12/2021",
+      },
+    ],
+    normativa: [
+      { titulo: "Res. 3377/2022", url: "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=376215" },
+    ],
   },
   "Trastuzumab": {
-    dificultad: "tramite",
-    porque: "En vademecum nacional. 6+ biosimilares disponibles (47-63% ahorro). Autorizacion de rutina en todas las OS para indicaciones HER2+.",
-    datosLitigiosidad: "Baja litigiosidad actual gracias a biosimilares y normativa clara.",
-    fuente: "preciosdemedicamentos.com.ar / Res. 3377/2022",
+    porque: "En vademecum nacional. 6+ biosimilares (47-63% ahorro). Autorizacion de rutina para HER2+.",
+    datosLitigiosidad: "Baja litigiosidad actual gracias a biosimilares.",
+    fallos: [],
+    normativa: [
+      { titulo: "Res. 3377/2022", url: "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=376215" },
+    ],
   },
   "Osimertinib": {
-    dificultad: "dificil",
-    porque: "NO en vademecum nacional (Res. 3377/2022). Precio mas alto de todos los orales (~$21.4M ARS/mes). Sin biosimilar.",
+    porque: "NO en vademecum nacional. Precio mas alto oral (~$21.4M/mes). Sin biosimilar.",
     datosLitigiosidad: "Requiere amparo en la mayoria de los casos.",
-    fuente: "Kairos / jurisprudencia.js",
+    fallos: [],
+    normativa: [],
   },
   "Trastuzumab deruxtecan": {
-    dificultad: "dificil",
-    porque: "NO en vademecum nacional. Costo ~$6M ARS/ciclo. Amparos recientes ganados contra OSDE (Chaco, 04/2025) y PAMI (Rosario, 11/2024).",
-    datosLitigiosidad: "2 fallos favorables verificados en 2024-2025, lo que indica frecuencia de negativas.",
-    fallosRelacionados: 2,
-    fuente: "Litigio.com.ar / El Ciudadano Web",
+    porque: "NO en vademecum nacional. ~$6M ARS/ciclo. Amparos ganados contra OSDE y PAMI en 2024-2025.",
+    datosLitigiosidad: "2 fallos favorables verificados — indica negativas frecuentes.",
+    fallos: [
+      {
+        titulo: "Amparo c/ OSDE — Enhertu (Chaco)",
+        url: "https://litigio.com.ar/2025/04/09/confirman-un-fallo-que-ordeno-a-osde-la-cobertura-de-un-medicamento-oncologico/",
+        tribunal: "Cam. Fed. Resistencia, 09/04/2025",
+      },
+      {
+        titulo: "Amparo c/ PAMI — Enhertu (Rosario)",
+        url: "https://elciudadanoweb.com/la-justicia-ordeno-a-pami-cubrir-a-una-afiliada-medicacion-oncologica/",
+        tribunal: "Juz. Fed. Rosario, 11/2024",
+      },
+    ],
+    normativa: [],
   },
   "Oncotype DX": {
-    dificultad: "dificil",
-    porque: "No en PMO formalmente. Se procesa en USA (~USD 3.000-4.000). 3 fallos judiciales verificados ordenando cobertura.",
-    datosLitigiosidad: "3 fallos verificados (Sancor 2026, OSDE reintegro 2025, IOSFA 2019), indicando negativas sistematicas.",
-    fallosRelacionados: 3,
-    fuente: "Justicia de Primera / jurisprudencia.js",
+    porque: "No en PMO. Se procesa en USA (~USD 3.000-4.000). 3 fallos ordenando cobertura.",
+    datosLitigiosidad: "3 fallos verificados — negativas sistematicas.",
+    fallos: [
+      {
+        titulo: "Amparo c/ Sancor Salud — Oncotype DX (San Martin)",
+        url: "https://justiciadeprimera.com/2026/03/30/prepaga-debe-cubrir-un-estudio-genetico-por-cancer-de-mama/",
+        tribunal: "Juz. Fed. San Martin, 03/2026",
+      },
+      {
+        titulo: "Amparo c/ OSDE — Reintegro Oncotype DX",
+        url: "https://justiciadeprimera.com/2025/11/03/ordenan-reintegrar-a-afiliada-con-cancer-de-mama-el-costo-de-un-test-genetico-clave/",
+        tribunal: "CNACCF Sala III, 11/2025",
+      },
+      {
+        titulo: "Cautelar c/ IOSFA — Oncotype DX en 24hs",
+        url: "https://actualidadjuridicaonline.com/cautelar-ordena-la-ejecucion-inmediata-de-la-practica-oncologica-oncotype/",
+        tribunal: "Juz. Fed. (Juez Marigo), 13/12/2019",
+      },
+    ],
+    normativa: [],
   },
-
-  // Diabetes — dificil
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": {
-    dificultad: "tramite",
-    porque: "Cubierto por Res. 2091/2025 (julio 2025) para insulinodependientes. Antes de esta resolucion era 'dificil'. Ahora las OS estan obligadas, pero algunas todavia demoran la autorizacion.",
-    datosLitigiosidad: "4 fallos verificados pre-Res. 2091 (Omint 2019, OSEP Mendoza 2021, PAMI Salta 2025, Medife 2026). La litigiosidad deberia bajar con la nueva resolucion.",
-    fallosRelacionados: 4,
-    fuente: "Res. 2091/2025 B.O. / Microjuris / Justicia de Primera",
+    porque: "Cubierto por Res. 2091/2025 para insulinodependientes. Antes 'dificil', ahora OS obligadas pero algunas demoran.",
+    datosLitigiosidad: "4 fallos pre-Res. 2091. La litigiosidad deberia bajar.",
+    fallos: [
+      {
+        titulo: "H.R. c/ Omint — FreeStyle Libre",
+        url: "https://aldiaargentina.microjuris.com/2019/06/06/medicion-de-glucemia-asegurada-la-empresa-de-medicina-prepaga-debe-cubrir-al-actor-el-sensor-de-glucemia-indicado-por-su-medico-tratante/",
+        tribunal: "CNACCF Sala I, 14/03/2019",
+      },
+      {
+        titulo: "V.M.E. c/ OSEP — FreeStyle Libre (Mendoza)",
+        url: "https://aldiaargentina.microjuris.com/2021/05/18/fallos-salud-una-obra-social-debe-brindar-cobertura-de-un-dispositivo-de-monitoreo-continuo-de-glucosa-para-la-afiliada-que-padece-diabetes-ya-que-que-presenta-ventajas-cualitativas-en-el-tratamien/",
+        tribunal: "1ra Cam. San Rafael, Mendoza, 15/04/2021",
+      },
+      {
+        titulo: "Amparo c/ PAMI — Sensor glucosa (Salta)",
+        url: "https://justiciadeprimera.com/2025/02/10/conflicto-por-la-cobertura-de-sensores-de-medicion-de-glucosa-para-diabetes/",
+        tribunal: "Cam. Fed. Salta, Sala I, 02/2025",
+      },
+      {
+        titulo: "Amparo c/ Medife — FreeStyle Libre (CABA)",
+        url: "https://justiciadeprimera.com/2026/02/12/cobertura-obligatoria-al-100-para-insumos-de-diabetes/",
+        tribunal: "Juz. Civ.Com.Fed. (Nobili), 02/2026",
+      },
+    ],
+    normativa: [
+      { titulo: "Res. 2091/2025 (cobertura sensores flash)", url: "https://www.boletinoficial.gob.ar/detalleAviso/primera/327710/20250701" },
+      { titulo: "Ley 26.914 (equipos y dispositivos diabetes)", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
   },
   "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": {
-    dificultad: "tramite",
-    porque: "Mismo marco legal que Libre 2. Res. 2091/2025 cubre 'sistemas flash'. Precio particular ~$79.000/sensor.",
-    datosLitigiosidad: "Incluido en la misma normativa que Libre 2.",
-    fuente: "Res. 2091/2025 / OpenFarma",
+    porque: "Mismo marco que Libre 2. Res. 2091/2025 cubre 'sistemas flash'. ~$79.000/sensor.",
+    datosLitigiosidad: "Misma normativa que Libre 2.",
+    fallos: [],
+    normativa: [
+      { titulo: "Res. 2091/2025", url: "https://www.boletinoficial.gob.ar/detalleAviso/primera/327710/20250701" },
+    ],
   },
   "Dexcom G6 — sensor continuo con alertas": {
-    dificultad: "dificil",
-    porque: "NO incluido expresamente en Res. 2091/2025 (que dice 'flash'). Disponibilidad limitada en Argentina (no hay distribuidor oficial Dexcom). Precio alto via importacion individual.",
-    datosLitigiosidad: "Jurisprudencia favorable usando Ley 26.914 ('equipos y dispositivos'), pero menor que FreeStyle Libre.",
-    fuente: "Res. 2091/2025 / MercadoLibre (importacion individual)",
+    porque: "NO en Res. 2091/2025 (que dice 'flash'). Sin distribuidor oficial en ARG. Importacion individual.",
+    datosLitigiosidad: "Jurisprudencia favorable via Ley 26.914, pero menor que Libre.",
+    fallos: [],
+    normativa: [
+      { titulo: "Ley 26.914 (argumento 'equipos y dispositivos')", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
   },
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": {
-    dificultad: "dificil",
-    porque: "Alto costo (ref. internacional USD 1.600-5.800). Requiere indicacion del equipo de diabetes. 3 fallos verificados ordenando cobertura de bombas, lo que indica negativas frecuentes.",
-    datosLitigiosidad: "3 fallos favorables de bombas (PAMI 2018, Union Personal 2017 y 2021). Medicamento entre los mas litigados.",
-    fallosRelacionados: 3,
-    fuente: "Microjuris / Amparando Salud / GS BIO Argentina",
+    porque: "Alto costo (USD 1.600-5.800). Requiere indicacion de equipo de diabetes. 3 fallos ordenando cobertura.",
+    datosLitigiosidad: "3 fallos favorables — negativas frecuentes.",
+    fallos: [
+      {
+        titulo: "M.M.E. c/ PAMI — Bomba Medtronic Veo 754",
+        url: "https://aldiaargentina.microjuris.com/2018/08/01/se-ordena-otorgar-la-bomba-infusora-de-insulina-integrada-con-monitoreo-continuo-de-glucosa-alarmas-y-suspension-automatica-de-insulina/",
+        tribunal: "CNACCF Sala II, 08/06/2018",
+      },
+      {
+        titulo: "M.A.N. c/ Union Personal — Bomba Medtronic",
+        url: "https://aldiaargentina.microjuris.com/2017/11/23/obligacion-de-la-obra-social-de-proveer-al-actor-la-microinfusora-de-insulina-con-bolo-inteligente-y-medicion-continua-de-glucosa-en-tiempo-real/",
+        tribunal: "CNACCF, 01/08/2017",
+      },
+      {
+        titulo: "Z.Y.E. c/ Union Personal — Bomba Medtronic prescripta",
+        url: "https://amparandosalud.com.ar/obra-social-niega-bomba-de-insulina-las-leyes-y-un-amparo-que-garantizaron-la-cobertura-integra/",
+        tribunal: "1ra y 2da instancia, 2021",
+      },
+    ],
+    normativa: [
+      { titulo: "Ley 26.914", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
   },
 };
 
