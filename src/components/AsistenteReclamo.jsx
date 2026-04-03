@@ -13,6 +13,10 @@ import {
 } from "lucide-react";
 import { getTextosParaCarta } from "../data/textosLegales";
 import { generarTemplateFallback } from "../data/templatesCarta";
+import {
+  getJurisprudenciaRelevante,
+  formatCitaJurisprudencial,
+} from "../data/jurisprudencia";
 
 const PREGUNTAS_RESPUESTA = [
   { id: "sin_respuesta", label: "No me respondieron (mas de 5 dias habiles)" },
@@ -230,6 +234,13 @@ export default function AsistenteReclamo({
     const textos = getTextosParaCarta(patologiaId, nivelCobertura);
     const tipoDoc = yaSolicito === false ? "carta_documento" : tipoDocumento;
 
+    // Jurisprudencia específica para este tipo de reclamo
+    const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
+    const citasJurisprudencia = [
+      ...jurisp.especificos.map(formatCitaJurisprudencial),
+      formatCitaJurisprudencial(jurisp.pmoPiso),
+    ];
+
     const payload = {
       obraSocial: os.nombre,
       plan: plan?.nombre || null,
@@ -240,6 +251,7 @@ export default function AsistenteReclamo({
       tipoDocumento: tipoDoc,
       fechaSolicitud: fechaSolicitud || null,
       textosLegales: textos,
+      jurisprudencia: citasJurisprudencia,
       patologiaId,
       datosPaciente: datos,
     };

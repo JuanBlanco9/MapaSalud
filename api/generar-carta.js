@@ -38,6 +38,7 @@ export default async function handler(req) {
       tipoDocumento,
       fechaSolicitud,
       textosLegales,
+      jurisprudencia,
       patologiaId,
       datosPaciente,
     } = body;
@@ -94,7 +95,12 @@ REGLAS ESTRICTAS DE TONO Y CONTENIDO:
 ${datosBloque}
 
 TEXTOS LEGALES PARA REFERENCIA (citar de forma precisa pero no necesariamente verbatim):
-${textosLegales.join("\n\n")}`;
+${textosLegales.join("\n\n")}
+${jurisprudencia && jurisprudencia.length > 0 ? `
+JURISPRUDENCIA VERIFICADA PARA CITAR (usar la mas relevante al caso, con caratula, tribunal y fecha exacta):
+${jurisprudencia.join("\n")}
+
+IMPORTANTE: Cita al menos 1-2 fallos relevantes en el documento. Usa el formato exacto: "caratula" (Tribunal, fecha). No inventes fallos ni modifiques las citas.` : ""}`;
 
     const userPrompt = `Genera un ${tipoDesc} para la siguiente situacion:
 
