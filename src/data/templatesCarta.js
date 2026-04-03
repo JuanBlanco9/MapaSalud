@@ -20,25 +20,29 @@ export function generarTemplateFallback({
   const fechaSol = fechaSolicitud || "[COMPLETAR FECHA]";
   const diag = `${diagnostico}${subtipo ? ` — ${subtipo}` : ""}`;
 
+  // ── Email: pedir negativa por escrito ──────────────────────
   if (tipoDocumento === "pedir_negativa") {
     return `${fecha}
 
 A la Direccion Medica de ${os}:
 
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) a fin de solicitar formalmente que se me entregue por escrito la negativa a la cobertura del tratamiento de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]) para el tratamiento de ${diag}.
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la cobertura del tratamiento de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]) para el tratamiento de ${diag}.
 
-Dicho tratamiento fue solicitado con fecha ${fechaSol} y la negativa me fue comunicada verbalmente por [COMPLETAR NOMBRE O AREA], sin que se me haya entregado documentacion formal al respecto.
+Dicho tratamiento fue solicitado con fecha ${fechaSol}. La negativa me fue comunicada verbalmente, sin que se me haya entregado documentacion formal al respecto.
 
-De acuerdo con la normativa vigente, tengo derecho a recibir por escrito los fundamentos de cualquier negativa a la cobertura de prestaciones medicas. La falta de respuesta por escrito sera considerada como negativa tacita a los fines de iniciar las acciones legales correspondientes.
+De acuerdo con la normativa vigente, tengo derecho a recibir por escrito los fundamentos de cualquier decision denegatoria de cobertura de prestaciones medicas. Las obras sociales y prepagas tienen la obligacion de fundar sus decisiones especificando los motivos medicos, tecnicos y legales que las sustentan.
 
-Solicito que la respuesta formal sea emitida dentro de las 48 (cuarenta y ocho) horas de recibida la presente.
+Solicito que la respuesta formal, debidamente fundada, sea emitida en un plazo razonable.
 
-Queda Ud. debidamente notificado/a.
+En caso de no recibir respuesta, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
+
+Sin otro particular, saludo a Uds. atentamente.
 
 [COMPLETAR NOMBRE COMPLETO]
 DNI [COMPLETAR]`;
   }
 
+  // ── Email: seguimiento por falta de respuesta ─────────────
   if (tipoDocumento === "seguimiento") {
     return `${fecha}
 
@@ -46,40 +50,45 @@ A la Direccion Medica / Auditoria Medica de ${os}:
 
 Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la solicitud de cobertura del tratamiento de ${tratamiento}, presentada con fecha ${fechaSol}, para el tratamiento de ${diag}, indicado por el Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]).
 
-Habiendo transcurrido mas de 5 (cinco) dias habiles desde la presentacion de la solicitud sin haber recibido respuesta formal de vuestra parte, solicito se expidan a la brevedad sobre la autorizacion requerida.
+Habiendo transcurrido un plazo razonable desde la presentacion de la solicitud sin haber recibido respuesta formal de vuestra parte, solicito se expidan sobre la autorizacion requerida.
 
-De conformidad con el Art. 7.3 del Programa Medico Obligatorio (Res. 201/2002), los medicamentos oncologicos segun protocolos aprobados por ANMAT tienen cobertura del 100%. La demora injustificada en la autorizacion vulnera mi derecho a la salud consagrado en el Art. 42 de la Constitucion Nacional.
+El tratamiento prescripto se enmarca en ${patologiaId === "diabetes1" ? "la Ley 23.753, la Ley 26.914 y la Res. 2091/2025, que establecen la cobertura integral de la diabetes incluyendo medicacion, insumos, equipos y dispositivos" : "los protocolos aprobados por ANMAT y el Programa Medico Obligatorio (Res. 201/2002, punto 7.3), que establece la cobertura integral de medicamentos oncologicos"}. La demora en la autorizacion afecta mi derecho a la salud consagrado en el Art. 42 de la Constitucion Nacional.
 
-De no recibir respuesta dentro de las 48 (cuarenta y ocho) horas, me reservo el derecho de iniciar las acciones administrativas ante la Superintendencia de Servicios de Salud y/o la accion de amparo prevista en el Art. 43 de la Constitucion Nacional.
+En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
 
-Queda Ud. debidamente intimado/a.
+Sin otro particular, saludo a Uds. atentamente.
 
 [COMPLETAR NOMBRE COMPLETO]
 DNI [COMPLETAR]`;
   }
 
+  // ── Carta documento: tratamiento aprobado pero no entregado
   if (tipoDocumento === "intimacion_entrega") {
     return `CARTA DOCUMENTO
 
 De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
 A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: INTIMACION A ENTREGA DE TRATAMIENTO AUTORIZADO
+OBJETO: SOLICITUD DE ENTREGA DE TRATAMIENTO AUTORIZADO — ${tratamiento.toUpperCase()}
 
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) a fin de intimarles fehacientemente para que en el plazo improrrogable de CUARENTA Y OCHO (48) HORAS procedan a la efectiva entrega del tratamiento de ${tratamiento}, el cual fue debidamente autorizado con fecha [COMPLETAR FECHA DE AUTORIZACION] para el tratamiento de ${diag}.
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion al tratamiento de ${tratamiento}, el cual fue debidamente autorizado con fecha [COMPLETAR FECHA DE AUTORIZACION] para el tratamiento de ${diag}.
 
-A pesar de contar con la autorizacion correspondiente, a la fecha no se ha concretado la entrega del tratamiento/medicamento, poniendo en riesgo mi salud y configurando un incumplimiento de las obligaciones a vuestro cargo.
+A pesar de contar con la autorizacion correspondiente, a la fecha no se ha concretado la provision efectiva del tratamiento, situacion que afecta mi derecho a la salud y al acceso oportuno al tratamiento prescripto por mi medico tratante.
 
-De no dar cumplimiento en el plazo indicado, me reservo el derecho de iniciar la accion de amparo prevista en el Art. 43 de la Constitucion Nacional, con mas los danos y perjuicios que su conducta omisiva me ocasione.
+La jurisprudencia reiterada de la Justicia Federal ha establecido que la demora injustificada en la provision de tratamientos autorizados configura un incumplimiento de las obligaciones legales a cargo de la obra social o prepaga.
 
-Queda Ud. debidamente intimado/a.
+Solicito se proceda a la entrega efectiva del tratamiento en un plazo razonable.
+
+En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
+
+Sin otro particular, saludo a Uds. atentamente.
 
 ${fecha}
 [COMPLETAR NOMBRE COMPLETO]
 DNI [COMPLETAR]`;
   }
 
-  // Default: carta_documento — bifurca por patologia
+  // ── Carta documento: diabetes tipo 1 ──────────────────────
   if (patologiaId === "diabetes1") {
     return `CARTA DOCUMENTO
 
@@ -109,7 +118,7 @@ ${fecha}
 DNI [COMPLETAR]`;
   }
 
-  // Oncologia / generico
+  // ── Carta documento: oncologia / generico ──────────────────
   return `CARTA DOCUMENTO
 
 De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]

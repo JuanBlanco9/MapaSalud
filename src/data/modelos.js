@@ -19,21 +19,21 @@ export const cartaDocumento = {
 De: [NOMBRE DEL PACIENTE], DNI [DNI], con domicilio en [DOMICILIO DEL PACIENTE]
 A: [OBRA SOCIAL O PREPAGA], con domicilio en [DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: INTIMACION A COBERTURA DE TRATAMIENTO ONCOLOGICO
+OBJETO: SOLICITUD DE COBERTURA DE TRATAMIENTO — [TRATAMIENTO SOLICITADO]
 
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [NUMERO DE AFILIADO]) a fin de intimarles fehacientemente para que en el plazo improrrogable de CUARENTA Y OCHO (48) HORAS procedan a autorizar y brindar cobertura integral del tratamiento de [TRATAMIENTO SOLICITADO], indicado por mi medico tratante Dr/a. [NOMBRE DEL MEDICO] (MP [MATRICULA DEL MEDICO]), segun prescripcion de fecha [FECHA DE SOLICITUD ORIGINAL], para el tratamiento de [DIAGNOSTICO].
+Me dirijo a Uds. en mi caracter de afiliado/a (N° [NUMERO DE AFILIADO]) en relacion a la cobertura del tratamiento de [TRATAMIENTO SOLICITADO], indicado por mi medico tratante Dr/a. [NOMBRE DEL MEDICO] (MP [MATRICULA DEL MEDICO]), segun prescripcion de fecha [FECHA DE SOLICITUD ORIGINAL], para el tratamiento de [DIAGNOSTICO].
 
-Dicho tratamiento se encuentra contemplado en el Programa Medico Obligatorio (Resolucion 201/2002 y modificatorias) y resulta medicamente necesario y urgente segun criterio de mi medico tratante.
+El tratamiento prescripto se enmarca en los protocolos aprobados por ANMAT y las guias de practica clinica vigentes, correspondiendo su cobertura integral conforme el Programa Medico Obligatorio (Res. 201/2002, punto 7.3: medicamentos oncologicos al 100% segun protocolos aprobados por la autoridad de aplicacion).
 
-Hago saber que la negativa o demora injustificada de su parte vulnera mis derechos consagrados en:
-- Constitucion Nacional, Art. 42 (derecho a la salud)
-- Ley 26.682 (Marco regulatorio de medicina prepaga)
-- Ley 23.660 (Obras Sociales)
-- Ley 24.754 (Prestaciones obligatorias para prepagas)
+Asimismo, la Res. 1926/2024 del Ministerio de Salud establece la exencion de coseguros para tratamientos oncologicos. La Ley 26.682 Art. 7 obliga a las empresas de medicina prepaga a cubrir como minimo el PMO vigente.
 
-De no dar cumplimiento en el plazo indicado, me reservo el derecho de iniciar la accion de amparo prevista en el Art. 43 de la Constitucion Nacional, con mas los danos y perjuicios que su conducta omisiva me ocasione, incluyendo dano moral.
+La jurisprudencia reiterada de la Justicia Federal ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo, y que las obras sociales deben fundar por escrito sus decisiones denegatorias, especificando los motivos medicos, tecnicos y legales que sustentan su negativa.
 
-Queda Ud. debidamente intimado/a.
+Solicito se considere la presente peticion y se proceda a autorizar la cobertura conforme la normativa citada, en un plazo razonable.
+
+En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
+
+Sin otro particular, saludo a Uds. atentamente.
 
 [NOMBRE DEL PACIENTE]
 DNI [DNI]
