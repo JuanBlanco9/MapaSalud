@@ -141,6 +141,135 @@ export const jurisprudenciaDiabetesBomba = [
   },
 ];
 
+// ── Oncologia — fallos provinciales específicos ─────────────────
+
+export const jurisprudenciaOncologiaEspecifica = [
+  {
+    caratula: "R.E.V. c/ Incluir Salud - Min. Salud Pcia. Bs. As. y Otro s/ Amparo Ley 16.986",
+    tribunal: "Camara Federal de La Plata, Sala II",
+    cita: "FLP 17936/2020/1/CA1",
+    fecha: "2020",
+    ordeno: "Cobertura total de Palbociclib 125 mg, Letrozol 2,5 mg y Acido Zoledronico 4 mg para cancer de mama EIIb luminal B con metastasis osea.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Buenos Aires",
+    fuente: "CIJ",
+  },
+  {
+    caratula: "[Amparista] c/ [Obra Social] s/ Amparo (cancer de pulmon avanzado)",
+    tribunal: "Juzgado Federal N.2 de Cordoba, confirmado por Camara Federal de Cordoba",
+    fecha: "11/2024",
+    ordeno: "Cobertura 100% de Brigatinib 180 mg (aprobado ANMAT julio 2023) para cancer de pulmon estadio IV con metastasis osea.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Cordoba",
+    fuente: "Infobae Judiciales",
+  },
+  {
+    caratula: "[Amparista] c/ Economicas Salud s/ Amparo",
+    tribunal: "Juzgado Federal de Rosario",
+    fecha: "2024",
+    ordeno: "Cobertura integral de Pembrolizumab (Keytruda) de $14.000.000 cada 21 dias para cancer uterino avanzado.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Santa Fe",
+    fuente: "Abogados Rosario",
+  },
+  {
+    caratula: "[Amparista] c/ PAMI s/ Amparo",
+    tribunal: "Juzgado Federal de Concordia (Jueza Analia Ramponi)",
+    fecha: "03/2026",
+    ordeno: "Medida cautelar en 24 horas para cobertura integral de tratamiento oncologico. 'En casos de cancer, el tiempo es un factor determinante.'",
+    tipo: "ONCO_GENERAL",
+    provincia: "Entre Rios",
+    fuente: "Analisis Litoral",
+  },
+];
+
+// ── Diabetes — fallos provinciales adicionales ──────────────────
+
+export const jurisprudenciaDiabetesProvincial = [
+  {
+    caratula: "[Amparista] c/ Medife s/ Amparo de Salud",
+    tribunal: "Juzgado Nacional en lo Civil y Comercial Federal (Juez Alejandro Nobili)",
+    fecha: "02/2026",
+    ordeno: "Cobertura integral al 100% del sensor FreeStyle Libre, lector, aplicador y tiras reactivas segun prescripcion medica.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "CABA",
+    fuente: "Justicia de Primera",
+  },
+  {
+    caratula: "[Amparista] c/ PAMI s/ Amparo",
+    tribunal: "Camara Federal de Salta, Sala I",
+    fecha: "02/2025",
+    ordeno: "Cobertura total 100% de sensores FreeStyle Libre para paciente con diabetes y discapacidad mental, mas reembolso de gastos previos. Cito Res. 2820/2022.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "Salta",
+    fuente: "Justicia de Primera",
+  },
+  {
+    caratula: "[Amparista] c/ OSDE s/ Amparo de Salud",
+    tribunal: "Camara Federal de Apelaciones de Rosario",
+    cita: "FSA 2152/2024/CA1",
+    fecha: "2024",
+    ordeno: "Cobertura 100% de Semaglutida (Ozempic) para diabetes tipo 2 insulinodependiente. Rechazo que OSDE solo cubriera 40%.",
+    tipo: "DIABETES_INSULINA",
+    provincia: "Santa Fe",
+    fuente: "LXForce",
+  },
+  {
+    caratula: "[Amparista] c/ [Obra Social] s/ Amparo",
+    tribunal: "Camara Federal de Apelaciones de Mendoza, Sala A",
+    fecha: "10/2024",
+    ordeno: "Cobertura 100% de Semaglutida por unanimidad para diabetes tipo 2 avanzada. El PMO es un 'piso basico irrenunciable', no un techo.",
+    tipo: "DIABETES_INSULINA",
+    provincia: "Mendoza",
+    fuente: "Infobae Judiciales",
+  },
+];
+
+// ── Estadísticas nacionales de amparos ──────────────────────────
+
+export const estadisticasAmparos = {
+  ultimaActualizacion: "2024",
+  fuente: "Registro Nacional de Amparos SSS / OLEGISAR",
+  total2024: {
+    obrasSociales: 7602,
+    prepagas: 2470,
+    total: 10072,
+  },
+  historico: [
+    { anio: 2011, total: 1130 },
+    { anio: 2018, total: 5474 },
+    { anio: 2024, total: 10072 },
+  ],
+  concentracionGeografica: {
+    buenosAires: 42,
+    cordoba: 17,
+    resto: 41,
+  },
+  tasaExito: ">80%",
+  medicamentosMasLitigados: [
+    "Nusinersen (AME)",
+    "Palbociclib (cancer de mama)",
+    "Agalsidasa alfa (Fabry)",
+    "Pembrolizumab (varios canceres)",
+    "Semaglutida/Ozempic (diabetes)",
+    "Brigatinib (cancer de pulmon)",
+    "FreeStyle Libre (diabetes T1)",
+  ],
+};
+
+// ── Fallos por provincia (para mostrar en UI) ───────────────────
+
+export const fallosPorProvincia = {
+  "Buenos Aires": { cantidad: 4, patologias: ["Oncologia", "Diabetes T1", "General"] },
+  "CABA": { cantidad: 1, patologias: ["Diabetes T1"] },
+  "Cordoba": { cantidad: 3, patologias: ["Oncologia", "General"] },
+  "Santa Fe": { cantidad: 3, patologias: ["Oncologia", "Diabetes T2", "General"] },
+  "Mendoza": { cantidad: 2, patologias: ["Diabetes T2"] },
+  "Tucuman": { cantidad: 2, patologias: ["General"] },
+  "Salta": { cantidad: 1, patologias: ["Diabetes"] },
+  "Entre Rios": { cantidad: 3, patologias: ["Oncologia", "General"] },
+};
+
 // ── Helper: obtener jurisprudencia relevante por patologia y tipo
 
 export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
@@ -154,22 +283,26 @@ export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
 
   if (patologiaId === "diabetes1") {
     if (tipoReclamo === "sensor" || tipoReclamo === "tec_sensor") {
-      resultado.especificos = jurisprudenciaDiabetesSensor;
+      resultado.especificos = [
+        ...jurisprudenciaDiabetesSensor,
+        ...jurisprudenciaDiabetesProvincial.filter((f) => f.tipo === "DIABETES_SENSOR"),
+      ];
     } else if (tipoReclamo === "bomba" || tipoReclamo === "tec_bomba") {
       resultado.especificos = jurisprudenciaDiabetesBomba;
     } else {
       resultado.especificos = [
         ...jurisprudenciaDiabetesSensor,
         ...jurisprudenciaDiabetesBomba,
+        ...jurisprudenciaDiabetesProvincial,
       ];
     }
   }
 
-  // Oncologia: usar principios generales + Campodonico (oncologico)
   if (patologiaId === "oncologia") {
-    resultado.especificos = principiosGenerales.filter(
-      (f) => f.aplicaA.includes("oncologia")
-    );
+    resultado.especificos = [
+      ...principiosGenerales.filter((f) => f.aplicaA.includes("oncologia")),
+      ...jurisprudenciaOncologiaEspecifica,
+    ];
   }
 
   return resultado;
