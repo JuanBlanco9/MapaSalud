@@ -17,6 +17,10 @@ import {
   getJurisprudenciaRelevante,
   formatCitaJurisprudencial,
 } from "../data/jurisprudencia";
+import {
+  filtrarFallosPorAplicabilidad,
+  getContextoFallo,
+} from "../data/jurisprudenciaContexto";
 
 const PREGUNTAS_RESPUESTA = [
   { id: "sin_respuesta", label: "No me respondieron (mas de 5 dias habiles)" },
@@ -234,10 +238,18 @@ export default function AsistenteReclamo({
     const textos = getTextosParaCarta(patologiaId, nivelCobertura);
     const tipoDoc = yaSolicito === false ? "carta_documento" : tipoDocumento;
 
-    // Jurisprudencia específica para este tipo de reclamo
+    // Jurisprudencia específica, filtrada por aplicabilidad
     const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
+    const fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "medio");
     const citasJurisprudencia = [
-      ...jurisp.especificos.map(formatCitaJurisprudencial),
+      ...fallosAplicables.map((f) => {
+        const ctx = getContextoFallo(f.caratula);
+        const cita = formatCitaJurisprudencial(f);
+        if (ctx && ctx.nivel === "medio") {
+          return `${cita} [NOTA: circunstancias particulares del caso: ${ctx.circunstancias}]`;
+        }
+        return cita;
+      }),
       formatCitaJurisprudencial(jurisp.pmoPiso),
     ];
 
