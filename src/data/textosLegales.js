@@ -1,57 +1,69 @@
-// ── Textos legales EXACTOS para inyectar en el prompt de generacion ──
-// Estos son los articulos que el asistente debe citar verbatim.
+// ── Textos legales VERIFICADOS contra fuentes oficiales ─────────
+// Verificacion: abril 2026 contra InfoLEG, Boletin Oficial, SAIJ
+// Cada cita indica la fuente de verificacion.
 
 export const textosLegales = {
+  // ── Constitucionales (CONFIRMADOS) ────────────────────────────
+
   constitucion_art43:
-    `Art. 43 Constitucion Nacional: "Toda persona puede interponer accion expedita y rapida de amparo, siempre que no exista otro medio judicial mas idoneo, contra todo acto u omision de autoridades publicas o de particulares, que en forma actual o inminente lesione, restrinja, altere o amenace, con arbitrariedad o ilegalidad manifiesta, derechos y garantias reconocidos por esta Constitucion, un tratado o una ley."`,
+    `Art. 43 Constitucion Nacional: "Toda persona puede interponer accion expedita y rapida de amparo, siempre que no exista otro medio judicial mas idoneo, contra todo acto u omision de autoridades publicas o de particulares, que en forma actual o inminente lesione, restrinja, altere o amenace, con arbitrariedad o ilegalidad manifiesta, derechos y garantias reconocidos por esta Constitucion, un tratado o una ley." [Verificado: InfoLEG]`,
 
   constitucion_art42:
-    `Art. 42 Constitucion Nacional: "Los consumidores y usuarios de bienes y servicios tienen derecho, en la relacion de consumo, a la proteccion de su salud, seguridad e intereses economicos; a una informacion adecuada y veraz; a la libertad de eleccion, y a condiciones de trato equitativo y digno."`,
+    `Art. 42 Constitucion Nacional: "Los consumidores y usuarios de bienes y servicios tienen derecho, en la relacion de consumo, a la proteccion de su salud, seguridad e intereses economicos; a una informacion adecuada y veraz; a la libertad de eleccion, y a condiciones de trato equitativo y digno." [Verificado: InfoLEG]`,
+
+  // ── PMO Oncologico (CORREGIDO) ────────────────────────────────
 
   pmo_art73:
-    `PMO Art. 7.3 (Res. 201/2002): "Tendran cobertura al 100% por parte del Agente del Seguro los medicamentos para uso oncologico segun protocolos nacionales e internacionales aprobados por la autoridad de aplicacion (ANMAT)."`,
+    `PMO Anexo I, punto 7.3 (Res. 201/2002): Los medicamentos para uso oncologico segun protocolos oncologicos aprobados por la autoridad de aplicacion tendran cobertura al 100% por parte del Agente del Seguro. [Verificado: InfoLEG, Anexo I texto actualizado. Nota: el texto original dice "autoridad de aplicacion", sin especificar ANMAT.]`,
 
   pmo_art74:
-    `PMO Art. 7.4 (Res. 201/2002): "Los medicamentos de soporte clinico de la quimioterapia y la medicacion analgesica para el dolor oncologico tendran cobertura al 100%."`,
+    `PMO Anexo I, punto 7.4 (Res. 201/2002): La cobertura de medicacion de soporte clinico de la quimioterapia destinada a la prevencion y tratamiento de los vomitos inducidos por agentes antineoplasicos, segun los protocolos oncologicos aprobados por la autoridad de aplicacion, sera del 100%. La medicacion analgesica para el dolor oncologico tendra cobertura del 100%. [Verificado: InfoLEG]`,
+
+  // ── Marco regulatorio (CONFIRMADOS) ───────────────────────────
 
   ley_26682:
-    `Ley 26.682 Art. 7 (Marco regulatorio de medicina prepaga): "Las empresas de medicina prepaga deberan cubrir, como minimo en sus planes de cobertura medico asistencial, el Programa Medico Obligatorio vigente segun Resolucion del Ministerio de Salud de la Nacion y el Sistema de Prestaciones Basicas para Personas con Discapacidad."`,
+    `Ley 26.682 Art. 7 (Marco regulatorio de medicina prepaga): Las entidades "deben cubrir, como minimo en sus planes de cobertura medico asistencial, el Programa Medico Obligatorio vigente segun Resolucion del Ministerio de Salud de la Nacion y el Sistema de Prestaciones Basicas para Personas con Discapacidad prevista en la ley 24.901 y sus modificatorias." [Verificado: InfoLEG, texto actualizado. Nota: algunos articulos de la Ley 26.682 fueron modificados por DNU 70/2023.]`,
 
   ley_23660:
-    `Ley 23.660 Art. 3 (Obras Sociales): "Las obras sociales deberan destinar sus recursos en forma prioritaria a prestaciones de salud. Deberan, asimismo, brindar prestaciones de conformidad con el Programa Medico Obligatorio."`,
+    `Ley 23.660 Art. 3 (Obras Sociales, texto modificado por DNU 70/2023): "Las entidades del articulo 1 destinaran sus recursos en forma prioritaria a prestaciones de salud. Deberan, asimismo, brindar otras prestaciones sociales. En lo referente a las prestaciones de salud formaran parte del Sistema Nacional del Seguro de Salud." [Verificado: InfoLEG, texto actualizado]`,
 
   ley_24754:
-    `Ley 24.754 Art. 1: "Las empresas o entidades que presten servicios de medicina prepaga deberan cubrir, como minimo, en sus planes de cobertura medico asistencial las mismas prestaciones obligatorias dispuestas para las obras sociales."`,
+    `Ley 24.754 Art. 1: "Las empresas o entidades que presten servicios de medicina prepaga deberan cubrir, como minimo, en sus planes de cobertura medico asistencial las mismas prestaciones obligatorias dispuestas para las obras sociales." [Verificado: InfoLEG. Nota: vigente pero en la practica supersedida por Ley 26.682 Art. 7 que es mas comprehensiva.]`,
+
+  // ── Resoluciones oncologicas (CONFIRMADAS) ────────────────────
 
   res_3377_2022:
-    `Resolucion 3377/2022 Ministerio de Salud: Aprueba el Listado Complementario de Medicamentos Oncologicos de la Coordinacion de Banco de Drogas Especiales. Deroga Res. 29/2022. Establece el vademecum de drogas oncologicas obligatorio para el sistema de salud.`,
+    `Resolucion 3377/2022 Ministerio de Salud (publicada 06/12/2022): Aprueba el Listado Complementario de Medicamentos Oncologicos de la Coordinacion de Banco de Drogas Especiales. Deroga expresamente la Res. 29/2022 (RESOL-2022-29-APN-MS). [Verificado: InfoLEG]`,
 
   res_1926_2024:
-    `Resolucion 1926/2024 Ministerio de Salud: Los tratamientos oncologicos estan EXENTOS de coseguros. Las obras sociales pueden fijar libremente coseguros para otros servicios, pero oncologia, discapacidad, plan materno-infantil, HIV y hepatitis quedan exceptuados.`,
+    `Resolucion 1926/2024 Ministerio de Salud (publicada 24/06/2024): Liberaliza los coseguros para la mayoria de prestaciones, pero establece un Anexo con servicios exceptuados de esa liberalizacion. Los tratamientos oncologicos estan incluidos entre los exceptuados, junto con discapacidad, emergencias, plan materno-infantil, HIV/hepatitis y transplantes. Efecto practico: oncologia sigue sin coseguro. [Verificado: Boletin Oficial]`,
+
+  // ── Reconstruccion mamaria (CONFIRMADA) ───────────────────────
 
   ley_26872:
-    `Ley 26.872 (Reconstruccion mamaria): "Los establecimientos de salud publicos, obras sociales y prepagas deberan cubrir la cirugia reconstructiva y las protesis necesarias para pacientes mastectomizadas como consecuencia de patologia mamaria."`,
+    `Ley 26.872 (Reconstruccion mamaria): Obliga a todos los establecimientos de salud publicos, obras sociales, Obra Social del Poder Judicial, Obra Social del Congreso, entidades de medicina prepaga, y todos los agentes que brinden servicios medicos — a cubrir la cirugia reconstructiva y la provision de las protesis necesarias para pacientes mastectomizadas como consecuencia de patologia mamaria. [Verificado: InfoLEG]`,
+
+  // ── Diabetes (CORREGIDO contra texto oficial) ─────────────────
 
   ley_23753_diabetes:
-    `Ley 23.753 Art. 5 (Diabetes): "Los agentes del Seguro de Salud comprendidos en la Ley 23.660 deberan proveer la cobertura integral de la diabetes, incluyendo insulinas, antidiabeticos orales, reactivos de autocontrol, y toda otra medicacion, elementos e insumos necesarios para su tratamiento."`,
+    `Ley 23.753 Art. 5 (texto segun Ley 26.914): "La cobertura de los medicamentos y reactivos de diagnostico para autocontrol de los pacientes con diabetes, sera del 100% (cien por ciento) y en las cantidades necesarias segun prescripcion medica." La autoridad de aplicacion debe fijar Normas de Provision de Medicamentos e Insumos actualizadas cada 2 anios. [Verificado: InfoLEG, texto actualizado de Ley 23.753]`,
 
   ley_26914_diabetes:
-    `Ley 26.914 Art. 1 (modifica Ley 23.753): Amplia la cobertura al 100% de "insulinas, analogos de insulina y medicacion oral, reactivos de autocontrol y todo otro tipo de elementos que la autoridad de aplicacion determine para el tratamiento de la diabetes, incluyendo la provision de equipos y dispositivos para su uso." La expresion "equipos y dispositivos" incluye sensores de monitoreo continuo de glucosa y bombas de infusion de insulina.`,
-
-  ley_26914_art2_diabetes:
-    `Ley 26.914 Art. 2: "Los gastos que demande el cumplimiento de la presente ley se imputaran a las partidas que se determinen a tal efecto en la Ley de Presupuesto General de la Administracion Nacional." Esto implica que el Estado asume la responsabilidad presupuestaria de la cobertura tecnologica.`,
+    `Ley 26.914 (sancionada 27/11/2013, promulgada 17/12/2013): Modifica la Ley 23.753 de diabetes. Art. 1: establece al Ministerio de Salud como autoridad de aplicacion y coordina prevencion/tratamiento. Art. 2: incorpora el nuevo Art. 5 a la Ley 23.753 (cobertura 100% de medicamentos y reactivos). Art. 3: incorpora Art. 6 (plazo de 30 dias para revision). Art. 4: incorpora Art. 7 (orden publico, adhesion provincial). [Verificado: InfoLEG. Nota: la expresion "equipos y dispositivos" no aparece textualmente en la ley pero ha sido interpretada por la jurisprudencia a partir de la cobertura integral que establece.]`,
 
   res_2091_2025_diabetes:
-    `Resolucion 2091/2025 Ministerio de Salud (1 de julio 2025): Establece cobertura del 100% de sensores de monitoreo continuo sistema flash para personas insulinodependientes, embarazadas, y quienes planifiquen embarazo. Aplica a TODOS los agentes del sistema: obras sociales (Ley 23.660/23.661), prepagas (Ley 26.682), PAMI (Ley 19.032), obra social del Poder Judicial, IOSFA, y obras sociales universitarias (Ley 24.741). El diagnostico de diabetes es valido de por vida — no requiere recertificacion. Reemplaza la Res. 2820/2022.`,
+    `Resolucion 2091/2025 Ministerio de Salud (publicada B.O. 01/07/2025): Aprueba las nuevas Normas de Provision de Medicamentos e Insumos para Personas con Diabetes. Deroga expresamente la Res. 2820/2022. Incluye cobertura de sistemas de monitoreo de glucosa intermitente o flash (MG-i) para personas con diabetes con indicacion medica de profesional especializado. Aplica a todos los agentes del sistema: obras sociales (Ley 23.660/23.661), prepagas (Ley 26.682), PAMI (Ley 19.032), Obra Social del Poder Judicial, IOSFA, y obras sociales universitarias (Ley 24.741). [Verificado: InfoLEG y Boletin Oficial. Nota: los criterios especificos de indicacion y porcentajes de cobertura estan en el Anexo I que no esta disponible completo online.]`,
+
+  // ── Jurisprudencia (pendiente de fallos especificos) ──────────
 
   jurisprudencia_sensor_cgm:
-    `Jurisprudencia reiterada en materia de sensores CGM: Multiples fallos de Camaras Federales (Salta 2025, Mendoza 2024, Rio Negro) han ordenado a obras sociales y prepagas cubrir sensores de monitoreo continuo de glucosa al 100%. Desde la Res. 2091/2025, la cobertura de sensores flash es obligatoria por resolucion ministerial y ya no requiere amparo.`,
+    `Jurisprudencia en materia de sensores CGM: Fallos de Camaras Federales de Salta (2025) y Mendoza (2024) han ordenado a obras sociales cubrir sensores de monitoreo continuo de glucosa, fundamentando en la Ley 23.753/26.914 y el derecho a la salud del Art. 42 CN. Desde la Res. 2091/2025, la cobertura de sensores flash tiene base normativa directa.`,
 
   jurisprudencia_piso:
-    `Principio jurisprudencial reiterado: "El PMO constituye un piso de prestaciones minimas y no un techo. Las obras sociales y prepagas deben cubrir tratamientos no incluidos en el PMO cuando hay indicacion medica y existe riesgo para la vida o la salud del paciente." (CSJN, reiterado en multiples fallos de Camaras Federales)`,
+    `Principio jurisprudencial establecido: "El PMO constituye un piso de prestaciones minimas y no un techo." Las obras sociales y prepagas no pueden usar el PMO para denegar cobertura de tratamientos medicamente necesarios. Principio sostenido por la Camara Nacional de Apelaciones en lo Civil y Comercial Federal (Sala III, "B. J. G. c/ OSPLAD", 16/07/2015), la Camara Federal de Resistencia (causa 3528/2024), y respaldado por la CSJN en Fallos 316:479 y 323:1339 ("Asociacion Benghalensis"). [Verificado: Microjuris MJ-JU-M-95429-AR, Diario Judicial]`,
 };
 
-// ── Templates de texto legal por situacion ──────────────────────
+// ── Selector de textos legales por patologia y situacion ────────
 
 export function getTextosParaCarta(patologiaId, nivelCobertura) {
   const base = [
@@ -59,7 +71,6 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
     textosLegales.constitucion_art43,
     textosLegales.ley_26682,
     textosLegales.ley_23660,
-    textosLegales.ley_24754,
     textosLegales.jurisprudencia_piso,
   ];
 
@@ -70,16 +81,12 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
       textosLegales.res_3377_2022,
       textosLegales.res_1926_2024
     );
-    if (nivelCobertura === "nacional") {
-      // Strongest position — drug is in the official vademecum
-    }
   }
 
   if (patologiaId === "diabetes1") {
     base.push(
       textosLegales.ley_23753_diabetes,
       textosLegales.ley_26914_diabetes,
-      textosLegales.ley_26914_art2_diabetes,
       textosLegales.res_2091_2025_diabetes,
       textosLegales.jurisprudencia_sensor_cgm
     );
