@@ -207,6 +207,7 @@ export default function AsistenteReclamo({
   const [documento, setDocumento] = useState("");
   const [copiado, setCopiado] = useState(false);
   const [usandoFallback, setUsandoFallback] = useState(false);
+  const [rateLimited, setRateLimited] = useState(false);
   const [firmaDataUrl, setFirmaDataUrl] = useState(null);
 
   // Datos del paciente
@@ -275,6 +276,11 @@ export default function AsistenteReclamo({
         body: JSON.stringify(payload),
       });
 
+      if (res.status === 429) {
+        const errData = await res.json();
+        setRateLimited(true);
+        throw new Error("Rate limited");
+      }
       if (!res.ok) throw new Error("API error");
 
       const data = await res.json();

@@ -10,12 +10,44 @@ const TIPOS_DOCUMENTO = {
   intimacion_entrega: "carta documento por falta de entrega de tratamiento autorizado",
 };
 
+const DAILY_LIMIT = parseInt(process.env.DAILY_LIMIT || "5", 10);
+
+// In-memory rate limit (resets on cold start, ~5-15min on Vercel Edge)
+// Not bulletproof but catches casual abuse. For production, use Upstash Redis.
+const ipCounts = new Map();
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const dayMs = 86400000;
+  const entry = ipCounts.get(ip);
+  if (!entry || now - entry.start > dayMs) {
+    ipCounts.set(ip, { start: now, count: 1 });
+    return true;
+  }
+  if (entry.count >= DAILY_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
 export default async function handler(req) {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
       headers: { "Content-Type": "application/json" },
     });
+  }
+
+  // Rate limit by IP
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!checkRateLimit(ip)) {
+    return new Response(
+      JSON.stringify({
+        error: "Limite diario alcanzado. Podes generar hasta " + DAILY_LIMIT + " documentos por dia. Los templates sin IA siguen disponibles.",
+        useFallback: true,
+        rateLimited: true,
+      }),
+      { status: 429, headers: { "Content-Type": "application/json" } }
+    );
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
