@@ -207,7 +207,6 @@ export default function AsistenteReclamo({
   const [documento, setDocumento] = useState("");
   const [copiado, setCopiado] = useState(false);
   const [usandoFallback, setUsandoFallback] = useState(false);
-  const [rateLimited, setRateLimited] = useState(false);
   const [firmaDataUrl, setFirmaDataUrl] = useState(null);
 
   // Datos del paciente
@@ -234,76 +233,45 @@ export default function AsistenteReclamo({
     setDatos((prev) => ({ ...prev, [campo]: valor }));
   }
 
-  async function generar() {
+  function generar() {
     setStep("generando");
-    const textos = getTextosParaCarta(patologiaId, nivelCobertura);
     const tipoDoc = yaSolicito === false ? "carta_documento" : tipoDocumento;
 
-    // Jurisprudencia específica, filtrada por aplicabilidad
-    const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
-    const fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "medio");
-    const citasJurisprudencia = [
-      ...fallosAplicables.map((f) => {
-        const ctx = getContextoFallo(f.caratula);
-        const cita = formatCitaJurisprudencial(f);
-        if (ctx && ctx.nivel === "medio") {
-          return `${cita} [NOTA: circunstancias particulares del caso: ${ctx.circunstancias}]`;
-        }
-        return cita;
-      }),
-      formatCitaJurisprudencial(jurisp.pmoPiso),
-    ];
-
-    const payload = {
+    // Generar desde template pre-armado (sin API)
+    let carta = generarTemplateFallback({
       obraSocial: os.nombre,
       plan: plan?.nombre || null,
       diagnostico: cancer.nombre,
       subtipo: subtipo.nombre,
       tratamiento,
-      nivelCobertura,
-      tipoDocumento: tipoDoc,
       fechaSolicitud: fechaSolicitud || null,
-      textosLegales: textos,
-      jurisprudencia: citasJurisprudencia,
+      tipoDocumento: tipoDoc,
       patologiaId,
-      datosPaciente: datos,
-    };
+    });
 
-    try {
-      const res = await fetch("/api/generar-carta", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+    // Reemplazar placeholders con datos reales del formulario
+    carta = reemplazarDatos(carta, datos);
 
-      if (res.status === 429) {
-        const errData = await res.json();
-        setRateLimited(true);
-        throw new Error("Rate limited");
-      }
-      if (!res.ok) throw new Error("API error");
-
-      const data = await res.json();
-      if (data.useFallback) throw new Error("Fallback requested");
-      setDocumento(data.texto);
-      setUsandoFallback(false);
-    } catch {
-      let fallback = generarTemplateFallback({
-        obraSocial: os.nombre,
-        plan: plan?.nombre || null,
-        diagnostico: cancer.nombre,
-        subtipo: subtipo.nombre,
-        tratamiento,
-        fechaSolicitud: fechaSolicitud || null,
-        tipoDocumento: tipoDoc,
-        patologiaId,
-      });
-      // Replace placeholders with real data
-      fallback = reemplazarDatos(fallback, datos);
-      setDocumento(fallback);
-      setUsandoFallback(true);
+    // Agregar jurisprudencia relevante al pie
+    const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
+    const fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "alto");
+    if (fallosAplicables.length > 0) {
+      const citas = fallosAplicables
+        .slice(0, 3)
+        .map(formatCitaJurisprudencial)
+        .join(";\n");
+      // Insertar antes del cierre "Sin otro particular"
+      carta = carta.replace(
+        "Sin otro particular, saludo a Uds. atentamente.",
+        `La jurisprudencia ha resuelto en casos analogos la obligatoriedad de esta cobertura, entre otros:\n${citas}.\n\nSin otro particular, saludo a Uds. atentamente.`
+      );
     }
-    setStep("resultado");
+
+    setDocumento(carta);
+    setUsandoFallback(false);
+
+    // Simular breve delay para UX (no instantaneo = mas confianza)
+    setTimeout(() => setStep("resultado"), 400);
   }
 
   function reemplazarDatos(texto, d) {
@@ -744,7 +712,18 @@ export default function AsistenteReclamo({
         </button>
       </div>
 
-      <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mt-6 text-sm text-gris-700">
+      {/* Personalizar con IA — en desarrollo */}
+      <div className="mt-4 bg-gris-50 border border-gris-200 rounded-lg p-4 flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-gris-500">Personalizar con IA</p>
+          <p className="text-xs text-gris-400">Adaptar la carta a circunstancias especificas de tu caso</p>
+        </div>
+        <span className="text-xs bg-gris-200 text-gris-500 px-3 py-1 rounded-full font-medium">
+          Proximamente
+        </span>
+      </div>
+
+      <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mt-4 text-sm text-gris-700">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-naranja-500 shrink-0 mt-0.5" />
           <p>
