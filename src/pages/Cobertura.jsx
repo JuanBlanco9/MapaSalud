@@ -21,11 +21,13 @@ import {
   Cpu,
   Package,
   Syringe,
+  Info,
 } from "lucide-react";
 import { obrasSociales } from "../data/coberturas";
 import { cargarPatologia } from "../data/patologias";
 import { generarMapaPDF } from "../utils/generarPDF";
 import { getOrganizaciones } from "../data/organizacionesPorPatologia";
+import { getDificultadAcceso, dificultadInfo, getFundamentacion } from "../data/dificultadAcceso";
 import AsistenteReclamo from "../components/AsistenteReclamo";
 
 // ── Helper: mostrar TODO como "en verificacion" ─────────────────
@@ -102,15 +104,67 @@ function NivelBadge({ nivel, niveles }) {
   );
 }
 
+const dificultadStyles = {
+  directo: "bg-verde-50 text-verde-700",
+  tramite: "bg-naranja-50 text-naranja-600",
+  dificil: "bg-red-50 text-red-600",
+};
+
+function DificultadBadge({ nombre }) {
+  const dif = getDificultadAcceso(nombre);
+  if (!dif || !dificultadInfo[dif]) return null;
+  const info = dificultadInfo[dif];
+  const style = dificultadStyles[dif];
+  return (
+    <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${style}`}>
+      {dif === "directo" && <Check className="w-3 h-3" />}
+      {dif === "tramite" && <Clock className="w-3 h-3" />}
+      {dif === "dificil" && <AlertTriangle className="w-3 h-3" />}
+      {info.label}
+    </span>
+  );
+}
+
 function DrogaConNivel({ nombre, getNivel, niveles }) {
+  const [showInfo, setShowInfo] = useState(false);
   const nivel = getNivel ? getNivel(nombre) : null;
   const style = nivel && nivelStyles[nivel] ? nivelStyles[nivel] : nivelStyles.gestion;
+  const fund = getFundamentacion(nombre);
+
   return (
-    <div
-      className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 ${style.bg} border ${style.border} rounded-lg p-3`}
-    >
-      <span className="text-sm text-gris-800">{nombre}</span>
-      <NivelBadge nivel={nivel || "gestion"} niveles={niveles} />
+    <div className={`${style.bg} border ${style.border} rounded-lg overflow-hidden`}>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 p-3">
+        <div className="flex items-center gap-1.5">
+          <span className="text-sm text-gris-800">{nombre}</span>
+          {fund && (
+            <button
+              onClick={() => setShowInfo(!showInfo)}
+              className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0 shrink-0"
+              aria-label="Ver informacion sobre dificultad de acceso"
+            >
+              <Info className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          <NivelBadge nivel={nivel || "gestion"} niveles={niveles} />
+          <DificultadBadge nombre={nombre} />
+        </div>
+      </div>
+      {showInfo && fund && (
+        <div className="px-3 pb-3 border-t border-gris-200/50">
+          <p className="text-xs text-gris-600 mt-2">{fund.porque}</p>
+          {fund.datosLitigiosidad && (
+            <p className="text-xs text-gris-500 mt-1">{fund.datosLitigiosidad}</p>
+          )}
+          {fund.fallosRelacionados && (
+            <p className="text-xs text-azul-600 mt-1">
+              {fund.fallosRelacionados} fallo{fund.fallosRelacionados > 1 ? "s" : ""} judicial{fund.fallosRelacionados > 1 ? "es" : ""} verificado{fund.fallosRelacionados > 1 ? "s" : ""}
+            </p>
+          )}
+          <p className="text-xs text-gris-400 mt-1">Fuente: {fund.fuente}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -724,6 +778,28 @@ function Paso3({ os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, con
                   </span>
                 </div>
                 <p className={`text-xs ${style.text} opacity-80`}>
+                  {info.descripcion}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Leyenda de dificultad de acceso */}
+        <div className="grid sm:grid-cols-3 gap-3 mb-6">
+          {Object.entries(dificultadInfo).map(([key, info]) => {
+            const style = dificultadStyles[key];
+            return (
+              <div key={key} className={`${style.split(" ")[0]} rounded-lg p-3`}>
+                <div className="flex items-center gap-1.5 mb-1">
+                  {key === "directo" && <Check className="w-3.5 h-3.5 text-verde-600" />}
+                  {key === "tramite" && <Clock className="w-3.5 h-3.5 text-naranja-500" />}
+                  {key === "dificil" && <AlertTriangle className="w-3.5 h-3.5 text-red-500" />}
+                  <span className={`text-xs font-bold ${style.split(" ")[1]}`}>
+                    {info.label}
+                  </span>
+                </div>
+                <p className={`text-xs ${style.split(" ")[1]} opacity-80`}>
                   {info.descripcion}
                 </p>
               </div>
