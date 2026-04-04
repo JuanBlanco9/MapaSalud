@@ -306,8 +306,8 @@ export const fundamentacion = {
     ],
   },
   "Sensor CGM con alertas (Dexcom)": {
-    porque: "NO incluido en Res. 2091/2025 (que dice 'flash'). Sin distribuidor oficial Dexcom en Argentina.",
-    datosLitigiosidad: "Menor litigiosidad que FreeStyle Libre por baja disponibilidad en el pais.",
+    porque: "La Res. 2091/2025 cubre 'sistemas flash' (FreeStyle Libre), no CGM continuo con alertas (Dexcom). El problema principal no es legal sino de disponibilidad: no hay distribuidor oficial de Dexcom en Argentina. Se consigue solo por importacion individual.",
+    datosLitigiosidad: "Pocos amparos registrados por Dexcom — la mayoria de los pacientes en Argentina usan FreeStyle Libre por disponibilidad. La Ley 26.914 ('equipos y dispositivos') aplica como argumento, pero sin distribuidor oficial la OS puede alegar imposibilidad de provision.",
     fallos: [],
     normativa: [
       { titulo: "Ley 26.914 (argumento 'equipos y dispositivos')", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
@@ -371,11 +371,11 @@ export const fundamentacion = {
     ],
   },
   "Dexcom G6 — sensor continuo con alertas": {
-    porque: "NO en Res. 2091/2025 (que dice 'flash'). Sin distribuidor oficial en ARG. Importacion individual.",
-    datosLitigiosidad: "Jurisprudencia favorable via Ley 26.914, pero menor que Libre.",
+    porque: "Res. 2091/2025 cubre 'sistemas flash' (FreeStyle Libre), no CGM continuo con alertas (Dexcom). Sin distribuidor oficial en Argentina — se importa individualmente. El problema principal es de disponibilidad, no legal.",
+    datosLitigiosidad: "La Ley 26.914 ampara 'equipos y dispositivos' sin distinguir tecnologia, pero sin canal oficial la OS puede alegar imposibilidad de provision.",
     fallos: [],
     normativa: [
-      { titulo: "Ley 26.914 (argumento 'equipos y dispositivos')", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+      { titulo: "Ley 26.914", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
     ],
   },
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": {
