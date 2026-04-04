@@ -122,7 +122,7 @@ export default function Home() {
             </div>
             <div className="text-center p-6">
               <div className="w-14 h-14 bg-naranja-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-7 h-7 text-naranja-500" />
+                <Phone className="w-7 h-7 text-naranja-600" />
               </div>
               <h3 className="font-semibold text-lg mb-2">A quien llamar</h3>
               <p className="text-gris-600">

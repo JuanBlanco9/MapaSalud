@@ -2,7 +2,7 @@ import { Clock } from "lucide-react";
 
 export function Verificando({ texto }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-naranja-500 text-sm">
+    <span className="inline-flex items-center gap-1.5 text-naranja-600 text-sm">
       <Clock className="w-3.5 h-3.5" />
       <span>{texto || "Informacion en verificacion"}</span>
     </span>

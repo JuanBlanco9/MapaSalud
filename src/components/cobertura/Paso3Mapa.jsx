@@ -131,11 +131,11 @@ function TabCobertura({ os, plan, pmo, esPublico, onNextTab }) {
                   <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                     e.cobertura === "100%" ? "bg-verde-100" : "bg-naranja-100"
                   }`}>
-                    {e.cobertura === "100%" ? <Check className="w-2.5 h-2.5 text-verde-600" /> : <AlertTriangle className="w-2.5 h-2.5 text-naranja-500" />}
+                    {e.cobertura === "100%" ? <Check className="w-2.5 h-2.5 text-verde-600" /> : <AlertTriangle className="w-2.5 h-2.5 text-naranja-600" />}
                   </div>
                   <div>
                     <p className="text-xs font-medium text-gris-800">{e.nombre} <span className={`font-semibold px-1 py-0.5 rounded ${
-                      e.cobertura === "100%" ? "bg-verde-50 text-verde-600" : "bg-naranja-50 text-naranja-500"
+                      e.cobertura === "100%" ? "bg-verde-50 text-verde-600" : "bg-naranja-50 text-naranja-600"
                     }`}>{e.cobertura}</span></p>
                     {e.nota && <p className="text-xs text-gris-500">{e.nota}</p>}
                   </div>
@@ -197,7 +197,7 @@ function TabCobertura({ os, plan, pmo, esPublico, onNextTab }) {
           {os.queNiegan.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-gris-700 mb-1">Suelen negar o demorar</p>
-              <div className="flex flex-wrap gap-1">{os.queNiegan.map((i) => <span key={i} className="bg-naranja-50 text-naranja-500 text-xs px-2 py-0.5 rounded-full">{i}</span>)}</div>
+              <div className="flex flex-wrap gap-1">{os.queNiegan.map((i) => <span key={i} className="bg-naranja-50 text-naranja-600 text-xs px-2 py-0.5 rounded-full">{i}</span>)}</div>
             </div>
           )}
           {os.programaOncologico && (
@@ -322,7 +322,9 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
             }
           }} className="flex-1 bg-gris-50 text-gris-800 rounded-lg px-4 py-3 text-sm border border-gris-200 cursor-pointer min-h-[44px]">
             <option value="" disabled>Elegir tratamiento...</option>
-            {[...subtipo.primeraLinea, ...subtipo.terapiasDirigidas, ...subtipo.opcionesNuevas].map((t) => (
+            {[...subtipo.primeraLinea, ...subtipo.terapiasDirigidas, ...subtipo.opcionesNuevas]
+              .filter((t) => !t.toLowerCase().includes("no disponible"))
+              .map((t) => (
               <option key={t} value={t}>{t}</option>
             ))}
           </select>

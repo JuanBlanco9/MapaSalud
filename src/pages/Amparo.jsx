@@ -179,7 +179,7 @@ function TabPromesa() {
             <li>• Prepagas (Ley 26.682)</li>
             <li>• Seguro Nacional de Salud (Ley 23.661)</li>
           </ul>
-          <p className="text-xs text-naranja-500 mt-2 font-medium">No aplica a: sistema publico ni obras sociales provinciales</p>
+          <p className="text-xs text-naranja-600 mt-2 font-medium">No aplica a: sistema publico ni obras sociales provinciales</p>
         </div>
       </div>
 
@@ -230,7 +230,7 @@ function TabComoReclamar() {
         <div className="space-y-2">
           {cuandoIniciar.map((item, i) => (
             <div key={i} className="flex items-start gap-2 bg-gris-50 p-3 rounded-lg">
-              <AlertTriangle className="w-4 h-4 text-naranja-500 shrink-0 mt-0.5" />
+              <AlertTriangle className="w-4 h-4 text-naranja-600 shrink-0 mt-0.5" />
               <span className="text-sm text-gris-700">{item}</span>
             </div>
           ))}
@@ -348,7 +348,7 @@ function TabQuienTeAyuda() {
               </div>
               {org.nombreCompleto && <p className="text-xs text-gris-500 mb-1">{org.nombreCompleto}</p>}
               <p className="text-xs text-gris-600 mb-2">{org.queHacen}</p>
-              {org.nota && <p className="text-xs text-naranja-500 font-medium mb-2">{org.nota}</p>}
+              {org.nota && <p className="text-xs text-naranja-600 font-medium mb-2">{org.nota}</p>}
               <div className="space-y-1 text-xs">
                 {org.telefono && <a href={`tel:${org.telefono.replace(/[^0-9+]/g, "")}`} className="flex items-center gap-1 text-azul-600 no-underline"><Phone className="w-3 h-3" />{org.telefono}</a>}
                 {org.web && <a href={org.web} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-azul-600 no-underline"><Globe className="w-3 h-3" />{org.web.replace("https://www.", "")}</a>}

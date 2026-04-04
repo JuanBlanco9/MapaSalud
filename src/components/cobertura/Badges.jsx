@@ -35,7 +35,7 @@ export function DificultadBadge({ nombre }) {
   const info = dificultadInfo[dif];
   const configs = {
     directo: { icon: Check, style: "text-verde-600" },
-    tramite: { icon: Clock, style: "text-naranja-500" },
+    tramite: { icon: Clock, style: "text-naranja-600" },
     dificil: { icon: AlertTriangle, style: "text-red-500" },
   };
   const c = configs[dif];
@@ -162,13 +162,13 @@ export function PmoTratamientoItem({ t }) {
         <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
           t.cobertura === "100%" ? "bg-verde-100" : "bg-naranja-100"
         }`}>
-          {t.cobertura === "100%" ? <Check className="w-3 h-3 text-verde-600" /> : <AlertTriangle className="w-3 h-3 text-naranja-500" />}
+          {t.cobertura === "100%" ? <Check className="w-3 h-3 text-verde-600" /> : <AlertTriangle className="w-3 h-3 text-naranja-600" />}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-sm font-medium text-gris-800">{t.tipo}</span>
             <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
-              t.cobertura === "100%" ? "bg-verde-50 text-verde-600" : "bg-naranja-50 text-naranja-500"
+              t.cobertura === "100%" ? "bg-verde-50 text-verde-600" : "bg-naranja-50 text-naranja-600"
             }`}>{t.cobertura}</span>
             {dif && <DificultadBadge nombre={t.tipo} />}
             {fund && (
@@ -206,7 +206,7 @@ export function LeyendaExpandible({ nivelesInfo }) {
           </div>
           <div className="bg-naranja-50 rounded-lg p-2.5">
             <p className="text-xs font-bold text-naranja-600 mb-0.5">🟡 Cobertura parcial / provincial</p>
-            <p className="text-xs text-naranja-500">Puede depender de jurisdiccion o requiere justificacion.</p>
+            <p className="text-xs text-naranja-600">Puede depender de jurisdiccion o requiere justificacion.</p>
           </div>
           <div className="bg-red-50 rounded-lg p-2.5">
             <p className="text-xs font-bold text-red-600 mb-0.5">🔴 Requiere gestion</p>

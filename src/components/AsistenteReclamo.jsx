@@ -752,7 +752,7 @@ export default function AsistenteReclamo({
 
       <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mt-4 text-sm text-gris-700">
         <div className="flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 text-naranja-500 shrink-0 mt-0.5" />
+          <AlertTriangle className="w-4 h-4 text-naranja-600 shrink-0 mt-0.5" />
           <p>
             <strong>Revisa este documento con un abogado o la Defensoria del
             Pueblo antes de enviarlo.</strong> MapaSalud no es un estudio
