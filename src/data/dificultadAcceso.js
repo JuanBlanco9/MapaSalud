@@ -33,7 +33,7 @@ const oncoAcceso = {
   "Vinorelbina": "tramite",
   "Pemetrexed": "tramite",
 
-  // Dirigidas en vademecum — tramite (autorizacion + auditoria)
+  // Dirigidas en listado oficial — tramite (autorizacion + auditoria)
   "Trastuzumab": "tramite",
   "Pertuzumab": "tramite",
   "Bevacizumab": "tramite",
@@ -66,7 +66,7 @@ const oncoAcceso = {
   "Abiraterona": "tramite",
   "Enzalutamida": "tramite",
 
-  // Dirigidas NO en vademecum — dificil (amparos frecuentes)
+  // Dirigidas NO en listado oficial — dificil
   "Trastuzumab emtansina (T-DM1)": "dificil",
   "T-DM1 (Ado-trastuzumab emtansina)": "dificil",
   "T-DXd (Trastuzumab deruxtecan)": "dificil",
@@ -193,7 +193,7 @@ export const dificultadInfo = {
 
 export const fundamentacion = {
   "Palbociclib": {
-    porque: "En vademecum nacional (Res. 3377/2022), 12+ biosimilares. Requiere auditoria medica.",
+    porque: "En listado oficial (Res. 3377/2022), 12+ biosimilares. Requiere auditoria medica.",
     datosLitigiosidad: "Entre los mas litigados a nivel nacional (Registro Nacional SSS, 2024).",
     fallos: [
       {
@@ -207,7 +207,7 @@ export const fundamentacion = {
     ],
   },
   "Pembrolizumab": {
-    porque: "En vademecum para indicaciones ANMAT. Biosimilar Pembrox (2025) bajo precios. Cobertura depende de indicacion, PD-L1, protocolo.",
+    porque: "En listado oficial para indicaciones aprobadas por ANMAT. Biosimilar Pembrox (2025) bajo precios. Cobertura depende de indicacion, PD-L1, protocolo.",
     datosLitigiosidad: "~$21M ARS/ciclo. Multiples amparos, especialmente indicaciones no estandar.",
     fallos: [
       {
@@ -231,7 +231,7 @@ export const fundamentacion = {
     ],
   },
   "Trastuzumab": {
-    porque: "En vademecum nacional. 6+ biosimilares (47-63% ahorro). Autorizacion de rutina para HER2+.",
+    porque: "En listado oficial (Res. 3377/2022). 6+ biosimilares disponibles (47-63% ahorro).",
     datosLitigiosidad: "Baja litigiosidad actual gracias a biosimilares.",
     fallos: [],
     normativa: [
@@ -239,13 +239,13 @@ export const fundamentacion = {
     ],
   },
   "Osimertinib": {
-    porque: "NO en vademecum nacional. Precio mas alto oral (~$21.4M/mes). Sin biosimilar.",
-    datosLitigiosidad: "No incluido en vademecum nacional. El acceso requiere autorizacion especial o reclamo formal.",
+    porque: "NO en listado oficial (Res. 3377/2022). Precio mas alto oral (~$21.4M/mes). Sin biosimilar.",
+    datosLitigiosidad: "No incluido en listado oficial. El acceso requiere autorizacion especial o reclamo formal.",
     fallos: [],
     normativa: [],
   },
   "Trastuzumab deruxtecan": {
-    porque: "NO en vademecum nacional. ~$6M ARS/ciclo. Amparos ganados contra OSDE y PAMI en 2024-2025.",
+    porque: "NO en listado oficial (Res. 3377/2022). ~$6M ARS/ciclo. Fallos judiciales contra OSDE (2025) y PAMI (2024) ordenando cobertura.",
     datosLitigiosidad: "2 fallos favorables verificados — indica negativas frecuentes.",
     fallos: [
       {

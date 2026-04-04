@@ -26,7 +26,7 @@ MapaSalud toma la situacion del paciente (obra social + diagnostico) y le muestr
 
 | Funcion | Descripcion |
 |---------|-------------|
-| **Mapa de cobertura** | Que tratamientos le corresponden, cruzados contra el vademecum oficial (Res. 3377/2022, Anexo I verificado contra PDF del Ministerio de Salud) |
+| **Mapa de cobertura** | Que tratamientos le corresponden, cruzados contra el listado oficial de medicamentos (Res. 3377/2022, Anexo I verificado contra PDF del Ministerio de Salud) |
 | **Cobertura + dificultad** | Dos indicadores por droga: derecho legal (semaforo) + dificultad de acceso real (advertencia), con evidencia expandible |
 | **Explicaciones de drogas** | Cada droga/insumo clickeable con explicacion en lenguaje simple, forma de administracion, y links a fuentes medicas |
 | **Asistente de reclamos** | Genera cartas documento, emails formales, y solicitudes PROMESA con base legal verificada y jurisprudencia aplicable |

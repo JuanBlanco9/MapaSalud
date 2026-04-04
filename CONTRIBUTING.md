@@ -11,7 +11,7 @@ La contribucion mas valiosa es verificar y actualizar los datos:
 - **Telefonos de auditoria medica** de obras sociales — llamar y confirmar que funcionan
 - **Procesos de autorizacion** — verificar que los pasos descritos son correctos
 - **Precios de medicamentos** — consultar Kairos o Alfabeta y actualizar
-- **Nuevas resoluciones** — si el Ministerio de Salud actualiza el PMO o el vademecum
+- **Nuevas resoluciones** — si el Ministerio de Salud actualiza el PMO o el listado de medicamentos
 
 Los datos estan en `src/data/` en archivos `.js` con formato legible. Si encontras un dato incorrecto, abri un issue o un PR.
 

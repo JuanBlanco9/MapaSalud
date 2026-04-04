@@ -179,7 +179,7 @@ export async function generarMapaPDF({ os, plan, cancer, subtipo, pmo }) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
   doc.setTextColor(30, 132, 73);
-  doc.text("[CUBIERTO - Res. 3377/2022] = Vademecum nacional, exigible en cualquier OS del pais", MARGIN + 4, y + 11);
+  doc.text("[CUBIERTO - Res. 3377/2022] = Listado oficial de medicamentos, exigible en cualquier OS del pais", MARGIN + 4, y + 11);
   doc.setTextColor(230, 126, 34);
   doc.text("[CUBIERTO PBA - IPC] = Listado provincial Buenos Aires. Otras provincias: consultar listado local", MARGIN + 4, y + 16);
   doc.setTextColor(200, 50, 50);

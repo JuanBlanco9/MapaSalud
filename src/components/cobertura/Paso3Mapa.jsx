@@ -277,7 +277,7 @@ function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os }) {
           <h4 className="font-semibold text-gris-800 mb-2 flex items-center gap-1.5">
             <AlertTriangle className="w-4 h-4 text-red-500" /> Opciones nuevas — requieren gestion
           </h4>
-          <p className="text-xs text-gris-500 mb-2">No estan en el vademecum. Necesitan reclamo o amparo.</p>
+          <p className="text-xs text-gris-500 mb-2">No estan en el listado oficial de medicamentos.</p>
           <div className="space-y-2">
             {subtipo.opcionesNuevas.map((t) => <DrogaConNivel key={t} nombre={t} getNivel={getNivelDroga} niveles={nivelesInfo} />)}
           </div>

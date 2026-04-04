@@ -258,7 +258,7 @@ export const obrasSociales = [
 
 // ── PMO: lo que cubre la ley para todos ─────────────────────────
 // Fuentes: Res 201/2002, Res 1991/2005, Res 3377/2022, Res 1926/2024,
-// Ley 26.682, Ley 26.872, Vademecum IPC PBA oct 2024
+// Ley 26.682, Ley 26.872, Listado IPC PBA oct 2024
 
 export const pmo = {
   baseLegal:
@@ -528,7 +528,7 @@ export function getNivelDroga(nombre) {
 export const nivelesInfo = {
   nacional: {
     label: "Cubierto — Res. 3377/2022",
-    descripcion: "Vademecum nacional. Podes exigirlo en cualquier obra social o prepaga del pais.",
+    descripcion: "Listado oficial de medicamentos (Res. 3377/2022). Exigible en cualquier obra social o prepaga del pais.",
     color: "verde",
   },
   pba: {
