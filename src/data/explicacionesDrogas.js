@@ -119,7 +119,7 @@ export const explicaciones = {
   },
   "Alectinib": {
     nombre: "Alectinib (Alecensa)",
-    queEs: "Inhibidor de ALK para cancer de pulmon con reordenamiento ALK. Mas efectivo y mejor tolerado que crizotinib.",
+    queEs: "Inhibidor de ALK para cancer de pulmon con reordenamiento ALK. Recomendado por guias NCCN como primera linea sobre crizotinib.",
     administracion: "Oral (capsulas), 2 veces por dia con alimentos.",
     links: [
       { titulo: "MedlinePlus — Alectinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a616011-es.html" },
@@ -284,7 +284,7 @@ export const explicaciones = {
   },
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": {
     nombre: "Bomba de insulina Medtronic MiniMed 780G",
-    queEs: "Bomba de insulina con sistema de 'asa cerrada hibrida': mide la glucosa con un sensor, calcula automaticamente cuanta insulina dar, y ajusta la dosis cada 5 minutos. Reduce hipoglucemias y mejora el control.",
+    queEs: "Bomba de insulina con sistema de 'asa cerrada hibrida': mide la glucosa con un sensor, calcula automaticamente cuanta insulina dar, y ajusta la dosis cada 5 minutos.",
     administracion: "La bomba se lleva adherida al cuerpo (cintura o bolsillo). Se cambia el set de infusion cada 3 dias y el reservorio cuando se vacia.",
     links: [
       { titulo: "Medtronic — MiniMed 780G", url: "https://www.medtronicdiabetes.com/products/minimed-780g-sistema-de-bomba-de-insulina" },

@@ -26,8 +26,8 @@ const perfilOS = {
     fuenteAjuste: "Datos de coberturas.js: OSDE aprueba QT estandar y trastuzumab/pertuzumab HER2+. Fallo Enhertu Chaco 04/2025 (OSDE nego, Camara Federal ordeno cubrir). Fallo Oncotype DX reintegro 11/2025.",
   },
   swiss: {
-    perfil: "premium",
-    notas: "Planes SMG 40/50 similar a OSDE premium. Planes bajos mas restrictivos.",
+    perfil: "prepaga_grande",
+    notas: "Sin datos especificos de negativas en oncologia/diabetes para Swiss Medical.",
     ajustes: {},
     fuenteAjuste: "Datos genericos — no tenemos datos especificos de negativas Swiss Medical en oncologia.",
   },
@@ -61,7 +61,7 @@ const perfilOS = {
     fuenteAjuste: "Politica off-label explicita en coberturas.js. Fallo BRCA Bariloche contra Medife (negaron estudio genetico). Fallo FreeStyle Libre CABA 02/2026.",
   },
   omint: {
-    perfil: "premium",
+    perfil: "prepaga_grande",
     notas: "Acceso a consulta internacional. Sin datos especificos de negativas.",
     ajustes: {},
     fuenteAjuste: "Datos genericos — no tenemos datos especificos de OMINT en oncologia/diabetes.",

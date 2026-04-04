@@ -165,7 +165,7 @@ export default function Home() {
       <section className="bg-azul-700 text-white py-12 px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            La informacion es tu mejor herramienta
+            La informacion te da herramientas
           </h2>
           <p className="text-azul-100 text-lg mb-8">
             Conocer tus derechos es el primer paso.
