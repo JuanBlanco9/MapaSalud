@@ -263,16 +263,29 @@ export default function AsistenteReclamo({
 
     // Agregar jurisprudencia relevante al pie
     const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
-    const fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "alto");
+    let fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "alto");
+
+    // Para hospital publico, priorizar fallos contra el Estado/PAMI
+    if (esPublicoOS) {
+      const fallosEstado = [...jurisp.principios, ...fallosAplicables].filter((f) => {
+        const car = (f.caratula || "").toLowerCase();
+        return car.includes("estado") || car.includes("ministerio") || car.includes("provincia") || car.includes("pami") || car.includes("incluir salud");
+      });
+      if (fallosEstado.length > 0) fallosAplicables = fallosEstado;
+    }
+
     if (fallosAplicables.length > 0) {
       const citas = fallosAplicables
         .slice(0, 3)
         .map(formatCitaJurisprudencial)
         .join(";\n");
-      // Insertar antes del cierre "Sin otro particular"
+      // Insertar antes del cierre (Uds o Ud)
+      const cierre = carta.includes("Sin otro particular, saludo a Uds.")
+        ? "Sin otro particular, saludo a Uds. atentamente."
+        : "Sin otro particular, saludo a Ud. atentamente.";
       carta = carta.replace(
-        "Sin otro particular, saludo a Uds. atentamente.",
-        `La jurisprudencia ha resuelto en casos analogos la obligatoriedad de esta cobertura, entre otros:\n${citas}.\n\nSin otro particular, saludo a Uds. atentamente.`
+        cierre,
+        `La jurisprudencia ha resuelto en casos analogos la obligatoriedad de esta cobertura, entre otros:\n${citas}.\n\n${cierre}`
       );
     }
 
