@@ -240,7 +240,7 @@ export const fundamentacion = {
   },
   "Osimertinib": {
     porque: "NO en vademecum nacional. Precio mas alto oral (~$21.4M/mes). Sin biosimilar.",
-    datosLitigiosidad: "Requiere amparo en la mayoria de los casos.",
+    datosLitigiosidad: "No incluido en vademecum nacional. El acceso generalmente requiere autorizacion especial o reclamo formal.",
     fallos: [],
     normativa: [],
   },

@@ -8,11 +8,12 @@ export default function Home() {
       <section className="bg-azul-700 text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            Tu obra social te niega el tratamiento?
+            Que cobertura de salud te corresponde?
           </h1>
           <p className="text-lg md:text-xl text-azul-100 mb-8 leading-relaxed">
-            MapaSalud te muestra que te corresponde por ley, como pedirlo, y
-            que hacer si te dicen que no. Gratis, claro, y sin jerga legal.
+            MapaSalud te muestra que tratamientos cubre tu obra social,
+            que dice la ley, y como reclamar si te lo niegan.
+            Gratuito y sin jerga legal.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -37,11 +38,11 @@ export default function Home() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
             <p className="text-2xl md:text-3xl font-bold">10.072</p>
-            <p className="text-azul-200 text-sm">amparos de salud en 2024</p>
+            <p className="text-azul-200 text-sm">amparos de salud en 2024 (Registro SSS)</p>
           </div>
           <div>
-            <p className="text-2xl md:text-3xl font-bold">89%</p>
-            <p className="text-azul-200 text-sm">fallan a favor del paciente</p>
+            <p className="text-2xl md:text-3xl font-bold">&gt;80%</p>
+            <p className="text-azul-200 text-sm">de fallos favorables al paciente (OLEGISAR)</p>
           </div>
           <div>
             <p className="text-2xl md:text-3xl font-bold">103</p>
@@ -106,7 +107,7 @@ export default function Home() {
               <h3 className="font-semibold text-lg mb-2">Tus derechos</h3>
               <p className="text-gris-600">
                 Te mostramos que te corresponde por ley segun tu obra social
-                y tu diagnostico, verificado contra normativa oficial.
+                y tu diagnostico, basado en normativa y fuentes oficiales.
               </p>
             </div>
             <div className="text-center p-6">
@@ -115,8 +116,8 @@ export default function Home() {
               </div>
               <h3 className="font-semibold text-lg mb-2">Cartas de reclamo</h3>
               <p className="text-gris-600">
-                Genera cartas documento con la base legal correcta y
-                jurisprudencia verificada. Listas para firmar y enviar.
+                Genera modelos de carta documento basados en normativa
+                vigente y jurisprudencia verificada. Para revisar y presentar.
               </p>
             </div>
             <div className="text-center p-6">
@@ -167,7 +168,7 @@ export default function Home() {
             La informacion es tu mejor herramienta
           </h2>
           <p className="text-azul-100 text-lg mb-8">
-            Saber tus derechos no deberia requerir un abogado.
+            Conocer tus derechos es el primer paso.
           </p>
           <Link
             to="/cobertura"

@@ -199,7 +199,7 @@ export async function generarMapaPDF({ os, plan, cancer, subtipo, pmo }) {
   const pasos = [
     "1. Pedi la negativa por escrito. Es tu derecho. Si no te la dan, manda un email pidiendo formalmente.",
     "2. Reclama a la Superintendencia de Servicios de Salud: 0800-222-72583 o sssalud.gob.ar",
-    "3. Inicia un amparo de salud. En oncologia los jueces suelen fallar a favor en 24-72 horas.",
+    "3. Inicia un amparo de salud. Mas del 80% de los amparos de salud se han resuelto favorablemente segun registros publicos.",
   ];
   pasos.forEach((p) => {
     y = checkPage(doc, y, 12);

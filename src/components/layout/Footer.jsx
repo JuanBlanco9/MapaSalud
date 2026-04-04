@@ -9,7 +9,7 @@ export default function Footer() {
           tu caso especifico.
         </div>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gris-500">
-          <p>MapaSalud — Orientacion para pacientes oncologicos en Argentina</p>
+          <p>MapaSalud — Informacion sobre cobertura de salud en Argentina</p>
           <p>No almacenamos datos personales</p>
         </div>
       </div>
