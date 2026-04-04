@@ -192,6 +192,14 @@ export const dificultadInfo = {
 // para mostrar en el boton (i) de la UI.
 
 export const fundamentacion = {
+  "Tamoxifeno": {
+    porque: "Medicamento oral de bajo costo ($31K-$40K ARS/mes). En listado oficial (Res. 3377/2022). No requiere autorizacion previa segun PMO. No se encontraron fallos judiciales por denegacion de tamoxifeno en el dataset SAIJ.",
+    datosLitigiosidad: "Sin amparos identificados en SAIJ. El bajo costo reduce la resistencia de las OS a cubrirlo.",
+    fallos: [],
+    normativa: [
+      { titulo: "Res. 3377/2022", url: "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=376215" },
+    ],
+  },
   "Palbociclib": {
     porque: "En listado oficial (Res. 3377/2022), 12+ biosimilares. Requiere auditoria medica.",
     datosLitigiosidad: "Entre los mas litigados a nivel nacional (Registro Nacional SSS, 2024).",
