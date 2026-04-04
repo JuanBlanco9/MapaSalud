@@ -388,7 +388,7 @@ export const fundamentacion = {
     ],
   },
   "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": {
-    porque: "Mismo marco que Libre 2. Res. 2091/2025 cubre 'sistemas flash'. ~$79.000/sensor.",
+    porque: "Mismo marco que Libre 2. Res. 2091/2025 cubre 'sistemas flash'. ~$117.936/sensor precio particular (abril 2026).",
     datosLitigiosidad: "Misma normativa que Libre 2.",
     fallos: [],
     normativa: [

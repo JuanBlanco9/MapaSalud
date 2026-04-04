@@ -117,7 +117,7 @@ export const pmo = {
       tipo: "Sensor flash CGM (FreeStyle Libre)",
       cobertura: "100%",
       autorizacionPrevia: true,
-      nota: "Res. 2091/2025 (julio 2025): cobertura 100% para insulinodependientes. Reemplazo la Res. 2820/2022. Precio particular: ~$79.000/sensor (14 dias). Si te lo niegan, cita la Res. 2091/2025.",
+      nota: "Res. 2091/2025 (julio 2025): cobertura 100% segun Anexo I para insulinodependientes, embarazadas, y quienes planifiquen embarazo. Reemplazo la Res. 2820/2022. Precio particular: ~$117.936/sensor (14 dias, precio abril 2026). Si te lo niegan, cita la Res. 2091/2025.",
     },
     {
       tipo: "Sensor CGM con alertas (Dexcom)",
