@@ -16,11 +16,9 @@ import { generarTemplateFallback } from "../data/templatesCarta";
 import {
   getJurisprudenciaRelevante,
   formatCitaJurisprudencial,
-} from "../data/jurisprudencia";
-import {
   filtrarFallosPorAplicabilidad,
   getContextoFallo,
-} from "../data/jurisprudenciaContexto";
+} from "../data/jurisprudencia";
 
 const PREGUNTAS_RESPUESTA = [
   { id: "sin_respuesta", label: "No me respondieron (mas de 5 dias habiles)" },
