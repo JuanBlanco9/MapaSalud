@@ -124,6 +124,13 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
           <p className="text-xs font-semibold text-gris-700 mt-2">{expl.nombre}</p>
           <p className="text-xs text-gris-600 mt-1">{expl.queEs}</p>
           <p className="text-xs text-gris-500 mt-1"><strong>Administracion:</strong> {expl.administracion}</p>
+          {expl.precio && (
+            <div className="mt-1.5 bg-gris-50 rounded p-2">
+              <p className="text-xs font-semibold text-gris-700">Precio particular: {expl.precio.rango}</p>
+              {expl.precio.nota && <p className="text-xs text-gris-500">{expl.precio.nota}</p>}
+              <p className="text-xs text-gris-400">Precio aproximado a {expl.precio.fecha}. Fuente: preciosdemedicamentos.com.ar / alfabeta.net</p>
+            </div>
+          )}
           {expl.links && expl.links.length > 0 && (
             <div className="mt-1.5">
               <p className="text-xs font-semibold text-gris-600">Mas informacion:</p>

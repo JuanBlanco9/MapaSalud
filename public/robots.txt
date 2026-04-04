@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mapa-salud.vercel.app/sitemap.xml

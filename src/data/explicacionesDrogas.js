@@ -15,6 +15,7 @@ export const explicaciones = {
     nombre: "Trastuzumab (Herceptin y biosimilares)",
     queEs: "Anticuerpo monoclonal que bloquea la proteina HER2 en la superficie de las celulas tumorales. Se usa en cancer de mama y gastrico HER2 positivo.",
     administracion: "Intravenoso, generalmente cada 3 semanas. Tambien existe una version subcutanea (inyeccion bajo la piel en 5 minutos).",
+    precio: { rango: "$3.717.522 — $9.924.749", nota: "Biosimilares desde $3.7M (47-63% ahorro vs Herceptin original)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Trastuzumab", url: "https://medlineplus.gov/spanish/druginfo/meds/a699011-es.html" },
       { titulo: "Chemocare — Herceptin", url: "https://chemocare.com/es/chemotherapy/drug-info/trastuzumab.aspx" },
@@ -48,6 +49,7 @@ export const explicaciones = {
     nombre: "Pembrolizumab (Keytruda)",
     queEs: "Inmunoterapia que 'desbloquea' al sistema inmune para que ataque al tumor. Bloquea la proteina PD-1 que usan las celulas tumorales para esconderse. Se usa en pulmon, mama triple negativo, colorrectal MSI-H, y otros.",
     administracion: "Intravenoso, cada 3 o 6 semanas segun indicacion.",
+    precio: { rango: "$20.735.442 — $21.262.599", nota: "Pembrox (biosimilar Elea, 2025) vs Keytruda original", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Pembrolizumab", url: "https://medlineplus.gov/spanish/druginfo/meds/a614048-es.html" },
       { titulo: "Cancer.org — Inmunoterapia", url: "https://www.cancer.org/es/cancer/como-sobrellevar-el-cancer/tipos-de-tratamiento/inmunoterapia.html" },
@@ -57,6 +59,7 @@ export const explicaciones = {
     nombre: "Nivolumab (Opdivo)",
     queEs: "Inmunoterapia similar a pembrolizumab. Bloquea PD-1 para que el sistema inmune reconozca y ataque al tumor. Se usa en pulmon, rinon, melanoma, colorrectal MSI-H, y otros.",
     administracion: "Intravenoso, cada 2 o 4 semanas. Desde 2026, disponible en version subcutanea (inyeccion).",
+    precio: { rango: "$7.173.483 (100mg)", nota: "Tambien disponible en 40mg ($2.869.307) y 240mg ($17.216.359)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Nivolumab", url: "https://medlineplus.gov/spanish/druginfo/meds/a614056-es.html" },
     ],
@@ -65,6 +68,7 @@ export const explicaciones = {
     nombre: "Bevacizumab (Avastin y biosimilares)",
     queEs: "Anticuerpo que bloquea la formacion de nuevos vasos sanguineos que alimentan al tumor (antiangiogenico). Se usa en colorrectal, pulmon, rinon, cuello de utero, y otros.",
     administracion: "Intravenoso, cada 2 o 3 semanas.",
+    precio: { rango: "$5.517.236 — $11.923.485", nota: "Biosimilares desde $5.5M (~52% ahorro vs Avastin)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Bevacizumab", url: "https://medlineplus.gov/spanish/druginfo/meds/a607001-es.html" },
     ],
@@ -89,6 +93,7 @@ export const explicaciones = {
     nombre: "Palbociclib (Ibrance y biosimilares)",
     queEs: "Inhibidor de CDK4/6 que frena la division celular del tumor. Se usa en cancer de mama RE+/HER2- avanzado, combinado con hormonoterapia.",
     administracion: "Oral (capsulas), 21 dias tomando + 7 dias de descanso. Ciclo de 28 dias.",
+    precio: { rango: "$6.119.120 — $11.984.066", nota: "12+ marcas disponibles", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Palbociclib", url: "https://medlineplus.gov/spanish/druginfo/meds/a615012-es.html" },
     ],
@@ -97,6 +102,7 @@ export const explicaciones = {
     nombre: "Ribociclib (Kisqali)",
     queEs: "Inhibidor de CDK4/6 similar a palbociclib. Se usa en cancer de mama RE+/HER2- avanzado.",
     administracion: "Oral (comprimidos), 21 dias tomando + 7 dias de descanso.",
+    precio: { rango: "$10.860.668", nota: "Caja x63 comprimidos (ciclo completo)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Ribociclib", url: "https://medlineplus.gov/spanish/druginfo/meds/a617046-es.html" },
     ],
@@ -105,6 +111,7 @@ export const explicaciones = {
     nombre: "Abemaciclib (Verzenio)",
     queEs: "Inhibidor de CDK4/6. A diferencia de palbociclib y ribociclib, se toma de forma continua (sin semana de descanso).",
     administracion: "Oral (comprimidos), 2 veces por dia, todos los dias.",
+    precio: { rango: "$2.583.122", nota: "Caja x14. Tratamiento continuo, 2 cajas/mes.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Abemaciclib", url: "https://medlineplus.gov/spanish/druginfo/meds/a618010-es.html" },
     ],
@@ -113,6 +120,7 @@ export const explicaciones = {
     nombre: "Osimertinib (Tagrisso)",
     queEs: "Inhibidor de EGFR de tercera generacion para cancer de pulmon con mutacion EGFR. Cruza la barrera hematoencefalica (util en metastasis cerebrales).",
     administracion: "Oral (comprimidos), 1 vez por dia.",
+    precio: { rango: "$21.416.937/mes", nota: "Sin biosimilar. El oral mas caro del listado.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Osimertinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a616018-es.html" },
     ],
@@ -129,6 +137,7 @@ export const explicaciones = {
     nombre: "Olaparib (Lynparza)",
     queEs: "Inhibidor de PARP para tumores con mutacion BRCA (mama, ovario, prostata). Impide que las celulas tumorales reparen su ADN danado.",
     administracion: "Oral (comprimidos), 2 veces por dia.",
+    precio: { rango: "$5.979.528 — $6.906.851", nota: "Lynparza (AstraZeneca) y Olapater (Tuteur)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Olaparib", url: "https://medlineplus.gov/spanish/druginfo/meds/a615022-es.html" },
     ],
@@ -140,6 +149,7 @@ export const explicaciones = {
     nombre: "Paclitaxel (Taxol)",
     queEs: "Quimioterapia clasica que interfiere con la division celular. Se usa en mama, pulmon, ovario, y otros.",
     administracion: "Intravenoso, semanal o cada 3 semanas.",
+    precio: { rango: "$1.081.690 — $2.943.136", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Paclitaxel", url: "https://medlineplus.gov/spanish/druginfo/meds/a607070-es.html" },
     ],
@@ -148,6 +158,7 @@ export const explicaciones = {
     nombre: "Carboplatino",
     queEs: "Quimioterapia basada en platino. Dana el ADN de las celulas tumorales. Se usa en pulmon, ovario, y otros.",
     administracion: "Intravenoso, generalmente cada 3 semanas.",
+    precio: { rango: "$303.493 — $1.113.533", fecha: "abril 2026" },
     links: [
       { titulo: "Chemocare — Carboplatino", url: "https://chemocare.com/es/chemotherapy/drug-info/carboplatino.aspx" },
     ],
@@ -156,6 +167,7 @@ export const explicaciones = {
     nombre: "Cisplatino",
     queEs: "Quimioterapia basada en platino, mas potente que carboplatino pero con mas efectos secundarios. Se usa en pulmon, cuello de utero, cabeza/cuello, y otros.",
     administracion: "Intravenoso. Requiere hidratacion intensa para proteger los rinones.",
+    precio: { rango: "$63.466 — $226.478", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Cisplatino", url: "https://medlineplus.gov/spanish/druginfo/meds/a684036-es.html" },
     ],
@@ -164,6 +176,7 @@ export const explicaciones = {
     nombre: "Docetaxel (Taxotere)",
     queEs: "Quimioterapia similar a paclitaxel. Se usa en mama, pulmon, prostata, y otros.",
     administracion: "Intravenoso, cada 3 semanas.",
+    precio: { rango: "$1.493.826 — $2.189.504", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Docetaxel", url: "https://medlineplus.gov/spanish/druginfo/meds/a696031-es.html" },
     ],
@@ -175,6 +188,7 @@ export const explicaciones = {
     nombre: "Tamoxifeno (Nolvadex)",
     queEs: "Bloquea los receptores de estrogeno en el tumor. Es el tratamiento hormonal mas usado en cancer de mama RE+, especialmente en premenopausicas.",
     administracion: "Oral (comprimidos), 1 vez por dia, durante 5 a 10 anios.",
+    precio: { rango: "$29.800 — $37.300", nota: "Varifarma (mas barato) a Gador", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Tamoxifeno", url: "https://medlineplus.gov/spanish/druginfo/meds/a682414-es.html" },
     ],
@@ -183,6 +197,7 @@ export const explicaciones = {
     nombre: "Anastrozol (Arimidex)",
     queEs: "Inhibidor de aromatasa. Reduce la produccion de estrogeno en mujeres postmenopausicas con cancer de mama RE+.",
     administracion: "Oral (comprimidos), 1 vez por dia.",
+    precio: { rango: "$189.648 — $418.556", nota: "Raffo a Arimidex (AstraZeneca)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Anastrozol", url: "https://medlineplus.gov/spanish/druginfo/meds/a696018-es.html" },
     ],
@@ -191,6 +206,7 @@ export const explicaciones = {
     nombre: "Letrozol (Femara)",
     queEs: "Inhibidor de aromatasa similar a anastrozol. Para cancer de mama RE+ en postmenopausicas.",
     administracion: "Oral, 1 vez por dia.",
+    precio: { rango: "$162.740 — $235.008", nota: "Eurofarma a Femara (Novartis)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Letrozol", url: "https://medlineplus.gov/spanish/druginfo/meds/a698004-es.html" },
     ],
@@ -199,6 +215,7 @@ export const explicaciones = {
     nombre: "Abiraterona (Zytiga)",
     queEs: "Bloquea la produccion de androgenos (hormonas masculinas) que alimentan al cancer de prostata. Se usa junto con prednisona.",
     administracion: "Oral (comprimidos), 1 vez por dia en ayunas.",
+    precio: { rango: "$5.969.758 — $12.400.000", nota: "Varifarma a Zytiga (Janssen)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Abiraterona", url: "https://medlineplus.gov/spanish/druginfo/meds/a611046-es.html" },
     ],
@@ -207,6 +224,7 @@ export const explicaciones = {
     nombre: "Enzalutamida (Xtandi)",
     queEs: "Bloquea el receptor de androgenos en las celulas tumorales de prostata. Se usa en cancer de prostata avanzado.",
     administracion: "Oral (capsulas o comprimidos), 1 vez por dia.",
+    precio: { rango: "$10.860.580 — $14.745.736", nota: "Baliarda a Xtandi (Raffo)", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Enzalutamida", url: "https://medlineplus.gov/spanish/druginfo/meds/a612027-es.html" },
     ],
