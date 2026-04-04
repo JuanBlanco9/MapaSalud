@@ -36,7 +36,7 @@ export const textosLegales = {
     `Resolucion 3377/2022 Ministerio de Salud (publicada 06/12/2022): Aprueba el Listado Complementario de Medicamentos Oncologicos de la Coordinacion de Banco de Drogas Especiales. Deroga expresamente la Res. 29/2022 (RESOL-2022-29-APN-MS). [Fuente: servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=376215]`,
 
   res_1926_2024:
-    `Resolucion 1926/2024 Ministerio de Salud (publicada 24/06/2024): Liberaliza los coseguros para la mayoria de prestaciones, pero establece un Anexo con servicios exceptuados de esa liberalizacion. Los tratamientos oncologicos estan incluidos entre los exceptuados, junto con discapacidad, emergencias, plan materno-infantil, HIV/hepatitis y transplantes. Efecto practico: oncologia sigue sin coseguro. [Fuente: boletinoficial.gob.ar/detalleAviso/primera/309532/20240624]`,
+    `Resolucion 1926/2024 Ministerio de Salud (publicada 24/06/2024): Liberaliza los coseguros para las prestaciones no exceptuadas, pero establece un Anexo con servicios exceptuados de esa liberalizacion (segun texto de la resolucion). Los tratamientos oncologicos estan incluidos entre los exceptuados, junto con discapacidad, emergencias, plan materno-infantil, HIV/hepatitis y transplantes. Efecto practico: oncologia sigue sin coseguro. [Fuente: boletinoficial.gob.ar/detalleAviso/primera/309532/20240624]`,
 
   // ── Reconstruccion mamaria (CONFIRMADA) ───────────────────────
 
