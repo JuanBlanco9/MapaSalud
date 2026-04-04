@@ -6,16 +6,16 @@ export const obrasSociales = [
     nombre: "OSDE",
     tipo: "Prepaga",
     planes: [
-      { id: "osde_210", nombre: "OSDE 210", detalle: "Cobertura PMO. Red mas acotada." },
-      { id: "osde_310", nombre: "OSDE 310", detalle: "Red mas amplia, autorizaciones mas rapidas." },
-      { id: "osde_410", nombre: "OSDE 410", detalle: "Acceso a centros de referencia (Fleming, CEMIC). Autorizaciones agiles." },
-      { id: "osde_510", nombre: "OSDE 510", detalle: "Cobertura premium. Acceso a Fleming, Fundaleu, Hospital Italiano. Rara vez niega." },
+      { id: "osde_210", nombre: "OSDE 210", detalle: "Plan basico." },
+      { id: "osde_310", nombre: "OSDE 310", detalle: "Red de prestadores mas amplia." },
+      { id: "osde_410", nombre: "OSDE 410", detalle: "Incluye centros de referencia (Fleming, CEMIC)." },
+      { id: "osde_510", nombre: "OSDE 510", detalle: "Incluye Fleming, Fundaleu, Hospital Italiano." },
     ],
     coberturaOncologica:
       "100% cobertura de quimioterapia segun indicaciones ANMAT. Provision directa de citostaticos a traves de instituciones contratadas. La cobertura oncologica no varia entre planes — la diferencia esta en la red de prestadores y velocidad de autorizacion.",
     procesoAutorizacion: {
       canal: "App OSDE o portal web (Tramites > Autorizar una prestacion). Presentar al menos 72 horas antes del procedimiento.",
-      tiempoTipico: "3-10 dias habiles. Planes 410/510 mas rapidos.",
+      tiempoTipico: "3-10 dias habiles segun tipo de prestacion.",
     },
     queNiegan: [
       "Drogas no aprobadas por ANMAT para la indicacion",
@@ -43,7 +43,7 @@ export const obrasSociales = [
       { id: "swiss_smg20", nombre: "SMG 20", detalle: "Plan basico. Red cerrada." },
       { id: "swiss_smg30", nombre: "SMG 30", detalle: "Red intermedia." },
       { id: "swiss_smg40", nombre: "SMG 40", detalle: "Red amplia." },
-      { id: "swiss_smg50", nombre: "SMG 50+", detalle: "Premium. Red completa." },
+      { id: "swiss_smg50", nombre: "SMG 50+", detalle: "Red mas amplia." },
     ],
     coberturaOncologica:
       "Cobertura oncologica segun PMO en todos los planes. Sin copago para oncologia. Red cerrada: cobertura via prestadores designados.",
