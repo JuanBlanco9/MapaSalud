@@ -78,7 +78,7 @@ export const nivelesInfo = {
   ley: {
     label: "Cubierto por ley — 100%",
     descripcion:
-      "Ley 23.753, Ley 26.914 y Res. 2091/2025 obligan a TODAS las OS, prepagas y PAMI a cubrirlo al 100%. Si te lo niegan, es ilegal.",
+      "Ley 23.753, Ley 26.914 y Res. 2091/2025 establecen la obligatoriedad de cobertura al 100% para OS, prepagas y PAMI.",
     color: "verde",
   },
   pmo: {

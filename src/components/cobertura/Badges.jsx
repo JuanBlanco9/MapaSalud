@@ -202,7 +202,7 @@ export function LeyendaExpandible({ nivelesInfo }) {
         <div className="mt-3 grid sm:grid-cols-2 gap-2">
           <div className="bg-verde-50 rounded-lg p-2.5">
             <p className="text-xs font-bold text-verde-700 mb-0.5">🟢 Cubierto por ley</p>
-            <p className="text-xs text-verde-600">La ley obliga a cubrirlo al 100%.</p>
+            <p className="text-xs text-verde-600">La normativa vigente establece la cobertura al 100%.</p>
           </div>
           <div className="bg-naranja-50 rounded-lg p-2.5">
             <p className="text-xs font-bold text-naranja-600 mb-0.5">🟡 Cobertura parcial / provincial</p>

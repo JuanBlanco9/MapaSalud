@@ -12,7 +12,7 @@ export const queEsUnAmparo = {
       icono: "scale",
       titulo: "Mas del 80% favorables",
       texto:
-        "Segun registros publicos, la mayoria de los fallos de amparo en salud son favorables al paciente",
+        "Mas del 80% de los fallos de amparo en salud han sido favorables al paciente segun registros publicos (OLEGISAR)",
     },
     {
       icono: "wallet",
@@ -142,7 +142,7 @@ export const preguntasFrecuentes = [
   {
     pregunta: "Que pasa si pierdo el amparo?",
     respuesta:
-      "Segun registros publicos, la mayoria de los amparos de salud con indicacion medica clara se resuelven favorablemente. Si el resultado no es favorable, podes apelar. Ademas, la medida cautelar ya te habra dado cobertura durante el proceso. Perder el amparo no genera costos adicionales si fuiste con defensor publico.",
+      "Segun registros publicos (OLEGISAR), mas del 80% de los amparos de salud con indicacion medica se han resuelto favorablemente. Si el resultado no es favorable, podes apelar. Ademas, la medida cautelar ya te habra dado cobertura durante el proceso. Perder el amparo no genera costos adicionales si fuiste con defensor publico.",
   },
   {
     pregunta: "Puedo hacer el amparo mientras sigo el tratamiento actual?",

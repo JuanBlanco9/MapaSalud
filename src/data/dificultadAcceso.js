@@ -318,7 +318,7 @@ export const fundamentacion = {
   },
   "Sensor CGM con alertas (Dexcom)": {
     porque: "La Res. 2091/2025 cubre 'sistemas flash' (FreeStyle Libre), no CGM continuo con alertas (Dexcom). El problema principal no es legal sino de disponibilidad: no hay distribuidor oficial de Dexcom en Argentina. Se consigue solo por importacion individual.",
-    datosLitigiosidad: "Pocos amparos registrados por Dexcom — la mayoria de los pacientes en Argentina usan FreeStyle Libre por disponibilidad. La Ley 26.914 ('equipos y dispositivos') aplica como argumento, pero sin distribuidor oficial la OS puede alegar imposibilidad de provision.",
+    datosLitigiosidad: "Pocos amparos registrados por Dexcom — FreeStyle Libre tiene mayor penetracion en Argentina por disponibilidad local. La Ley 26.914 ('equipos y dispositivos') aplica como argumento, pero sin distribuidor oficial la OS puede alegar imposibilidad de provision.",
     fallos: [],
     normativa: [
       { titulo: "Ley 26.914 (argumento 'equipos y dispositivos')", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
@@ -345,7 +345,7 @@ export const fundamentacion = {
   },
   "Insulina Degludec (Tresiba)": {
     porque: "Cubierta por Ley 23.753 pero es mas cara que Glargina/Detemir. Algunas OS piden justificacion medica de por que no se usa una basal mas economica. La cobertura es obligatoria pero puede requerir un paso adicional de auditoria.",
-    datosLitigiosidad: "Baja litigiosidad — la mayoria de las OS la cubre con justificacion.",
+    datosLitigiosidad: "Baja litigiosidad — no se encontraron amparos por Tresiba en el dataset SAIJ.",
     fallos: [],
     normativa: [
       { titulo: "Ley 23.753 Art. 5 (cobertura integral diabetes)", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/154/texact.htm" },

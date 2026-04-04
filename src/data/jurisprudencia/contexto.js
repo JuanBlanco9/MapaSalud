@@ -63,7 +63,7 @@ export const contextoFallos = {
 
   "Expediente QXP 8159/21 (cancer renal, Pembrolizumab no ANMAT)": {
     circunstancias: "Pembrolizumab NO estaba aprobado por ANMAT para cancer renal en Argentina. Si aprobado en EE.UU. y UE. Caso EXCEPCIONAL.",
-    aplicabilidad: "MUY LIMITADA. Solo aplica si el medicamento no tiene aprobacion ANMAT pero si tiene aprobacion internacional y evidencia solida. Si el medicamento SI tiene aprobacion ANMAT, este fallo no es el mejor precedente — usar fallos estandar.",
+    aplicabilidad: "MUY LIMITADA. Solo aplica si el medicamento no tiene aprobacion ANMAT pero si tiene aprobacion internacional. Si el medicamento SI tiene aprobacion ANMAT, existen fallos mas directamente aplicables.",
     nivel: "bajo",
   },
 
