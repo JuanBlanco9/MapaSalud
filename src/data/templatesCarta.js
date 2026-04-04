@@ -88,6 +88,36 @@ ${fecha}
 DNI [COMPLETAR]`;
   }
 
+  // ── Hospital publico: nota al Director del hospital ────────
+  if (tipoDocumento === "reclamo_publico") {
+    return `${fecha}
+
+Al Sr/a Director/a del [COMPLETAR NOMBRE DEL HOSPITAL]
+[COMPLETAR DIRECCION DEL HOSPITAL]
+
+OBJETO: SOLICITUD DE PROVISION DE ${tratamiento.toUpperCase()}
+
+Me dirijo a Ud. en mi caracter de paciente atendido en ese establecimiento, a fin de solicitar formalmente la provision de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]) para el tratamiento de ${diag}.
+
+El tratamiento prescripto resulta medicamente necesario segun criterio del equipo tratante. La obligacion del Estado de garantizar el acceso a la salud se encuentra consagrada en:
+
+- Art. 42 de la Constitucion Nacional (derecho a la salud)
+- Art. 75 inc. 22 de la Constitucion Nacional (tratados internacionales con jerarquia constitucional, incluyendo el Pacto Internacional de Derechos Economicos, Sociales y Culturales — Art. 12, derecho a la salud)
+- La CSJN ha establecido que el Estado es garante subsidiario del derecho a la salud: "Campodonico de Beviacqua, Ana Carina c/ Ministerio de Salud y Accion Social" (CSJN, Fallos 323:3229, 24/10/2000)
+
+Solicito que se gestione la provision del tratamiento a traves del Banco Nacional de Drogas Especiales (BNDE) o del programa provincial correspondiente, y que se me informe por escrito el estado de la gestion en un plazo razonable.
+
+En caso de no obtener respuesta, me reservo el derecho de recurrir a la Defensoria del Pueblo y a la via judicial de amparo contra el Estado.
+
+Sin otro particular, saludo a Ud. atentamente.
+
+${fecha}
+[COMPLETAR NOMBRE COMPLETO]
+DNI [COMPLETAR]
+
+Copia a: Servicio Social del hospital`;
+  }
+
   // ── PROMESA: solicitud de mediacion prejudicial ────────────
   if (tipoDocumento === "promesa") {
     const baselegal = patologiaId === "diabetes1"

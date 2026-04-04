@@ -49,6 +49,7 @@ const TIPO_LABELS = {
   carta_documento: "Carta documento",
   intimacion_entrega: "Carta documento por falta de entrega",
   promesa: "Solicitud de mediacion PROMESA",
+  reclamo_publico: "Nota al Director del hospital",
 };
 
 // ── Barra de progreso del asistente ─────────────────────────────
@@ -242,7 +243,8 @@ export default function AsistenteReclamo({
 
   function generar() {
     setStep("generando");
-    const tipoDoc = yaSolicito === false ? "carta_documento" : tipoDocumento;
+    const esPublicoOS = os.id === "hospital_publico";
+    const tipoDoc = esPublicoOS ? "reclamo_publico" : (yaSolicito === false ? "carta_documento" : tipoDocumento);
 
     // Generar desde template pre-armado (sin API)
     let carta = generarTemplateFallback({
@@ -489,12 +491,28 @@ export default function AsistenteReclamo({
             Asistente de reclamo
           </h2>
           <p className="text-gris-600">
-            Te ayudamos a redactar la comunicacion formal para reclamar la
-            cobertura de <strong>{tratamiento}</strong>.
+            {os.id === "hospital_publico"
+              ? <>Te ayudamos a redactar una nota formal al hospital para solicitar <strong>{tratamiento}</strong>.</>
+              : <>Te ayudamos a redactar la comunicacion formal para reclamar la cobertura de <strong>{tratamiento}</strong>.</>}
           </p>
         </div>
 
-        <div className="space-y-6">
+        {/* Hospital publico: ir directo a datos */}
+        {os.id === "hospital_publico" && (
+          <div className="space-y-6">
+            <div className="bg-azul-50 border border-azul-100 rounded-lg p-4 text-sm text-azul-700">
+              <p>Vamos a generar una <strong>nota formal al Director del hospital</strong> solicitando la provision del tratamiento, con cita de la normativa y jurisprudencia que respalda tu derecho.</p>
+            </div>
+            <button
+              onClick={() => { setStep("datos"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="w-full flex items-center justify-center gap-2 bg-azul-700 hover:bg-azul-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]">
+              Siguiente: tus datos <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* OS/Prepaga: preguntas normales */}
+        {os.id !== "hospital_publico" && <div className="space-y-6">
           <div className="bg-white border border-gris-200 rounded-xl p-5">
             <p className="font-semibold text-gris-800 mb-3">
               ¿Ya pediste este tratamiento formalmente a {os.nombre}?
@@ -581,7 +599,7 @@ export default function AsistenteReclamo({
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
-        </div>
+        </div>}
       </div>
     );
   }

@@ -307,42 +307,64 @@ function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os, onNex
 // ── TAB 3: Tu reclamo ───────────────────────────────────────────
 
 function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivelDroga }) {
+  const pasosOS = [
+    { n: 1, t: "Pedi la negativa por escrito", d: "Es tu derecho. Si no te la dan, manda un email pidiendo formalmente." },
+    { n: 2, t: "Reclamo a la SSS (gratis, sin abogado)", d: "Llama al 0800-222-72583 o ingresa a sssalud.gob.ar. No necesitas abogado." },
+    { n: 3, t: "PROMESA — mediacion prejudicial", d: "Via tramitesadistancia.gob.ar. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado (hay patrocinio gratuito)." },
+    { n: 4, t: "Amparo judicial", d: "Si ninguna via anterior resuelve. Mas del 80% de los amparos de salud se han resuelto favorablemente segun registros publicos." },
+  ];
+
+  const pasosPublico = [
+    { n: 1, t: "Habla con el servicio social del hospital", d: "Pediles que gestionen la droga ante el BNDE (Banco Nacional de Drogas Especiales) o el programa provincial. Pedi constancia escrita de que la droga no esta disponible." },
+    { n: 2, t: "Reclamo al Ministerio de Salud", d: "Si el hospital no resuelve, reclama al Ministerio de Salud de tu provincia. Si el tratamiento es del BNDE, reclama al Ministerio nacional (bndo@msal.gov.ar)." },
+    { n: 3, t: "Defensoria del Pueblo (gratis, sin abogado)", d: "La Defensoria puede intervenir ante el Estado para que provea el tratamiento. No necesitas abogado. Busca la Defensoria de tu provincia." },
+    { n: 4, t: "Amparo contra el Estado", d: "Si nada resuelve, podes iniciar un amparo contra el Estado provincial o nacional. La CSJN ha establecido que el Estado es garante subsidiario del derecho a la salud (Campodonico de Beviacqua, Fallos 323:3229)." },
+  ];
+
+  const pasos = esPublico ? pasosPublico : pasosOS;
+
   return (
     <div className="space-y-6">
       {/* Redactar reclamo */}
-      <div>
-        <h3 className="text-lg font-bold text-azul-700 mb-3">Redactar reclamo</h3>
-        <p className="text-sm text-gris-600 mb-1">Selecciona el tratamiento que te negaron y te generamos la carta formal con la base legal correspondiente.</p>
-        <p className="text-xs text-gris-400 mb-3">Si no conoces el nombre exacto del tratamiento, consultalo con tu medico — aparece en la receta o indicacion medica.</p>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <select defaultValue="" onChange={(e) => {
-            if (e.target.value) {
-              const nivel = getNivelDroga ? getNivelDroga(e.target.value) : "gestion";
-              onIniciarReclamo(e.target.value, nivel);
-            }
-          }} className="flex-1 bg-gris-50 text-gris-800 rounded-lg px-4 py-3 text-sm border border-gris-200 cursor-pointer min-h-[44px]">
-            <option value="" disabled>Elegir tratamiento...</option>
-            {[...subtipo.primeraLinea, ...subtipo.terapiasDirigidas, ...subtipo.opcionesNuevas]
-              .filter((t) => !t.toLowerCase().includes("no disponible"))
-              .map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select>
+      {!esPublico && (
+        <div>
+          <h3 className="text-lg font-bold text-azul-700 mb-3">Redactar reclamo</h3>
+          <p className="text-sm text-gris-600 mb-1">Selecciona el tratamiento que te negaron y te generamos la carta formal con la base legal correspondiente.</p>
+          <p className="text-xs text-gris-400 mb-3">Si no conoces el nombre exacto del tratamiento, consultalo con tu medico — aparece en la receta o indicacion medica.</p>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <select defaultValue="" onChange={(e) => {
+              if (e.target.value) {
+                const nivel = getNivelDroga ? getNivelDroga(e.target.value) : "gestion";
+                onIniciarReclamo(e.target.value, nivel);
+              }
+            }} className="flex-1 bg-gris-50 text-gris-800 rounded-lg px-4 py-3 text-sm border border-gris-200 cursor-pointer min-h-[44px]">
+              <option value="" disabled>Elegir tratamiento...</option>
+              {[...subtipo.primeraLinea, ...subtipo.terapiasDirigidas, ...subtipo.opcionesNuevas]
+                .filter((t) => !t.toLowerCase().includes("no disponible"))
+                .map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* 3 pasos */}
+      {esPublico && (
+        <div className="bg-azul-50 border border-azul-100 rounded-lg p-4">
+          <p className="text-sm text-azul-700">
+            <strong>Sistema publico:</strong> los reclamos en el sistema publico no se dirigen a una obra social sino al hospital y al Estado.
+            A continuacion te mostramos los pasos especificos para reclamar en el sistema publico.
+          </p>
+        </div>
+      )}
+
+      {/* Pasos */}
       <div>
-        <h3 className="text-lg font-bold text-azul-700 mb-3">Si te dicen que no</h3>
+        <h3 className="text-lg font-bold text-azul-700 mb-3">{esPublico ? "Como reclamar en el sistema publico" : "Si te dicen que no"}</h3>
         <div className="bg-verde-50 border border-verde-200 rounded-xl p-5">
-          <p className="text-verde-800 font-semibold mb-4">Existen vias legales para reclamar la cobertura.</p>
+          <p className="text-verde-800 font-semibold mb-4">Existen vias para reclamar la provision del tratamiento.</p>
           <div className="space-y-4">
-            {[
-              { n: 1, t: "Pedi la negativa por escrito", d: "Es tu derecho. Si no te la dan, manda un email pidiendo formalmente." },
-              { n: 2, t: "Reclamo a la SSS (gratis, sin abogado)", d: "Llama al 0800-222-72583 o ingresa a sssalud.gob.ar. No necesitas abogado. A veces resuelve sin necesidad de ir mas lejos." },
-              { n: 3, t: "PROMESA — mediacion prejudicial", d: "Via tramitesadistancia.gob.ar. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado (hay patrocinio gratuito)." },
-              { n: 4, t: "Amparo judicial", d: "Si ninguna via anterior resuelve. Mas del 80% de los amparos de salud se han resuelto favorablemente segun registros publicos." },
-            ].map((p) => (
+            {pasos.map((p) => (
               <div key={p.n} className="flex items-start gap-3">
                 <div className="w-7 h-7 bg-verde-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">{p.n}</div>
                 <div>

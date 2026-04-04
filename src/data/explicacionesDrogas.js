@@ -160,7 +160,7 @@ export const explicaciones = {
     administracion: "Intravenoso, generalmente cada 3 semanas.",
     precio: { rango: "$303.493 — $1.113.533", fecha: "abril 2026" },
     links: [
-      { titulo: "Chemocare — Carboplatino", url: "https://chemocare.com/es/chemotherapy/drug-info/carboplatino.aspx" },
+      { titulo: "MedlinePlus — Carboplatino", url: "https://medlineplus.gov/spanish/druginfo/meds/a695017-es.html" },
     ],
   },
   "Cisplatino": {
@@ -321,7 +321,7 @@ export const explicaciones = {
     queEs: "Sensor de monitoreo continuo de glucosa (CGM) con alertas predictivas. Avisa antes de que la glucosa suba o baje demasiado. No requiere escanear — envia datos continuamente.",
     administracion: "Se coloca en abdomen o parte posterior del brazo. Dura 10 dias. Transmisor reutilizable por 3 meses.",
     links: [
-      { titulo: "Dexcom — G6", url: "https://www.dexcom.com/es-ES/dexcom-g6-cgm-system" },
+      { titulo: "Dexcom — G6 (sitio oficial)", url: "https://www.dexcom.com" },
     ],
   },
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": {
@@ -364,7 +364,7 @@ export const explicaciones = {
     queEs: "Primer inhibidor de KRAS G12C aprobado. Para cancer de pulmon con mutacion KRAS G12C, despues de progresar a quimio/inmunoterapia.",
     administracion: "Oral (comprimidos), 1 vez por dia.",
     links: [
-      { titulo: "Cancer.org — Terapia dirigida pulmon", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-pulmon-no-microcito/tratamiento/terapia-dirigida.html" },
+      { titulo: "MedlinePlus — Sotorasib", url: "https://medlineplus.gov/spanish/druginfo/meds/a621024-es.html" },
     ],
   },
   "Encorafenib": {
