@@ -88,6 +88,70 @@ ${fecha}
 DNI [COMPLETAR]`;
   }
 
+  // ── PROMESA: solicitud de mediacion prejudicial ────────────
+  if (tipoDocumento === "promesa") {
+    const baselegal = patologiaId === "diabetes1"
+      ? `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914 (equipos y dispositivos), y Res. 2091/2025 (sensores flash)`
+      : `PMO Res. 201/2002 punto 7.3 (medicamentos oncologicos al 100%), Res. 3377/2022 (Listado Complementario), y Res. 1926/2024 (exencion de coseguros)`;
+
+    return `SOLICITUD DE MEDIACION PREJUDICIAL EN MATERIA DE SALUD (PROMESA)
+Decreto 379/2025 — Procedimiento de Mediacion Prejudicial en Materia de Salud
+
+Datos del requirente:
+Nombre: [COMPLETAR NOMBRE]
+DNI: [COMPLETAR]
+Domicilio: [COMPLETAR]
+Email: [COMPLETAR]
+Telefono: [COMPLETAR]
+Abogado patrocinante: [COMPLETAR NOMBRE DEL ABOGADO]
+Matricula: [COMPLETAR]
+
+Entidad requerida:
+${os}
+Domicilio: [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
+
+OBJETO: Solicitud de mediacion prejudicial por denegacion/demora en la cobertura de ${tratamiento} para el tratamiento de ${diag}.
+
+ANTECEDENTES:
+
+1. El/la requirente es afiliado/a de ${os} (N° [COMPLETAR NUMERO DE AFILIADO]).
+
+2. Con fecha ${fechaSol}, se solicito formalmente la cobertura de ${tratamiento}, indicado por el/la Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]).
+
+3. La entidad requerida [no respondio en plazo razonable / denego la cobertura verbalmente / denego la cobertura por escrito / aprobo pero no provee el tratamiento].
+
+FUNDAMENTO LEGAL:
+
+El tratamiento solicitado se enmarca en la normativa vigente: ${baselegal}
+
+La cobertura corresponde conforme el Art. 42 de la Constitucion Nacional (derecho a la salud) y la Ley 26.682 Art. 7 (cobertura minima PMO para prepagas).
+
+PRETENSION:
+
+Se solicita que en el marco del procedimiento de mediacion PROMESA (Decreto 379/2025), la entidad requerida autorice y provea la cobertura integral de ${tratamiento} conforme prescripcion medica.
+
+DOCUMENTACION ADJUNTA:
+- Prescripcion medica de ${tratamiento} (Dr/a. [COMPLETAR])
+- Constancia de afiliacion
+- Constancia de solicitud previa (fecha ${fechaSol})
+- [Negativa por escrito de la entidad, si la tiene]
+- Historia clinica resumida
+- Estudios complementarios relevantes
+
+Sin otro particular, saludo a Uds. atentamente.
+
+${fecha}
+[COMPLETAR NOMBRE COMPLETO]
+DNI [COMPLETAR]
+
+Firma del abogado patrocinante:
+[COMPLETAR]
+Matricula: [COMPLETAR]
+
+NOTA: Este documento se presenta a traves de la plataforma TAD (tramitesadistancia.gob.ar). Buscar el tramite "Mediacion prejudicial en materia de salud (PROMESA)".
+Consultas: consultasmediacion@jus.gob.ar`;
+  }
+
   // ── Carta documento: diabetes tipo 1 ──────────────────────
   if (patologiaId === "diabetes1") {
     return `CARTA DOCUMENTO

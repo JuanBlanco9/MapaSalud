@@ -27,7 +27,13 @@ const PREGUNTAS_RESPUESTA = [
   { id: "aprobado_no_entregan", label: "Me lo aprobaron pero no me lo entregan" },
 ];
 
-function determinarTipoDocumento(respuestaOS) {
+const OPCIONES_NEGATIVA_ESCRITA = [
+  { id: "carta_documento", label: "Carta documento (enviar por correo a la OS)", desc: "Intima a la OS a responder. Paso previo al amparo." },
+  { id: "promesa", label: "PROMESA — mediacion prejudicial (mas rapido)", desc: "Mediacion oficial via TAD. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado." },
+];
+
+function determinarTipoDocumento(respuestaOS, opcionEscrita) {
+  if (respuestaOS === "negativa_escrita" && opcionEscrita) return opcionEscrita;
   switch (respuestaOS) {
     case "sin_respuesta": return "seguimiento";
     case "negativa_verbal": return "pedir_negativa";
@@ -40,8 +46,9 @@ function determinarTipoDocumento(respuestaOS) {
 const TIPO_LABELS = {
   seguimiento: "Email de seguimiento formal",
   pedir_negativa: "Email solicitando negativa por escrito",
-  carta_documento: "Carta documento de intimacion",
+  carta_documento: "Carta documento",
   intimacion_entrega: "Carta documento por falta de entrega",
+  promesa: "Solicitud de mediacion PROMESA",
 };
 
 // ── Barra de progreso del asistente ─────────────────────────────
@@ -206,6 +213,7 @@ export default function AsistenteReclamo({
   const [copiado, setCopiado] = useState(false);
   const [usandoFallback, setUsandoFallback] = useState(false);
   const [firmaDataUrl, setFirmaDataUrl] = useState(null);
+  const [opcionEscrita, setOpcionEscrita] = useState(null);
 
   // Datos del paciente
   const [datos, setDatos] = useState({
@@ -218,8 +226,9 @@ export default function AsistenteReclamo({
     matricula: "",
   });
 
-  const tipoDocumento = determinarTipoDocumento(respuestaOS);
-  const puedeIrADatos = yaSolicito !== null && (yaSolicito === false || respuestaOS !== null);
+  const tipoDocumento = determinarTipoDocumento(respuestaOS, opcionEscrita);
+  const necesitaElegirOpcion = respuestaOS === "negativa_escrita" && !opcionEscrita;
+  const puedeIrADatos = yaSolicito !== null && (yaSolicito === false || (respuestaOS !== null && !necesitaElegirOpcion));
   const datosCompletos =
     datos.nombre.trim() &&
     datos.dni.trim() &&
@@ -531,7 +540,27 @@ export default function AsistenteReclamo({
             </div>
           )}
 
-          {yaSolicito === true && respuestaOS && (
+          {/* Elegir entre carta documento y PROMESA cuando hay negativa escrita */}
+          {respuestaOS === "negativa_escrita" && (
+            <div className="bg-white border border-gris-200 rounded-xl p-5">
+              <p className="font-semibold text-gris-800 mb-3">¿Como queres reclamar?</p>
+              <div className="space-y-2">
+                {OPCIONES_NEGATIVA_ESCRITA.map((opt) => (
+                  <button key={opt.id} onClick={() => setOpcionEscrita(opt.id)}
+                    className={`w-full text-left py-3 px-4 rounded-lg border text-sm cursor-pointer transition-colors min-h-[44px] ${
+                      opcionEscrita === opt.id
+                        ? "bg-azul-700 text-white border-azul-700"
+                        : "bg-white text-gris-700 border-gris-200 hover:border-azul-200"
+                    }`}>
+                    <p className="font-medium">{opt.label}</p>
+                    <p className={`text-xs mt-0.5 ${opcionEscrita === opt.id ? "text-azul-100" : "text-gris-500"}`}>{opt.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {yaSolicito === true && respuestaOS && !necesitaElegirOpcion && (
             <div className="bg-white border border-gris-200 rounded-xl p-5">
               <p className="font-semibold text-gris-800 mb-3">¿Cuando hiciste la solicitud?</p>
               <input
