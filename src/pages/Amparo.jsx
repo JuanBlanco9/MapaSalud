@@ -49,7 +49,7 @@ export default function Amparo() {
               return (
                 <button key={t.id} onClick={() => setTab(t.id)}
                   className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer bg-transparent min-h-[48px] ${
-                    active ? "border-azul-700 text-azul-700" : "border-transparent text-gris-500 hover:text-gris-700"
+                    active ? "border-azul-700 text-azul-700 bg-azul-50" : "border-transparent text-gris-500 hover:text-gris-700 hover:bg-gris-50"
                   }`}>
                   <Icon className="w-4 h-4" />
                   <span className="hidden sm:inline">{t.label}</span>

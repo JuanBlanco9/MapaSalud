@@ -101,12 +101,12 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
       <div className="p-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <button onClick={() => { if (expl) setShowExplicacion(!showExplicacion); }}
+            <button onClick={() => { if (expl) { setShowExplicacion(!showExplicacion); setShowInfo(false); } }}
               className={`text-sm font-medium text-left bg-transparent border-none p-0 ${expl ? "text-azul-700 hover:text-azul-800 cursor-pointer underline decoration-dotted underline-offset-2" : "text-gris-800 cursor-default"}`}>
               {nombre}
             </button>
             {fund && (
-              <button onClick={() => setShowInfo(!showInfo)}
+              <button onClick={() => { setShowInfo(!showInfo); setShowExplicacion(false); }}
                 className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0 shrink-0"
                 aria-label="Ver cobertura y dificultad de acceso">
                 <Info className="w-3.5 h-3.5" />

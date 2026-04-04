@@ -764,19 +764,40 @@ export default function AsistenteReclamo({
 
       <div className="mt-6 bg-verde-50 border border-verde-200 rounded-xl p-5">
         <p className="font-semibold text-verde-800 mb-2">Proximo paso</p>
-        <p className="text-sm text-verde-700">
-          {tipoDocumento === "pedir_negativa"
-            ? "Envia este email a la auditoria medica de tu obra social. Si no responden en 48 horas, el siguiente paso es la carta documento."
-            : tipoDocumento === "seguimiento"
-            ? "Envia este email a la auditoria medica. Si no responden, el siguiente paso es una carta documento formal."
-            : tipoDocumento === "intimacion_entrega"
-            ? "Envia esta carta documento por correo postal certificado. Guarda el comprobante de envio."
-            : "Envia esta carta documento por correo postal certificado. Si no responden en 48 horas, contacta a la Defensoria del Pueblo (gratis) o a un abogado para iniciar el amparo."}
-        </p>
-        {os.auditoria?.telefono && (
-          <p className="text-sm text-verde-600 mt-2">
-            Auditoria medica de {os.nombre}: <strong>{os.auditoria.telefono}</strong>
-          </p>
+        {(tipoDocumento === "pedir_negativa" || tipoDocumento === "seguimiento") ? (
+          <div className="text-sm text-verde-700 space-y-2">
+            <p>Envia este email a la auditoria medica de tu obra social:</p>
+            {os.auditoria?.email && <p>Email: <strong>{os.auditoria.email}</strong></p>}
+            {os.auditoria?.telefono && <p>Telefono: <strong>{os.auditoria.telefono}</strong></p>}
+            <p className="text-xs text-verde-600">Si no responden, el siguiente paso es la carta documento.</p>
+          </div>
+        ) : tipoDocumento === "promesa" ? (
+          <div className="text-sm text-verde-700 space-y-2">
+            <p className="font-medium">Como presentar la solicitud PROMESA:</p>
+            <ol className="list-decimal pl-5 space-y-1 text-xs">
+              <li>Ingresa a <strong>tramitesadistancia.gob.ar</strong> con tu DNI o CUIT</li>
+              <li>Busca el tramite: "Mediacion prejudicial en materia de salud (PROMESA)"</li>
+              <li>Completa el formulario con los datos de este documento</li>
+              <li>Adjunta la documentacion (prescripcion medica, negativa de la OS, etc.)</li>
+              <li>Un mediador sera asignado por sorteo. Primera audiencia en 5 dias.</li>
+            </ol>
+            <p className="text-xs text-verde-600 mt-2">Requiere abogado. Si no tenes, contacta a la Defensoria del Pueblo de tu provincia para patrocinio gratuito.</p>
+            <p className="text-xs text-verde-500">Consultas: consultasmediacion@jus.gob.ar</p>
+          </div>
+        ) : (
+          <div className="text-sm text-verde-700 space-y-2">
+            <p className="font-medium">Como enviar la carta documento:</p>
+            <ol className="list-decimal pl-5 space-y-1 text-xs">
+              <li>Imprimi el documento o copialo en una hoja</li>
+              <li>Anda a una sucursal de <strong>Correo Argentino</strong></li>
+              <li>Pedi enviar una <strong>carta documento</strong> (no carta simple ni email)</li>
+              <li>Lleva el domicilio de la obra social (figura en el documento)</li>
+              <li>Guarda el <strong>comprobante de envio</strong> — lo vas a necesitar si inicias amparo</li>
+              <li>La carta documento tiene efecto legal desde que la OS la recibe</li>
+            </ol>
+            <p className="text-xs text-verde-600 mt-2">Costo aproximado: $5.000 — $15.000 ARS (varia por destino).</p>
+            <p className="text-xs text-verde-600">Si no responden, podes iniciar PROMESA (mediacion) o amparo judicial.</p>
+          </div>
         )}
       </div>
     </div>

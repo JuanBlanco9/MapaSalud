@@ -45,12 +45,12 @@ export default function Home() {
             <p className="text-azul-200 text-sm">de fallos favorables al paciente (OLEGISAR)</p>
           </div>
           <div>
-            <p className="text-2xl md:text-3xl font-bold">103</p>
-            <p className="text-azul-200 text-sm">drogas verificadas contra Res. 3377</p>
+            <p className="text-2xl md:text-3xl font-bold">2</p>
+            <p className="text-azul-200 text-sm">patologias cubiertas (oncologia + diabetes T1)</p>
           </div>
           <div>
             <p className="text-2xl md:text-3xl font-bold">40</p>
-            <p className="text-azul-200 text-sm">fallos judiciales citables</p>
+            <p className="text-azul-200 text-sm">fallos judiciales verificados con fuente</p>
           </div>
         </div>
       </section>

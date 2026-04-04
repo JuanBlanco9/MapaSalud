@@ -67,8 +67,8 @@ export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDrog
               <button key={t.id} onClick={() => setTab(t.id)}
                 className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer bg-transparent min-h-[48px] ${
                   active
-                    ? "border-azul-700 text-azul-700"
-                    : "border-transparent text-gris-500 hover:text-gris-700 hover:border-gris-300"
+                    ? "border-azul-700 text-azul-700 bg-azul-50"
+                    : "border-transparent text-gris-500 hover:text-gris-700 hover:bg-gris-50"
                 }`}>
                 <Icon className="w-4 h-4" />
                 <span className="hidden sm:inline">{t.label}</span>
@@ -81,8 +81,8 @@ export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDrog
 
       {/* ── Contenido de tabs ─────────────────────────────────── */}
       <div className="bg-white border-x border-b border-gris-200 rounded-b-xl p-5">
-        {tab === "cobertura" && <TabCobertura os={os} plan={plan} pmo={pmo} esPublico={esPublico} />}
-        {tab === "tratamiento" && <TabTratamiento cancer={cancer} subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} os={os} />}
+        {tab === "cobertura" && <TabCobertura os={os} plan={plan} pmo={pmo} esPublico={esPublico} onNextTab={() => setTab("tratamiento")} />}
+        {tab === "tratamiento" && <TabTratamiento cancer={cancer} subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} os={os} onNextTab={() => setTab("reclamo")} />}
         {tab === "reclamo" && <TabReclamo os={os} subtipo={subtipo} config={config} esPublico={esPublico} onIniciarReclamo={onIniciarReclamo} getNivelDroga={getNivelDroga} />}
       </div>
 
@@ -103,7 +103,7 @@ export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDrog
 
 // ── TAB 1: Tu cobertura ─────────────────────────────────────────
 
-function TabCobertura({ os, plan, pmo, esPublico }) {
+function TabCobertura({ os, plan, pmo, esPublico, onNextTab }) {
   return (
     <div className="space-y-6">
       {/* PMO */}
@@ -213,13 +213,20 @@ function TabCobertura({ os, plan, pmo, esPublico }) {
           )}
         </div>
       </div>
+      {/* CTA */}
+      <div className="mt-6 pt-4 border-t border-gris-200">
+        <button onClick={onNextTab}
+          className="w-full flex items-center justify-center gap-2 bg-azul-50 hover:bg-azul-100 text-azul-700 font-medium py-3 rounded-lg text-sm cursor-pointer border-none transition-colors">
+          Ver tratamientos para tu diagnostico <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
 
 // ── TAB 2: Tu tratamiento ───────────────────────────────────────
 
-function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os }) {
+function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os, onNextTab }) {
   const disclaimer = getDisclaimerDificultad(os.id);
 
   return (
@@ -285,6 +292,14 @@ function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os }) {
       )}
 
       <LeyendaExpandible nivelesInfo={nivelesInfo} />
+
+      {/* CTA */}
+      <div className="mt-6 pt-4 border-t border-gris-200">
+        <button onClick={onNextTab}
+          className="w-full flex items-center justify-center gap-2 bg-azul-50 hover:bg-azul-100 text-azul-700 font-medium py-3 rounded-lg text-sm cursor-pointer border-none transition-colors">
+          Te negaron algo? Ir a reclamo <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -321,8 +336,9 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
           <div className="space-y-4">
             {[
               { n: 1, t: "Pedi la negativa por escrito", d: "Es tu derecho. Si no te la dan, manda un email pidiendo formalmente." },
-              { n: 2, t: "Reclama a la SSS", d: "Llama al 0800-222-72583 o ingresa a sssalud.gob.ar. Es gratis." },
-              { n: 3, t: "Inicia un amparo de salud", d: "Mas del 80% de los amparos de salud han sido resueltos favorablemente segun registros publicos." },
+              { n: 2, t: "Reclamo a la SSS (gratis, sin abogado)", d: "Llama al 0800-222-72583 o ingresa a sssalud.gob.ar. No necesitas abogado. A veces resuelve sin necesidad de ir mas lejos." },
+              { n: 3, t: "PROMESA — mediacion prejudicial", d: "Via tramitesadistancia.gob.ar. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado (hay patrocinio gratuito)." },
+              { n: 4, t: "Amparo judicial", d: "Si ninguna via anterior resuelve. Mas del 80% de los amparos de salud se han resuelto favorablemente segun registros publicos." },
             ].map((p) => (
               <div key={p.n} className="flex items-start gap-3">
                 <div className="w-7 h-7 bg-verde-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">{p.n}</div>
