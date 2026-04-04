@@ -115,6 +115,31 @@ Cada droga o insumo tiene un nivel verificado contra fuentes oficiales:
 
 El lookup de nivel maneja combinaciones (A + B toma el nivel mas restrictivo). Ejemplo: Nivolumab (nacional) + Ipilimumab (gestion) = gestion.
 
+### Dificultad de acceso real
+
+Ademas del derecho legal, cada droga muestra un indicador de dificultad practica:
+
+| Indicador | Significado |
+|-----------|-------------|
+| **Acceso directo** | Lo pedis y te lo dan. Farmacia con receta. |
+| **Acceso con tramite** | Cubierto pero requiere autorizacion previa. Puede demorar. |
+| **Acceso dificil** | Alto indice de negativas. Probable reclamo o amparo. |
+
+**Metodologia:** La dificultad se estima a partir de:
+- Cantidad de fallos judiciales por droga (mas fallos = mas negativas)
+- Datos de `queAprueban` / `queNiegan` por OS (de sitios oficiales)
+- Precio de la droga (alto costo = mas resistencia)
+- Disponibilidad en el mercado argentino (Dexcom sin distribuidor oficial)
+- Estadisticas del Registro Nacional de Amparos SSS 2024
+
+**Limitaciones honestas:**
+- La dificultad mostrada es un **promedio nacional**. No tenemos tasas de aprobacion/negativa por droga por OS.
+- Donde tenemos datos especificos de una OS (OSDE, IOMA, DOSEP), la UI muestra un disclaimer con la fuente.
+- Donde NO tenemos datos, la UI dice explicitamente: "La dificultad mostrada es un promedio nacional — no tenemos datos especificos de esta obra social."
+- La cobertura oncologica de OSDE es la misma en todos los planes (210 a 510). La diferencia es red de prestadores y velocidad, no tasa de aprobacion.
+
+Cada indicador tiene un boton (i) que expande la evidencia: por que esa clasificacion, cuantos fallos judiciales, y links a las fuentes.
+
 ### Asistente de reclamos
 
 ```

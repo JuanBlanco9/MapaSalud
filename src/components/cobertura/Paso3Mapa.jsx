@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Download, Check, Shield, AlertTriangle, FileText, Phone, Stethoscope, Clock, XCircle } from "lucide-react";
 import { Verificando, mostrarDato } from "./Verificando";
 import { DrogaConNivel, PmoTratamientoItem, LeyendaExpandible } from "./Badges";
+import { getDisclaimerDificultad } from "../../data/dificultadPorOS";
 import { getOrganizaciones } from "../../data/organizacionesPorPatologia";
 import { generarMapaPDF } from "../../utils/generarPDF";
 
@@ -81,7 +82,7 @@ export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDrog
       {/* ── Contenido de tabs ─────────────────────────────────── */}
       <div className="bg-white border-x border-b border-gris-200 rounded-b-xl p-5">
         {tab === "cobertura" && <TabCobertura os={os} plan={plan} pmo={pmo} esPublico={esPublico} />}
-        {tab === "tratamiento" && <TabTratamiento cancer={cancer} subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} />}
+        {tab === "tratamiento" && <TabTratamiento cancer={cancer} subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} os={os} />}
         {tab === "reclamo" && <TabReclamo os={os} subtipo={subtipo} config={config} esPublico={esPublico} onIniciarReclamo={onIniciarReclamo} getNivelDroga={getNivelDroga} />}
       </div>
 
@@ -218,9 +219,25 @@ function TabCobertura({ os, plan, pmo, esPublico }) {
 
 // ── TAB 2: Tu tratamiento ───────────────────────────────────────
 
-function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo }) {
+function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os }) {
+  const disclaimer = getDisclaimerDificultad(os.id);
+
   return (
     <div className="space-y-6">
+      {/* Disclaimer de confianza del dato */}
+      {disclaimer && (
+        <div className={`rounded-lg p-3 text-xs ${
+          disclaimer.confianza === "media"
+            ? "bg-azul-50 border border-azul-100 text-azul-700"
+            : "bg-gris-50 border border-gris-200 text-gris-500"
+        }`}>
+          <p>{disclaimer.texto}</p>
+          {disclaimer.confianza === "baja" && (
+            <p className="mt-1 italic">Si tenes experiencia con {os.nombre} en oncologia o diabetes, tu feedback nos ayuda a mejorar estos datos.</p>
+          )}
+        </div>
+      )}
+
       {/* Primera linea */}
       <div>
         <h4 className="font-semibold text-gris-800 mb-2 flex items-center gap-2">
