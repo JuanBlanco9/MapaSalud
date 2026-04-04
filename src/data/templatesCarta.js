@@ -149,7 +149,10 @@ Firma del abogado patrocinante:
 Matricula: [COMPLETAR]
 
 NOTA: Este documento se presenta a traves de la plataforma TAD (tramitesadistancia.gob.ar). Buscar el tramite "Mediacion prejudicial en materia de salud (PROMESA)".
-Consultas: consultasmediacion@jus.gob.ar`;
+
+SI NO TENES ABOGADO: Podes solicitar patrocinio juridico gratuito en la Defensoria del Pueblo de tu provincia o en el Ministerio Publico de la Defensa (mpd.gov.ar). Tambien podes consultar a organizaciones como LALCEC (0800-222-1166) o CUI.D.AR ((011) 4732-9000) que orientan sobre asistencia legal.
+
+Consultas sobre PROMESA: consultasmediacion@jus.gob.ar`;
   }
 
   // ── Carta documento: diabetes tipo 1 ──────────────────────

@@ -312,7 +312,8 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
       {/* Redactar reclamo */}
       <div>
         <h3 className="text-lg font-bold text-azul-700 mb-3">Redactar reclamo</h3>
-        <p className="text-sm text-gris-600 mb-3">Selecciona el tratamiento que te negaron y te generamos la carta formal con la base legal correcta.</p>
+        <p className="text-sm text-gris-600 mb-1">Selecciona el tratamiento que te negaron y te generamos la carta formal con la base legal correspondiente.</p>
+        <p className="text-xs text-gris-400 mb-3">Si no conoces el nombre exacto del tratamiento, consultalo con tu medico — aparece en la receta o indicacion medica.</p>
         <div className="flex flex-col sm:flex-row gap-2">
           <select defaultValue="" onChange={(e) => {
             if (e.target.value) {
