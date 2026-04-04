@@ -112,6 +112,9 @@ const diabetesAcceso = {
   "Insulina Lispro ultrarapida (Lyumjev)": "tramite",
   "Insulina Aspart ultrarapida (Fiasp)": "tramite",
 
+  // No disponible en Argentina
+  "Insulina semanal Icodec (Awiqli — aprobada FDA 2024, no disponible en ARG)": "dificil",
+
   // Insumos basicos — directo
   "Glucometro + tiras reactivas (100% cobertura por Ley 23.753)": "directo",
   "Lancetas y dispositivo de puncion": "directo",
@@ -331,6 +334,20 @@ export const fundamentacion = {
     normativa: [
       { titulo: "Ley 26.914", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
     ],
+  },
+  "Insulina Degludec (Tresiba)": {
+    porque: "Cubierta por Ley 23.753 pero es mas cara que Glargina/Detemir. Algunas OS piden justificacion medica de por que no se usa una basal mas economica. La cobertura es obligatoria pero puede requerir un paso adicional de auditoria.",
+    datosLitigiosidad: "Baja litigiosidad — la mayoria de las OS la cubre con justificacion.",
+    fallos: [],
+    normativa: [
+      { titulo: "Ley 23.753 Art. 5 (cobertura integral diabetes)", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/154/texact.htm" },
+    ],
+  },
+  "Insulina semanal Icodec (Awiqli — aprobada FDA 2024, no disponible en ARG)": {
+    porque: "Aprobada por FDA (mayo 2024) pero NO aprobada por ANMAT ni comercializada en Argentina. No hay forma de conseguirla por canales legales en el pais. Incluida solo como referencia informativa.",
+    datosLitigiosidad: "Sin amparos registrados en Argentina — no se puede reclamar cobertura de un medicamento que no existe en el mercado local.",
+    fallos: [],
+    normativa: [],
   },
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": {
     porque: "Cubierto por Res. 2091/2025 para insulinodependientes. Antes 'dificil', ahora OS obligadas pero algunas demoran.",

@@ -14,6 +14,9 @@ export const nivelCobertura = {
   "Insulina Lispro ultrarapida (Lyumjev)": "ley",
   "Insulina Aspart ultrarapida (Fiasp)": "ley",
 
+  // No disponible en Argentina
+  "Insulina semanal Icodec (Awiqli — aprobada FDA 2024, no disponible en ARG)": "gestion",
+
   // Insumos basicos — Ley 23.753 100%
   "Glucometro + tiras reactivas (100% cobertura por Ley 23.753)": "ley",
   "Lancetas y dispositivo de puncion": "ley",
