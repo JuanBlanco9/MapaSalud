@@ -119,14 +119,18 @@ const diabetesAcceso = {
   "Jeringas de insulina (si no usa lapicera)": "directo",
 
   // Sensores flash — tramite (Res 2091/2025 obliga, pero OS demoran)
+  "Sensor flash CGM (FreeStyle Libre)": "tramite",
+  "Sensor flash CGM": "tramite",
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": "tramite",
   "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": "tramite",
 
   // Sensores Dexcom — dificil (no en Res 2091, poca disponibilidad ARG)
+  "Sensor CGM con alertas (Dexcom)": "dificil",
   "Dexcom G6 — sensor continuo con alertas": "dificil",
   "Dexcom G7 — sensor continuo, mas pequeno": "dificil",
 
   // Bombas — dificil (alto costo, amparos frecuentes)
+  "Bomba de insulina (ISCI)": "dificil",
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": "dificil",
   "Medtronic MiniMed 740G": "dificil",
   "Omnipod 5 (bomba sin tubo, asa cerrada con Dexcom)": "dificil",
@@ -275,6 +279,58 @@ export const fundamentacion = {
       },
     ],
     normativa: [],
+  },
+  "Sensor flash CGM (FreeStyle Libre)": {
+    porque: "Cubierto por Res. 2091/2025 para insulinodependientes. Pero muchas OS todavia demoran la autorizacion pese a la obligacion legal.",
+    datosLitigiosidad: "El sensor de glucosa es el insumo de diabetes mas litigado en Argentina. 4 fallos verificados pre-Res. 2091/2025.",
+    fallos: [
+      {
+        titulo: "H.R. c/ Omint — FreeStyle Libre",
+        url: "https://aldiaargentina.microjuris.com/2019/06/06/medicion-de-glucemia-asegurada-la-empresa-de-medicina-prepaga-debe-cubrir-al-actor-el-sensor-de-glucemia-indicado-por-su-medico-tratante/",
+        tribunal: "CNACCF Sala I, 14/03/2019",
+      },
+      {
+        titulo: "Amparo c/ PAMI — Sensor glucosa (Salta)",
+        url: "https://justiciadeprimera.com/2025/02/10/conflicto-por-la-cobertura-de-sensores-de-medicion-de-glucosa-para-diabetes/",
+        tribunal: "Cam. Fed. Salta, Sala I, 02/2025",
+      },
+      {
+        titulo: "Amparo c/ Medife — FreeStyle Libre (CABA)",
+        url: "https://justiciadeprimera.com/2026/02/12/cobertura-obligatoria-al-100-para-insumos-de-diabetes/",
+        tribunal: "Juz. Civ.Com.Fed. (Nobili), 02/2026",
+      },
+    ],
+    normativa: [
+      { titulo: "Res. 2091/2025 (cobertura sensores flash)", url: "https://www.boletinoficial.gob.ar/detalleAviso/primera/327710/20250701" },
+      { titulo: "Ley 26.914", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
+  },
+  "Sensor CGM con alertas (Dexcom)": {
+    porque: "NO incluido en Res. 2091/2025 (que dice 'flash'). Sin distribuidor oficial Dexcom en Argentina.",
+    datosLitigiosidad: "Menor litigiosidad que FreeStyle Libre por baja disponibilidad en el pais.",
+    fallos: [],
+    normativa: [
+      { titulo: "Ley 26.914 (argumento 'equipos y dispositivos')", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
+  },
+  "Bomba de insulina (ISCI)": {
+    porque: "Alto costo (USD 1.600-5.800 ref. internacional). Requiere indicacion del equipo de diabetes. Las OS frecuentemente niegan o intentan sustituir el modelo prescripto.",
+    datosLitigiosidad: "3 fallos verificados ordenando cobertura de bombas, lo que indica negativas sistematicas.",
+    fallos: [
+      {
+        titulo: "M.M.E. c/ PAMI — Bomba Medtronic Veo 754",
+        url: "https://aldiaargentina.microjuris.com/2018/08/01/se-ordena-otorgar-la-bomba-infusora-de-insulina-integrada-con-monitoreo-continuo-de-glucosa-alarmas-y-suspension-automatica-de-insulina/",
+        tribunal: "CNACCF Sala II, 08/06/2018",
+      },
+      {
+        titulo: "M.A.N. c/ Union Personal — Bomba Medtronic",
+        url: "https://aldiaargentina.microjuris.com/2017/11/23/obligacion-de-la-obra-social-de-proveer-al-actor-la-microinfusora-de-insulina-con-bolo-inteligente-y-medicion-continua-de-glucosa-en-tiempo-real/",
+        tribunal: "CNACCF, 01/08/2017",
+      },
+    ],
+    normativa: [
+      { titulo: "Ley 26.914", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
+    ],
   },
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": {
     porque: "Cubierto por Res. 2091/2025 para insulinodependientes. Antes 'dificil', ahora OS obligadas pero algunas demoran.",
