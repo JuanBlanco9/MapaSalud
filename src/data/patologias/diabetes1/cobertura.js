@@ -11,7 +11,7 @@ export const nivelCobertura = {
   "Insulina Lispro (Humalog)": "ley",
   "Insulina Aspart (NovoRapid)": "ley",
   "Insulina Glulisina (Apidra)": "ley",
-  "Insulina Lispro ultrarapida (Lyumjev)": "ley",
+  "Insulina Lispro ultrarapida (Lyumjev)": "gestion", // No confirmada registracion ANMAT ni disponibilidad en Argentina
   "Insulina Aspart ultrarapida (Fiasp)": "ley",
 
   // No disponible en Argentina

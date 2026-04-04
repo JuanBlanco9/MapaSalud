@@ -236,6 +236,7 @@ export const explicaciones = {
     nombre: "Insulina Glargina (Lantus, Basaglar, Toujeo)",
     queEs: "Insulina de accion prolongada (basal). Mantiene un nivel estable de insulina durante 24 horas. Es la base del tratamiento de diabetes tipo 1.",
     administracion: "Subcutanea (inyeccion bajo la piel), 1 vez por dia, siempre a la misma hora.",
+    precio: { rango: "$524.963", nota: "Lantus Solostar x5 lapiceras x3ml. PAMI: $0 con empadronamiento.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Insulina Glargina", url: "https://medlineplus.gov/spanish/druginfo/meds/a600027-es.html" },
     ],
@@ -244,14 +245,16 @@ export const explicaciones = {
     nombre: "Insulina Detemir (Levemir)",
     queEs: "Insulina de accion prolongada. Similar a glargina pero puede requerir 2 inyecciones diarias.",
     administracion: "Subcutanea, 1 o 2 veces por dia.",
+    precio: { rango: "$398.317", nota: "Levemir FlexPen x5 lapiceras x3ml. PAMI: $0 con empadronamiento.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Insulina Detemir", url: "https://medlineplus.gov/spanish/druginfo/meds/a606012-es.html" },
     ],
   },
   "Insulina Degludec (Tresiba)": {
     nombre: "Insulina Degludec (Tresiba)",
-    queEs: "Insulina ultralenta de ultima generacion. Dura mas de 42 horas, lo que permite mayor flexibilidad en el horario de inyeccion. Menor riesgo de hipoglucemia nocturna.",
+    queEs: "Insulina ultralenta de ultima generacion. Dura mas de 42 horas, lo que permite mayor flexibilidad en el horario de inyeccion.",
     administracion: "Subcutanea, 1 vez por dia (horario flexible).",
+    precio: { rango: "$544.250", nota: "Tresiba FlexTouch 200U/ml x3 lapiceras x3ml. PAMI: $0 con empadronamiento.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Insulina Degludec", url: "https://medlineplus.gov/spanish/druginfo/meds/a614042-es.html" },
     ],
@@ -260,6 +263,7 @@ export const explicaciones = {
     nombre: "Insulina Lispro (Humalog)",
     queEs: "Insulina de accion rapida. Se inyecta antes de comer para cubrir el azucar de la comida (bolo prandial).",
     administracion: "Subcutanea, justo antes de cada comida (0-15 minutos).",
+    precio: { rango: "$347.799", nota: "Humalog KwikPen x5 lapiceras x3ml.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Insulina Lispro", url: "https://medlineplus.gov/spanish/druginfo/meds/a697021-es.html" },
     ],
@@ -268,6 +272,25 @@ export const explicaciones = {
     nombre: "Insulina Aspart (NovoRapid)",
     queEs: "Insulina de accion rapida similar a lispro. Para cubrir las comidas.",
     administracion: "Subcutanea, justo antes de comer.",
+    precio: { rango: "$297.303 — $375.773", nota: "Penfill $297K, FlexTouch $326K, FlexPen $376K. PAMI: $0.", fecha: "abril 2026" },
+    links: [
+      { titulo: "MedlinePlus — Insulina Aspart", url: "https://medlineplus.gov/spanish/druginfo/meds/a605013-es.html" },
+    ],
+  },
+  "Insulina Glulisina (Apidra)": {
+    nombre: "Insulina Glulisina (Apidra SoloStar)",
+    queEs: "Insulina de accion rapida. Similar a lispro y aspart. Producida por Sanofi.",
+    administracion: "Subcutanea, justo antes de comer.",
+    precio: { rango: "$510.168", nota: "Apidra SoloStar x5 lapiceras x3ml. PAMI: $0.", fecha: "abril 2026" },
+    links: [
+      { titulo: "MedlinePlus — Insulina Glulisina", url: "https://medlineplus.gov/spanish/druginfo/meds/a606014-es.html" },
+    ],
+  },
+  "Insulina Aspart ultrarapida (Fiasp)": {
+    nombre: "Insulina Aspart ultrarapida (Fiasp)",
+    queEs: "Version ultrarapida de insulina aspart. Actua mas rapido que NovoRapid, util para corregir picos de glucosa postprandial.",
+    administracion: "Subcutanea, al inicio de la comida o hasta 20 minutos despues.",
+    precio: { rango: "$263.815", nota: "Fiasp Penfill x5 cartuchos x3ml.", fecha: "abril 2026" },
     links: [
       { titulo: "MedlinePlus — Insulina Aspart", url: "https://medlineplus.gov/spanish/druginfo/meds/a605013-es.html" },
     ],
@@ -276,9 +299,10 @@ export const explicaciones = {
   // ── DIABETES — Tecnologia ─────────────────────────────────────
 
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": {
-    nombre: "Sensor FreeStyle Libre 2 (Abbott)",
+    nombre: "Sensor FreeStyle Libre 2 Plus (Abbott)",
     queEs: "Sensor de glucosa que se adhiere al brazo y mide la glucosa en el liquido intersticial cada minuto. Para ver el valor, se acerca el celular o lector al sensor ('escaneo'). Dura 14 dias.",
     administracion: "Se coloca en la parte posterior del brazo con un aplicador. Indoloro. Se reemplaza cada 14 dias.",
+    precio: { rango: "$117.936/sensor", nota: "Precio por unidad en farmacias. Algunas ofrecen promo 3x2 (~$78.624/sensor).", fecha: "abril 2026" },
     links: [
       { titulo: "Abbott — FreeStyle Libre", url: "https://www.freestyle.abbott/ar-es/home.html" },
       { titulo: "CUI.D.AR — Sensores de glucosa", url: "https://cuidar.org" },

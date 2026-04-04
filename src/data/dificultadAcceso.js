@@ -109,7 +109,7 @@ const diabetesAcceso = {
 
   // Insulinas nuevas — tramite (algunas OS piden justificacion)
   "Insulina Degludec (Tresiba)": "tramite",
-  "Insulina Lispro ultrarapida (Lyumjev)": "tramite",
+  "Insulina Lispro ultrarapida (Lyumjev)": "dificil", // No confirmada disponibilidad en Argentina
   "Insulina Aspart ultrarapida (Fiasp)": "tramite",
 
   // No disponible en Argentina
