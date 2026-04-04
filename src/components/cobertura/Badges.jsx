@@ -1,34 +1,53 @@
 import { useState } from "react";
-import { Check, Clock, AlertTriangle, Info } from "lucide-react";
+import { Check, Clock, AlertTriangle, Info, ChevronDown } from "lucide-react";
 import { nivelStyles, dificultadStyles } from "./estilos";
 import { getDificultadAcceso, dificultadInfo, getFundamentacion } from "../../data/dificultadAcceso";
+
+// ── Semaforo de cobertura legal ─────────────────────────────────
 
 export function NivelBadge({ nivel, niveles }) {
   const info = niveles && niveles[nivel];
   if (!nivel || !info) return null;
-  const style = nivelStyles[nivel] || nivelStyles.gestion;
+  const colors = {
+    nacional: "text-verde-700", ley: "text-verde-700", pmo: "text-verde-700",
+    pba: "text-naranja-600",
+    gestion: "text-red-600",
+  };
+  const dots = {
+    nacional: "bg-verde-500", ley: "bg-verde-500", pmo: "bg-verde-500",
+    pba: "bg-naranja-500",
+    gestion: "bg-red-500",
+  };
   return (
-    <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${style.badge}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
+    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold ${colors[nivel] || colors.gestion}`}>
+      <span className={`w-2 h-2 rounded-full ${dots[nivel] || dots.gestion}`} />
       {info.label}
     </span>
   );
 }
+
+// ── Advertencia de dificultad real ──────────────────────────────
 
 export function DificultadBadge({ nombre }) {
   const dif = getDificultadAcceso(nombre);
   if (!dif || !dificultadInfo[dif]) return null;
   const info = dificultadInfo[dif];
-  const style = dificultadStyles[dif];
+  const configs = {
+    directo: { icon: Check, style: "text-verde-600" },
+    tramite: { icon: Clock, style: "text-naranja-500" },
+    dificil: { icon: AlertTriangle, style: "text-red-500" },
+  };
+  const c = configs[dif];
+  const Icon = c.icon;
   return (
-    <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${style}`}>
-      {dif === "directo" && <Check className="w-3 h-3" />}
-      {dif === "tramite" && <Clock className="w-3 h-3" />}
-      {dif === "dificil" && <AlertTriangle className="w-3 h-3" />}
+    <span className={`inline-flex items-center gap-1 text-xs font-medium ${c.style}`}>
+      <Icon className="w-3 h-3" />
       {info.label}
     </span>
   );
 }
+
+// ── Panel de evidencia (expandible con (i)) ─────────────────────
 
 export function EvidenciaPanel({ fund }) {
   if (!fund) return null;
@@ -66,6 +85,8 @@ export function EvidenciaPanel({ fund }) {
   );
 }
 
+// ── Droga con semaforo + advertencia + (i) ──────────────────────
+
 export function DrogaConNivel({ nombre, getNivel, niveles }) {
   const [showInfo, setShowInfo] = useState(false);
   const nivel = getNivel ? getNivel(nombre) : null;
@@ -74,18 +95,20 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
 
   return (
     <div className={`${style.bg} border ${style.border} rounded-lg overflow-hidden`}>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 p-3">
-        <div className="flex items-center gap-1.5">
-          <span className="text-sm text-gris-800">{nombre}</span>
-          {fund && (
-            <button onClick={() => setShowInfo(!showInfo)}
-              className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0 shrink-0"
-              aria-label="Ver informacion sobre dificultad de acceso">
-              <Info className="w-3.5 h-3.5" />
-            </button>
-          )}
+      <div className="p-3">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-sm text-gris-800 font-medium">{nombre}</span>
+            {fund && (
+              <button onClick={() => setShowInfo(!showInfo)}
+                className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0 shrink-0"
+                aria-label="Ver mas informacion">
+                <Info className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5">
           <NivelBadge nivel={nivel || "gestion"} niveles={niveles} />
           <DificultadBadge nombre={nombre} />
         </div>
@@ -95,37 +118,28 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
   );
 }
 
+// ── Item de PMO con semaforo + advertencia ──────────────────────
+
 export function PmoTratamientoItem({ t }) {
   const [showInfo, setShowInfo] = useState(false);
   const dif = getDificultadAcceso(t.tipo);
   const fund = getFundamentacion(t.tipo);
 
   return (
-    <div className="border-b border-gris-100 last:border-0 pb-2 last:pb-0">
+    <div className="border-b border-gris-100 last:border-0 pb-2.5 last:pb-0">
       <div className="flex items-start gap-2">
         <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-          t.cobertura === "100%" ? "bg-verde-50" : "bg-naranja-50"
+          t.cobertura === "100%" ? "bg-verde-100" : "bg-naranja-100"
         }`}>
-          {t.cobertura === "100%" ? (
-            <Check className="w-3 h-3 text-verde-600" />
-          ) : (
-            <AlertTriangle className="w-3 h-3 text-naranja-500" />
-          )}
+          {t.cobertura === "100%" ? <Check className="w-3 h-3 text-verde-600" /> : <AlertTriangle className="w-3 h-3 text-naranja-500" />}
         </div>
         <div className="flex-1">
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-sm font-medium text-gris-800">{t.tipo}</span>
             <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
               t.cobertura === "100%" ? "bg-verde-50 text-verde-600" : "bg-naranja-50 text-naranja-500"
             }`}>{t.cobertura}</span>
-            {dif && (
-              <span className={`inline-flex items-center gap-1 text-xs font-medium px-1.5 py-0.5 rounded-full ${dificultadStyles[dif]}`}>
-                {dif === "directo" && <Check className="w-3 h-3" />}
-                {dif === "tramite" && <Clock className="w-3 h-3" />}
-                {dif === "dificil" && <AlertTriangle className="w-3 h-3" />}
-                {dificultadInfo[dif].label}
-              </span>
-            )}
+            {dif && <DificultadBadge nombre={t.tipo} />}
             {fund && (
               <button onClick={() => setShowInfo(!showInfo)}
                 className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0"
@@ -138,6 +152,41 @@ export function PmoTratamientoItem({ t }) {
           {showInfo && fund && <EvidenciaPanel fund={fund} />}
         </div>
       </div>
+    </div>
+  );
+}
+
+// ── Leyenda expandible (link al final) ──────────────────────────
+
+export function LeyendaExpandible({ nivelesInfo }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-6">
+      <button onClick={() => setOpen(!open)}
+        className="flex items-center gap-1 text-xs text-gris-400 hover:text-gris-600 cursor-pointer bg-transparent border-none">
+        <ChevronDown className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} />
+        Que significan los colores?
+      </button>
+      {open && (
+        <div className="mt-3 grid sm:grid-cols-2 gap-2">
+          <div className="bg-verde-50 rounded-lg p-2.5">
+            <p className="text-xs font-bold text-verde-700 mb-0.5">🟢 Cubierto por ley</p>
+            <p className="text-xs text-verde-600">La ley obliga a cubrirlo al 100%.</p>
+          </div>
+          <div className="bg-naranja-50 rounded-lg p-2.5">
+            <p className="text-xs font-bold text-naranja-600 mb-0.5">🟡 Cobertura parcial / provincial</p>
+            <p className="text-xs text-naranja-500">Puede depender de jurisdiccion o requiere justificacion.</p>
+          </div>
+          <div className="bg-red-50 rounded-lg p-2.5">
+            <p className="text-xs font-bold text-red-600 mb-0.5">🔴 Requiere gestion</p>
+            <p className="text-xs text-red-500">No esta en listados oficiales. Necesita reclamo o amparo.</p>
+          </div>
+          <div className="bg-gris-50 rounded-lg p-2.5">
+            <p className="text-xs font-bold text-gris-700 mb-0.5">✓ ⏱ ⚠ Dificultad de acceso</p>
+            <p className="text-xs text-gris-500">Indica que tan facil es conseguirlo en la practica, independientemente del derecho legal.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

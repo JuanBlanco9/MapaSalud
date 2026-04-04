@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Download, Check, Shield, AlertTriangle, FileText, Phone, Stethoscope, Clock, XCircle } from "lucide-react";
 import { Verificando, mostrarDato } from "./Verificando";
-import { DrogaConNivel, PmoTratamientoItem } from "./Badges";
-import { nivelStyles, dificultadStyles } from "./estilos";
-import { dificultadInfo } from "../../data/dificultadAcceso";
+import { DrogaConNivel, PmoTratamientoItem, LeyendaExpandible } from "./Badges";
 import { getOrganizaciones } from "../../data/organizacionesPorPatologia";
 import { generarMapaPDF } from "../../utils/generarPDF";
 
@@ -223,42 +221,6 @@ function TabCobertura({ os, plan, pmo, esPublico }) {
 function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo }) {
   return (
     <div className="space-y-6">
-      {/* Leyendas */}
-      <div>
-        <p className="text-xs font-semibold text-gris-500 uppercase tracking-wider mb-2">Niveles de cobertura</p>
-        <div className="grid sm:grid-cols-3 gap-2 mb-4">
-          {Object.entries(nivelesInfo).map(([key, info]) => {
-            const style = nivelStyles[key];
-            return (
-              <div key={key} className={`${style.bg} border ${style.border} rounded-lg p-2`}>
-                <div className="flex items-center gap-1 mb-0.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
-                  <span className={`text-xs font-bold ${style.text}`}>{info.label}</span>
-                </div>
-                <p className={`text-xs ${style.text} opacity-75`}>{info.descripcion}</p>
-              </div>
-            );
-          })}
-        </div>
-        <p className="text-xs font-semibold text-gris-500 uppercase tracking-wider mb-2">Dificultad de acceso real</p>
-        <div className="grid sm:grid-cols-3 gap-2">
-          {Object.entries(dificultadInfo).map(([key, info]) => {
-            const style = dificultadStyles[key];
-            return (
-              <div key={key} className={`${style.split(" ")[0]} rounded-lg p-2`}>
-                <div className="flex items-center gap-1 mb-0.5">
-                  {key === "directo" && <Check className="w-3 h-3 text-verde-600" />}
-                  {key === "tramite" && <Clock className="w-3 h-3 text-naranja-500" />}
-                  {key === "dificil" && <AlertTriangle className="w-3 h-3 text-red-500" />}
-                  <span className={`text-xs font-bold ${style.split(" ")[1]}`}>{info.label}</span>
-                </div>
-                <p className={`text-xs ${style.split(" ")[1]} opacity-75`}>{info.descripcion}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Primera linea */}
       <div>
         <h4 className="font-semibold text-gris-800 mb-2 flex items-center gap-2">
@@ -304,6 +266,8 @@ function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo }) {
           </div>
         </div>
       )}
+
+      <LeyendaExpandible nivelesInfo={nivelesInfo} />
     </div>
   );
 }
