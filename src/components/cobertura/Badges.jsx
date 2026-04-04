@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Check, Clock, AlertTriangle, Info, ChevronDown } from "lucide-react";
 import { nivelStyles, dificultadStyles } from "./estilos";
 import { getDificultadAcceso, dificultadInfo, getFundamentacion } from "../../data/dificultadAcceso";
+import { getExplicacion } from "../../data/explicacionesDrogas";
 
 // ── Semaforo de cobertura legal ─────────────────────────────────
 
@@ -89,20 +90,25 @@ export function EvidenciaPanel({ fund }) {
 
 export function DrogaConNivel({ nombre, getNivel, niveles }) {
   const [showInfo, setShowInfo] = useState(false);
+  const [showExplicacion, setShowExplicacion] = useState(false);
   const nivel = getNivel ? getNivel(nombre) : null;
   const style = nivel && nivelStyles[nivel] ? nivelStyles[nivel] : nivelStyles.gestion;
   const fund = getFundamentacion(nombre);
+  const expl = getExplicacion(nombre);
 
   return (
     <div className={`${style.bg} border ${style.border} rounded-lg overflow-hidden`}>
       <div className="p-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-sm text-gris-800 font-medium">{nombre}</span>
+            <button onClick={() => { if (expl) setShowExplicacion(!showExplicacion); }}
+              className={`text-sm font-medium text-left bg-transparent border-none p-0 ${expl ? "text-azul-700 hover:text-azul-800 cursor-pointer underline decoration-dotted underline-offset-2" : "text-gris-800 cursor-default"}`}>
+              {nombre}
+            </button>
             {fund && (
               <button onClick={() => setShowInfo(!showInfo)}
                 className="text-gris-400 hover:text-azul-600 cursor-pointer bg-transparent border-none p-0 shrink-0"
-                aria-label="Ver mas informacion">
+                aria-label="Ver cobertura y dificultad de acceso">
                 <Info className="w-3.5 h-3.5" />
               </button>
             )}
@@ -113,6 +119,24 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
           <DificultadBadge nombre={nombre} />
         </div>
       </div>
+      {showExplicacion && expl && (
+        <div className="px-3 pb-3 border-t border-gris-200/50">
+          <p className="text-xs font-semibold text-gris-700 mt-2">{expl.nombre}</p>
+          <p className="text-xs text-gris-600 mt-1">{expl.queEs}</p>
+          <p className="text-xs text-gris-500 mt-1"><strong>Administracion:</strong> {expl.administracion}</p>
+          {expl.links && expl.links.length > 0 && (
+            <div className="mt-1.5">
+              <p className="text-xs font-semibold text-gris-600">Mas informacion:</p>
+              {expl.links.map((l, i) => (
+                <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
+                  className="block text-xs text-azul-600 hover:underline no-underline mt-0.5">
+                  {l.titulo}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
       {showInfo && <EvidenciaPanel fund={fund} />}
     </div>
   );
