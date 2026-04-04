@@ -29,11 +29,37 @@ function checkRateLimit(ip) {
   return true;
 }
 
+const ALLOWED_ORIGINS = [
+  "https://mapa-salud.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
 export default async function handler(req) {
+  // CORS
+  const origin = req.headers.get("origin") || "";
+  const corsHeaders = {
+    "Content-Type": "application/json",
+    ...(ALLOWED_ORIGINS.includes(origin) ? { "Access-Control-Allow-Origin": origin } : {}),
+  };
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: { ...corsHeaders, "Access-Control-Allow-Methods": "POST", "Access-Control-Allow-Headers": "Content-Type" } });
+  }
+
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
       status: 405,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
+    });
+  }
+
+  // Body size limit (50KB)
+  const contentLength = parseInt(req.headers.get("content-length") || "0", 10);
+  if (contentLength > 50000) {
+    return new Response(JSON.stringify({ error: "Request too large" }), {
+      status: 413,
+      headers: corsHeaders,
     });
   }
 
