@@ -128,12 +128,12 @@ export const formasDeHacerlo = [
     titulo: "Organizaciones de pacientes",
     costo: "GRATIS",
     costoDetalle: null,
-    quien: "LALCEC, FUCA, Fundacion Cancer",
+    quien: "LALCEC, FUCA, Fundacion Cancer, CUI.D.AR (diabetes), FADEPOF (enf. poco frecuentes)",
     cuandoConviene:
       "Si no podes pagar abogado y la defensoria demora",
     como: "Contactar a la organizacion, te asesoran y en algunos casos actuan directamente",
     tiempo: "Variable",
-    ventaja: "Gratuito, experiencia especifica en oncologia",
+    ventaja: "Gratuito, experiencia especifica en salud",
     desventaja: "Capacidad limitada, no siempre pueden tomar el caso",
   },
 ];

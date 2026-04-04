@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Clock, Scale, Wallet, CheckSquare, ChevronDown, ChevronUp,
   Download, Phone, Globe, AlertTriangle, ArrowRight, Search,
@@ -109,9 +110,11 @@ function ContextoAmparos() {
               </div>
             </div>
             <div>
-              <p className="font-semibold">Medicamentos mas litigados (SciELO 2017-2020)</p>
-              <p>Nusinersen (AME) 21.7%, Palbociclib (ca. mama) 5.9%, Agalsidasa-alfa (Fabry) 4.7%</p>
-              <p>69.4% de las drogas litigadas tenian aprobacion ANMAT. 87.1% de evaluaciones CONETEC fueron negativas.</p>
+              <p className="font-semibold">Medicamentos mas litigados (SciELO 2017-2020, muestra de 405 amparos)</p>
+              <p>Oncologia: Palbociclib (ca. mama) 5.9%, Nivolumab 3%, Pembrolizumab 2.5%, Trastuzumab 1.5%</p>
+              <p>Enf. poco frecuentes: Nusinersen (AME) 21.7%, Agalsidasa-alfa (Fabry) 4.7%</p>
+              <p>Diabetes: sensores de glucosa continuo y bombas de insulina son los principales motivos de amparo en diabetes (fuente: fallos Cam. Fed. Salta 2025, CNACCF Sala I 2019, Sala II 2018)</p>
+              <p className="mt-1">69.4% de las drogas litigadas tenian aprobacion ANMAT. 87.1% de evaluaciones CONETEC fueron negativas.</p>
             </div>
             <p className="text-xs text-azul-500">
               Fuentes: Decreto 379/2025, SciELO (Medicina Buenos Aires, 2024, S0025-76802024000500445), OLEGISAR
@@ -185,6 +188,14 @@ function TabPromesa() {
         <p className="text-azul-600">consultasmediacion@jus.gob.ar</p>
         <p className="text-azul-600">SSS: 0800-222-72583</p>
         <p className="text-xs text-azul-500 mt-2">Fuente: Decreto 379/2025, Res. Conjunta 1/2025, guia FADEPOF julio 2025</p>
+      </div>
+
+      {/* Link al asistente de reclamo */}
+      <div className="mt-6 pt-4 border-t border-gris-200">
+        <p className="text-sm text-gris-600 mb-3">Si ya sabes que tratamiento te negaron, MapaSalud te genera la solicitud PROMESA con tus datos y la base legal correspondiente.</p>
+        <Link to="/cobertura" className="inline-flex items-center gap-2 bg-azul-700 hover:bg-azul-800 text-white font-medium px-5 py-3 rounded-lg text-sm transition-colors no-underline">
+          Generar solicitud PROMESA <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </div>
   );
