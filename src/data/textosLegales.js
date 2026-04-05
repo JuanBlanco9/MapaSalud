@@ -67,7 +67,7 @@ export const textosLegales = {
   // ── Jurisprudencia (pendiente de fallos especificos) ──────────
 
   jurisprudencia_sensor_cgm:
-    `Jurisprudencia en materia de sensores CGM: Fallos de Camaras Federales de Salta (2025) y Mendoza (2024) han ordenado a obras sociales cubrir sensores de monitoreo continuo de glucosa, fundamentando en la Ley 23.753/26.914 y el derecho a la salud del Art. 42 CN. Desde la Res. 2091/2025, la cobertura de sensores flash tiene base normativa directa.`,
+    `Jurisprudencia en materia de sensores CGM: Camaras Federales de Salta (02/2025, MJ-JU-M-117780-AR) y Mendoza (04/2021, MJ-JU-M-131834-AR) han ordenado a obras sociales cubrir sensores de monitoreo continuo de glucosa, fundamentando en la Ley 23.753/26.914 y el derecho a la salud del Art. 42 CN. Desde la Res. 2091/2025, la cobertura de sensores flash tiene base normativa directa. [Fuentes: Microjuris Argentina, aldiaargentina.microjuris.com]`,
 
   jurisprudencia_piso:
     `Principio jurisprudencial establecido: "El PMO constituye un piso de prestaciones minimas y no un techo." Las obras sociales y prepagas no pueden usar el PMO para denegar cobertura de tratamientos medicamente necesarios. Principio sostenido por la Camara Nacional de Apelaciones en lo Civil y Comercial Federal (Sala III, "B. J. G. c/ OSPLAD", 16/07/2015), la Camara Federal de Resistencia (causa 3528/2024), y respaldado por la CSJN en Fallos 316:479 y 323:1339 ("Asociacion Benghalensis"). [Fuentes: Microjuris MJ-JU-M-95429-AR, Diario Judicial diariojudicial.com/note/101443]`,

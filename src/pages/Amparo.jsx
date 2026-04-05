@@ -85,7 +85,7 @@ function ContextoAmparos() {
           Desde septiembre 2025 existe <strong>PROMESA</strong>, una via de mediacion que puede resolver el conflicto sin ir a la justicia.
         </p>
         <p className="text-xs text-azul-600 mt-1">
-          Fuentes: Decreto 379/2025 (Boletin Oficial), OLEGISAR
+          Fuentes: DNU 379/2025 (Boletin Oficial), OLEGISAR
         </p>
 
         <button onClick={() => setExpanded(!expanded)}
@@ -117,7 +117,7 @@ function ContextoAmparos() {
               <p className="mt-1">69.4% de las drogas litigadas tenian aprobacion ANMAT. 87.1% de evaluaciones CONETEC fueron negativas.</p>
             </div>
             <p className="text-xs text-azul-500">
-              Fuentes: Decreto 379/2025, SciELO (Medicina Buenos Aires, 2024, S0025-76802024000500445), OLEGISAR
+              Fuentes: DNU 379/2025, SciELO (Medicina Buenos Aires, 2024, S0025-76802024000500445), OLEGISAR
             </p>
           </div>
         )}
@@ -137,7 +137,7 @@ function TabPromesa() {
         </h3>
         <p className="text-sm text-gris-600 mb-4">
           Desde septiembre 2025, existe una via para resolver conflictos con tu obra social
-          o prepaga <strong>sin ir a la justicia</strong>. Se llama PROMESA (Decreto 379/2025).
+          o prepaga <strong>sin ir a la justicia</strong>. Se llama PROMESA (DNU 379/2025).
         </p>
       </div>
 
@@ -187,7 +187,7 @@ function TabPromesa() {
         <p className="font-semibold text-azul-700 mb-1">Contacto</p>
         <p className="text-azul-600">consultasmediacion@jus.gob.ar</p>
         <p className="text-azul-600">SSS: 0800-222-72583</p>
-        <p className="text-xs text-azul-500 mt-2">Fuente: Decreto 379/2025, Res. Conjunta 1/2025, guia FADEPOF julio 2025</p>
+        <p className="text-xs text-azul-500 mt-2">Fuente: DNU 379/2025, Res. Conjunta 1/2025, guia FADEPOF julio 2025</p>
       </div>
 
       {/* Link al asistente de reclamo */}

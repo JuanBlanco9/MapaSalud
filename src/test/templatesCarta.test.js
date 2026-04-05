@@ -106,7 +106,7 @@ describe('generarTemplateFallback', () => {
     });
     expect(result).toContain('PROMESA');
     expect(result).toContain('Res. 3377/2022');
-    expect(result).toContain('Decreto 379/2025');
+    expect(result).toContain('DNU 379/2025');
   });
 
   it('PROMESA gestion usa argumento de necesidad medica', () => {
