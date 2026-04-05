@@ -30,6 +30,8 @@ export const nivelCobertura = {
   // Sensores Dexcom — no incluidos expresamente en Res 2091/2025 (dice "flash")
   "Dexcom G6 — sensor continuo con alertas": "gestion",
   "Dexcom G7 — sensor continuo, mas pequeno": "gestion",
+  "Dexcom ONE+ (version accesible del G7)": "gestion",
+  "Eversense E3 (sensor implantable 6 meses — no disponible en ARG)": "gestion",
 
   // Bombas — requiere gestion
   "Medtronic MiniMed 780G (sistema hibrido de asa cerrada)": "gestion",

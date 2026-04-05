@@ -94,7 +94,7 @@ export const tipos = [
           "Informe de diabetologo/endocrinologo explicando por que la bomba es necesaria",
         ],
         opcionesNuevas: [
-          "Sistemas DIY de asa cerrada (Loop, AndroidAPS — no aprobados ANMAT, usados por comunidad)",
+          "Sistemas DIY de asa cerrada (Loop, AndroidAPS — no aprobados ANMAT, no disponible como cobertura)",
         ],
       },
     ],

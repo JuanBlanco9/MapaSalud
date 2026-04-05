@@ -7,7 +7,7 @@ import { DrogaConNivel, PmoTratamientoItem, LeyendaExpandible } from "./Badges";
 import { getDisclaimerDificultad } from "../../data/dificultadPorOS";
 import { getOrganizaciones } from "../../data/organizacionesPorPatologia";
 import { generarMapaPDF } from "../../utils/generarPDF";
-import { OS_ID } from "../../constants";
+import { OS_ID, NIVEL_COBERTURA } from "../../constants";
 import { useCobertura } from "../../context/CoberturaContext";
 
 const TABS = [
@@ -339,7 +339,7 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
           <div className="flex flex-col sm:flex-row gap-2">
             <select defaultValue="" onChange={(e) => {
               if (e.target.value) {
-                const nivel = getNivelDroga ? getNivelDroga(e.target.value) : "gestion";
+                const nivel = getNivelDroga ? getNivelDroga(e.target.value) : NIVEL_COBERTURA.GESTION;
                 onIniciarReclamo(e.target.value, nivel);
               }
             }} className="flex-1 bg-gris-50 text-gris-800 rounded-lg px-4 py-3 text-sm border border-gris-200 cursor-pointer min-h-[44px]">

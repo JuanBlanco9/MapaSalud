@@ -511,6 +511,8 @@ export const nivelCobertura = {
   "Crizotinib": "nacional",
   "Ceritinib": "nacional",
   "Brigatinib": "gestion",
+  // Estudios diagnosticos
+  "PET PSMA": "gestion",
 };
 
 export function getNivelDroga(nombre) {
@@ -597,7 +599,7 @@ export const tiposCancer = [
         biomarcadores: ["RE+", "RP+", "HER2-"],
         primeraLinea: [
           "Hormonoterapia (Tamoxifeno o Inhibidor de aromatasa)",
-          "CDK4/6 inhibidor si metastasico",
+          "Palbociclib + Hormonoterapia (si metastasico)",
         ],
         terapiasDirigidas: [
           "Palbociclib",

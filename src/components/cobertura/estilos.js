@@ -8,12 +8,6 @@ export const nivelStyles = {
   pmo:      { bg: "bg-verde-50", border: "border-verde-200", text: "text-verde-700", badge: "bg-verde-100 text-verde-700", dot: "bg-verde-500" },
 };
 
-export const dificultadStyles = {
-  directo: "bg-verde-50 text-verde-700",
-  tramite: "bg-naranja-50 text-naranja-600",
-  dificil: "bg-red-50 text-red-600",
-};
-
 export const iconMap = {
   ribbon: "Ribbon", wind: "Wind", activity: "Activity", user: "User",
   heart: "Heart", droplet: "Droplet", cpu: "Cpu", package: "Package", syringe: "Syringe",

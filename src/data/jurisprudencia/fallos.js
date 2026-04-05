@@ -142,6 +142,15 @@ export const jurisprudenciaDiabetesSensor = [
     fuente: "Microjuris Argentina",
   },
   {
+    caratula: "Amparo c/ OSDE (FreeStyle Libre, Parana)",
+    tribunal: "Juzgado Federal de Primera Instancia de Parana N.2 (Juez Alonso)",
+    fecha: "2019",
+    ordeno: "Cobertura integral, inmediata, permanente y gratuita del kit FreeStyle Libre (lector + 2 sensores) para paciente con diabetes T1 que planificaba embarazo.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "Entre Rios",
+    fuente: "ElEntreRios.com",
+  },
+  {
     caratula:
       "V. M. E. c/ Obra Social de Empleados Publicos s/ accion de amparo",
     tribunal:
@@ -376,7 +385,7 @@ export const jurisprudenciaOncoDirigida = [
     cita: "MJ-JU-M-156543-AR",
     fecha: "12/06/2025",
     ordeno: "Cobertura 100% de radioterapia IMRT para carcinoma nasofaringeo en CEMENER (Oro Verde, Entre Rios), incluyendo traslado y alojamiento para paciente y acompanante a 832 km, con astreintes de $200.000/dia.",
-    tipo: "ONCO_ESTUDIO",
+    tipo: "ONCO_TRATAMIENTO",
     provincia: "Misiones",
     fuente: "Microjuris Argentina",
     url: "https://aldiaargentina.microjuris.com/2025/08/05/fallos-derecho-a-la-salud-se-ordena-a-una-obra-social-brindar-cobertura-total-para-un-tratamiento-oncologico-a-mas-de-800-km-del-domicilio-del-paciente-incluyendo-traslado-y-alojamiento/",
@@ -462,15 +471,6 @@ export const jurisprudenciaDiabetesInsulinaAdicional = [
     fuente: "Microjuris Argentina (aldiaargentina.microjuris.com, 26/02/2020)",
     url: "https://aldiaargentina.microjuris.com/2020/02/26/diabetes-con-cobertura-obra-social-debe-cubrir-integramente-la-insulina-y-medicacion-para-el-tratamiento-de-la-diabetes/",
   },
-  {
-    caratula: "Amparo c/ OSDE (FreeStyle Libre, Parana)",
-    tribunal: "Juzgado Federal de Primera Instancia de Parana N.2 (Juez Alonso)",
-    fecha: "2019",
-    ordeno: "Cobertura integral, inmediata, permanente y gratuita del kit FreeStyle Libre (lector + 2 sensores) para paciente con diabetes T1 que planificaba embarazo.",
-    tipo: "DIABETES_SENSOR",
-    provincia: "Entre Rios",
-    fuente: "ElEntreRios.com",
-  },
 ];
 
 // ── IOMA — fallo específico (competencia, no fondo) ─────────────
@@ -509,7 +509,7 @@ export const jurisprudenciaOncologiaEspecifica = [
     fuente: "Abogados Rosario",
   },
   {
-    caratula: "[Amparista] c/ PAMI s/ Amparo",
+    caratula: "N.N. c/ PAMI s/ Amparo (tratamiento oncologico, Concordia)",
     tribunal: "Juzgado Federal de Concordia (Jueza Analia Ramponi)",
     fecha: "03/2026",
     ordeno: "Medida cautelar en 24 horas para cobertura integral de tratamiento oncologico. 'En casos de cancer, el tiempo es un factor determinante.'",
@@ -532,7 +532,7 @@ export const jurisprudenciaDiabetesProvincial = [
     fuente: "Justicia de Primera",
   },
   {
-    caratula: "[Amparista] c/ PAMI s/ Amparo",
+    caratula: "N.N. c/ PAMI s/ Amparo (sensor FreeStyle Libre, Salta)",
     tribunal: "Camara Federal de Salta, Sala I",
     fecha: "02/2025",
     ordeno: "Cobertura total 100% de sensores FreeStyle Libre para paciente con diabetes y discapacidad mental, mas reembolso de gastos previos. Cito Res. 2820/2022.",
@@ -599,14 +599,15 @@ export const estadisticasAmparos = {
 export const fallosPorProvincia = {
   "Buenos Aires": { cantidad: 4, patologias: ["Oncologia", "Diabetes T1", "General"] },
   "CABA": { cantidad: 1, patologias: ["Diabetes T1"] },
+  "Chaco": { cantidad: 2, patologias: ["Oncologia"] },
   "Cordoba": { cantidad: 1, patologias: ["Oncologia"] },
   "Corrientes": { cantidad: 1, patologias: ["Oncologia"] },
   "Entre Rios": { cantidad: 4, patologias: ["Oncologia", "Diabetes T1", "General"] },
   "Mendoza": { cantidad: 2, patologias: ["Diabetes T1", "Diabetes T2"] },
   "Misiones": { cantidad: 2, patologias: ["Oncologia"] },
-  "Rio Negro": { cantidad: 2, patologias: ["Oncologia", "Diabetes T1"] },
-  "Salta": { cantidad: 2, patologias: ["Oncologia", "Diabetes"] },
-  "Santa Fe": { cantidad: 3, patologias: ["Oncologia", "Diabetes T2"] },
+  "Rio Negro": { cantidad: 3, patologias: ["Oncologia", "Diabetes T1"] },
+  "Salta": { cantidad: 3, patologias: ["Oncologia", "Diabetes T1"] },
+  "Santa Fe": { cantidad: 6, patologias: ["Oncologia", "Diabetes T2"] },
 };
 
 // ── Helper: obtener jurisprudencia relevante por patologia y tipo

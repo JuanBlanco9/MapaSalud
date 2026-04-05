@@ -13,6 +13,9 @@ export const textosLegales = {
   constitucion_art42:
     `Art. 42 Constitucion Nacional: "Los consumidores y usuarios de bienes y servicios tienen derecho, en la relacion de consumo, a la proteccion de su salud, seguridad e intereses economicos; a una informacion adecuada y veraz; a la libertad de eleccion, y a condiciones de trato equitativo y digno." [Fuente: servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/804/norma.htm]`,
 
+  constitucion_art75_22:
+    `Art. 75 inc. 22 Constitucion Nacional: Otorga jerarquia constitucional a tratados internacionales de derechos humanos, entre ellos el Pacto Internacional de Derechos Economicos, Sociales y Culturales (PIDESC), cuyo Art. 12 reconoce "el derecho de toda persona al disfrute del mas alto nivel posible de salud fisica y mental." [Fuente: servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/804/norma.htm]`,
+
   // ── PMO Oncologico (CORREGIDO) ────────────────────────────────
 
   pmo_art73:

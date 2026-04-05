@@ -25,8 +25,7 @@ export const contextoFallos = {
     nivel: "alto",
   },
 
-  "[Amparista] c/ PAMI s/ Amparo": {
-    // Salta sensor
+  "N.N. c/ PAMI s/ Amparo (sensor FreeStyle Libre, Salta)": {
     circunstancias: "Paciente con diabetes Y discapacidad mental que impide reconocer hipo/hiperglucemia. Doble vulnerabilidad.",
     aplicabilidad: "LIMITADA. El fallo se fortalecio por la discapacidad mental. Un diabetico sin discapacidad puede citarlo pero la OS podria distinguir las circunstancias. Mejor complementar con otros fallos (H.R. c/ Omint, V.M.E. c/ OSEP).",
     nivel: "medio",
@@ -79,13 +78,92 @@ export const contextoFallos = {
     nivel: "alto",
   },
 
-  "Z., Y. E. c/ Union Personal s/ Amparo": {
-    circunstancias: "Mismo caso: OS ofrecio Accu-Check Solo en vez de Medtronic prescripta.",
-    aplicabilidad: "AMPLIA. Refuerza que la OS no puede imponer marca/modelo. El medico elige.",
+  // Removido: Z., Y. E. c/ Union Personal — fallo eliminado por fuente no verificable
+
+  // ── ONCOLOGIA DIRIGIDA ─────────────────────────────────────
+
+  // ── ONCOLOGIA QT ───────────────────────────────────────────
+
+  "N.N. c/ Obra Social s/ Amparo (caso Brigatinib)": {
+    circunstancias: "Cancer de pulmon estadio IV con metastasis oseas. Brigatinib 180 mg. OS rechazo alegando que no correspondia al estadio.",
+    aplicabilidad: "AMPLIA para reclamos de terapia dirigida ALK en pulmon. Confirma que la indicacion del medico prevalece.",
     nivel: "alto",
   },
 
-  // ── ONCOLOGIA DIRIGIDA ─────────────────────────────────────
+  "N.N. c/ ASE y OMINT SA s/ Amparo (caso Pertuzumab)": {
+    circunstancias: "Pertuzumab para progresion oncologica. Corte de Justicia de Salta. Fecha no determinada.",
+    aplicabilidad: "MEDIA. Fallo sin fecha precisa. Usar como complemento de otros fallos, no como cita principal.",
+    nivel: "medio",
+  },
+
+  // ── ONCOLOGIA ESTUDIOS ────────────────────────────────────
+
+  "N.N. c/ Medife Asociacion Civil s/ Amparo (estudio BRCA 1/2)": {
+    circunstancias: "Estudio genetico BRCA para paciente con cancer, recaida y metastasis. Medife rechazo alegando que no era indispensable.",
+    aplicabilidad: "AMPLIA para estudios geneticos oncologicos cuando la OS alega que no son indispensables.",
+    nivel: "alto",
+  },
+
+  "N.N. c/ Sancor Salud s/ Amparo (Oncotype DX + Goserelina)": {
+    circunstancias: "Cancer de mama estadio III con metastasis ganglionar. Incluyo traslado a Cordoba.",
+    aplicabilidad: "AMPLIA para Oncotype DX y cuando el paciente requiere traslado a otra provincia.",
+    nivel: "alto",
+  },
+
+  // ── ONCOLOGIA CIRUGIA ─────────────────────────────────────
+
+  "N.N. c/ OSPAC s/ Amparo (cirugia preventiva mama)": {
+    circunstancias: "OSPAC aprobo extraccion pero rechazo reconstruccion. Adenomastectomia preventiva.",
+    aplicabilidad: "AMPLIA para reconstruccion mamaria cuando la OS aprueba parcialmente. Ley 26.872.",
+    nivel: "alto",
+  },
+
+  "Amparo c/ OSDE (reconstruccion mamaria con protesis, La Plata)": {
+    circunstancias: "OSDE argumento que la reconstruccion era estetica, no funcional.",
+    aplicabilidad: "AMPLIA. Mismo principio que G.G.B. c/ Swiss Medical: reconstruccion es reparadora, no estetica.",
+    nivel: "alto",
+  },
+
+  // ── ONCOLOGIA DIRIGIDA ────────────────────────────────────
+
+  "Amparo c/ PAMI (Pembrolizumab ca. uterino, Rosario)": {
+    circunstancias: "Pembrolizumab como ultimo recurso para cancer uterino avanzado. No estaba en protocolos PAMI.",
+    aplicabilidad: "AMPLIA cuando la droga tiene indicacion pero no esta en protocolo de la OS.",
+    nivel: "alto",
+  },
+
+  "[Amparista] c/ Economicas Salud s/ Amparo": {
+    circunstancias: "Pembrolizumab para cancer uterino avanzado. Fuente debil (sitio de abogados).",
+    aplicabilidad: "MEDIA. Fuente no oficial. Usar como refuerzo, no como cita principal.",
+    nivel: "medio",
+  },
+
+  "N.N. c/ PAMI s/ Amparo (tratamiento oncologico, Concordia)": {
+    circunstancias: "Medida cautelar en 24 horas. Principio: el tiempo es determinante en cancer.",
+    aplicabilidad: "AMPLIA para urgencia oncologica. Aplica a cualquier demora en cobertura de tratamiento de cancer.",
+    nivel: "alto",
+  },
+
+  // ── DIABETES ADICIONAL ────────────────────────────────────
+
+  "Amparo c/ PAMI (insulina Glargina Basaglar + Sitagliptina)": {
+    circunstancias: "PAMI condiciono el suministro a uso previo de NPH. Tribunal lo considero arbitrario.",
+    aplicabilidad: "AMPLIA. Aplica cuando la OS condiciona la cobertura a usar una alternativa mas barata primero.",
+    nivel: "alto",
+  },
+
+  "[Amparista] c/ OSDE s/ Amparo de Salud": {
+    // Semaglutida Rosario
+    circunstancias: "Semaglutida para diabetes T2 insulinodependiente. OSDE solo cubria 40%.",
+    aplicabilidad: "AMPLIA para cobertura de Semaglutida/Ozempic. Numero de expediente FSA 2152/2024/CA1.",
+    nivel: "alto",
+  },
+
+  "N.N. c/ Obra Social s/ Amparo (Semaglutida, Mendoza)": {
+    circunstancias: "Semaglutida para diabetes T2 avanzada con obesidad. Unanimidad. PMO es piso irrenunciable.",
+    aplicabilidad: "AMPLIA. Fallo unanime de Camara Federal con jueces identificados.",
+    nivel: "alto",
+  },
 
   "I. J. R. c/ OSDE s/ procesos urgentes (autosatisfactiva)": {
     circunstancias: "Pembrolizumab NO estaba aprobado por ANMAT para cancer renal en Argentina. Si aprobado en EE.UU. y UE. Caso EXCEPCIONAL.",
@@ -143,7 +221,7 @@ export const contextoFallos = {
     nivel: "alto",
   },
 
-  "Amparo c/ OSECAC (PET-TC oncologico, Rio Negro)": {
+  "N.N. c/ OSECAC s/ Amparo (PET-TC oncologico)": {
     circunstancias: "OSECAC simplemente no respondio desde febrero. Sin respuesta = denegacion tacita.",
     aplicabilidad: "AMPLIA. Aplica cuando la OS no responde la solicitud de PET/CT. El silencio es denegacion.",
     nivel: "alto",

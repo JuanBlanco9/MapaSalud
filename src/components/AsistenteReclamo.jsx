@@ -149,11 +149,12 @@ export default function AsistenteReclamo({
     return texto
       .replace(/\[COMPLETAR NOMBRE COMPLETO\]|\[COMPLETAR NOMBRE\]/g, d.nombre || "[COMPLETAR NOMBRE]")
       .replace(/\[COMPLETAR\] *\n *DNI/g, `${d.dni}\nDNI`)
-      .replace(/DNI \[COMPLETAR\]/g, `DNI ${d.dni || "[COMPLETAR DNI]"}`)
+      .replace(/DNI:? \[COMPLETAR\]/g, `DNI: ${d.dni || "[COMPLETAR DNI]"}`)
       .replace(/\[COMPLETAR DOMICILIO\]/g, d.domicilio || "[COMPLETAR DOMICILIO]")
+      .replace(/Email: \[COMPLETAR\]/g, `Email: ${d.email || "[COMPLETAR]"}`)
+      .replace(/Telefono: \[COMPLETAR\]/g, `Telefono: ${d.telefono || "[COMPLETAR]"}`)
       .replace(/\[COMPLETAR NOMBRE DEL MEDICO\]/g, d.medico || "[COMPLETAR MEDICO]")
-      .replace(/\[COMPLETAR MATRICULA\]/g, d.matricula || "[COMPLETAR MATRICULA]")
-      .replace(/\[COMPLETAR NUMERO DE AFILIADO\]/g, "[COMPLETAR NUMERO DE AFILIADO]");
+      .replace(/\[COMPLETAR MATRICULA\]/g, d.matricula || "[COMPLETAR MATRICULA]");
   }
 
   function copiar() {
