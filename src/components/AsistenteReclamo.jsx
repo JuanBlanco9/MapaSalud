@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   FileText,
   Copy,
@@ -8,17 +9,18 @@ import {
   AlertTriangle,
   ArrowLeft,
   ArrowRight,
-  Eraser,
-  PenTool,
 } from "lucide-react";
-import { getTextosParaCarta } from "../data/textosLegales";
 import { generarTemplateFallback } from "../data/templatesCarta";
 import {
   getJurisprudenciaRelevante,
   formatCitaJurisprudencial,
   filtrarFallosPorAplicabilidad,
-  getContextoFallo,
 } from "../data/jurisprudencia";
+import { OS_ID, TIPO_DOCUMENTO } from "../constants";
+import { useCobertura } from "../context/CoberturaContext";
+import ProgresoCarta from "./reclamo/ProgresoCarta";
+import PanelFirma from "./reclamo/PanelFirma";
+import { generarReclamoPDF } from "../utils/generarReclamoPDF";
 
 const PREGUNTAS_RESPUESTA = [
   { id: "sin_respuesta", label: "No me respondieron (mas de 5 dias habiles)" },
@@ -28,185 +30,39 @@ const PREGUNTAS_RESPUESTA = [
 ];
 
 const OPCIONES_NEGATIVA_ESCRITA = [
-  { id: "carta_documento", label: "Carta documento (enviar por correo a la OS)", desc: "Intima a la OS a responder. Paso previo al amparo." },
-  { id: "promesa", label: "PROMESA — mediacion prejudicial (mas rapido)", desc: "Mediacion oficial via TAD. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado." },
+  { id: TIPO_DOCUMENTO.CARTA_DOCUMENTO, label: "Carta documento (enviar por correo a la OS)", desc: "Intima a la OS a responder. Paso previo al amparo." },
+  { id: TIPO_DOCUMENTO.PROMESA, label: "PROMESA — mediacion prejudicial (mas rapido)", desc: "Mediacion oficial via TAD. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado — te armamos el resumen del caso." },
 ];
 
 function determinarTipoDocumento(respuestaOS, opcionEscrita) {
   if (respuestaOS === "negativa_escrita" && opcionEscrita) return opcionEscrita;
   switch (respuestaOS) {
-    case "sin_respuesta": return "seguimiento";
-    case "negativa_verbal": return "pedir_negativa";
-    case "negativa_escrita": return "carta_documento";
-    case "aprobado_no_entregan": return "intimacion_entrega";
-    default: return "carta_documento";
+    case "sin_respuesta": return TIPO_DOCUMENTO.SEGUIMIENTO;
+    case "negativa_verbal": return TIPO_DOCUMENTO.PEDIR_NEGATIVA;
+    case "negativa_escrita": return TIPO_DOCUMENTO.CARTA_DOCUMENTO;
+    case "aprobado_no_entregan": return TIPO_DOCUMENTO.INTIMACION_ENTREGA;
+    default: return TIPO_DOCUMENTO.CARTA_DOCUMENTO;
   }
 }
 
 const TIPO_LABELS = {
-  seguimiento: "Email de seguimiento formal",
-  pedir_negativa: "Email solicitando negativa por escrito",
-  carta_documento: "Carta documento",
-  intimacion_entrega: "Carta documento por falta de entrega",
-  promesa: "Solicitud de mediacion PROMESA",
-  reclamo_publico: "Nota al Director del hospital",
+  [TIPO_DOCUMENTO.SEGUIMIENTO]: "Email de seguimiento formal",
+  [TIPO_DOCUMENTO.PEDIR_NEGATIVA]: "Email solicitando negativa por escrito",
+  [TIPO_DOCUMENTO.CARTA_DOCUMENTO]: "Carta documento",
+  [TIPO_DOCUMENTO.INTIMACION_ENTREGA]: "Carta documento por falta de entrega",
+  [TIPO_DOCUMENTO.PROMESA]: "Resumen del caso para tu abogado (PROMESA)",
+  [TIPO_DOCUMENTO.RECLAMO_PUBLICO]: "Nota al Director del hospital",
 };
-
-// ── Barra de progreso del asistente ─────────────────────────────
-
-function ProgresoCarta({ paso }) {
-  const pasos = ["Situacion", "Tus datos", "Carta lista"];
-  return (
-    <div className="flex items-center justify-center gap-0 mb-8">
-      {pasos.map((label, i) => (
-        <div key={label} className="flex items-center">
-          <div className="flex flex-col items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                paso > i + 1
-                  ? "bg-verde-500 text-white"
-                  : paso === i + 1
-                  ? "bg-azul-700 text-white"
-                  : "bg-gris-200 text-gris-500"
-              }`}
-            >
-              {paso > i + 1 ? <Check className="w-4 h-4" /> : i + 1}
-            </div>
-            <span className={`text-xs mt-1 ${paso >= i + 1 ? "text-azul-700 font-medium" : "text-gris-400"}`}>
-              {label}
-            </span>
-          </div>
-          {i < pasos.length - 1 && (
-            <div className={`w-10 sm:w-16 h-0.5 mb-5 mx-1 ${paso > i + 1 ? "bg-verde-500" : "bg-gris-200"}`} />
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ── Panel de firma ──────────────────────────────────────────────
-
-function PanelFirma({ onFirmaChange }) {
-  const canvasRef = useRef(null);
-  const [drawing, setDrawing] = useState(false);
-  const [hasFirma, setHasFirma] = useState(false);
-
-  const getPos = useCallback((e) => {
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return {
-      x: (clientX - rect.left) * (canvas.width / rect.width),
-      y: (clientY - rect.top) * (canvas.height / rect.height),
-    };
-  }, []);
-
-  const startDraw = useCallback((e) => {
-    e.preventDefault();
-    const ctx = canvasRef.current.getContext("2d");
-    const pos = getPos(e);
-    ctx.beginPath();
-    ctx.moveTo(pos.x, pos.y);
-    setDrawing(true);
-  }, [getPos]);
-
-  const draw = useCallback((e) => {
-    if (!drawing) return;
-    e.preventDefault();
-    const ctx = canvasRef.current.getContext("2d");
-    const pos = getPos(e);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.stroke();
-  }, [drawing, getPos]);
-
-  const endDraw = useCallback(() => {
-    if (!drawing) return;
-    setDrawing(false);
-    setHasFirma(true);
-    onFirmaChange(canvasRef.current.toDataURL("image/png"));
-  }, [drawing, onFirmaChange]);
-
-  const limpiar = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setHasFirma(false);
-    onFirmaChange(null);
-  };
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#1a1a1a";
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-  }, []);
-
-  return (
-    <div>
-      <div className="flex items-center justify-between mb-2">
-        <label className="text-sm font-medium text-gris-700 flex items-center gap-1.5">
-          <PenTool className="w-4 h-4" />
-          Firma (opcional)
-        </label>
-        {hasFirma && (
-          <span className="text-xs text-verde-600 font-medium flex items-center gap-1">
-            <Check className="w-3 h-3" /> Firma agregada
-          </span>
-        )}
-      </div>
-      <div className="relative border border-gris-200 rounded-lg bg-white overflow-hidden">
-        {!hasFirma && !drawing && (
-          <p className="absolute inset-0 flex items-center justify-center text-gris-300 text-sm pointer-events-none select-none">
-            Firma aqui
-          </p>
-        )}
-        <canvas
-          ref={canvasRef}
-          width={800}
-          height={300}
-          className="w-full h-[150px] touch-none cursor-crosshair"
-          onMouseDown={startDraw}
-          onMouseMove={draw}
-          onMouseUp={endDraw}
-          onMouseLeave={endDraw}
-          onTouchStart={startDraw}
-          onTouchMove={draw}
-          onTouchEnd={endDraw}
-        />
-      </div>
-      {hasFirma && (
-        <button
-          type="button"
-          onClick={limpiar}
-          className="flex items-center gap-1.5 text-gris-500 hover:text-gris-700 text-xs mt-2 cursor-pointer bg-transparent border-none"
-        >
-          <Eraser className="w-3 h-3" /> Borrar firma
-        </button>
-      )}
-      <p className="text-xs text-gris-400 mt-1">
-        Tu firma se usa unicamente para generar el documento. No se almacena en ningun servidor.
-      </p>
-    </div>
-  );
-}
 
 // ── Componente principal ────────────────────────────────────────
 
 export default function AsistenteReclamo({
-  os,
-  plan,
-  cancer,
-  subtipo,
   tratamiento,
   nivelCobertura,
-  patologiaId,
   onBack,
 }) {
-  const [step, setStep] = useState("preguntas"); // preguntas | datos | generando | resultado
+  const { os, plan, cancer, subtipo, patologiaId } = useCobertura();
+  const [step, setStep] = useState("preguntas");
   const [yaSolicito, setYaSolicito] = useState(null);
   const [respuestaOS, setRespuestaOS] = useState(null);
   const [fechaSolicitud, setFechaSolicitud] = useState("");
@@ -216,7 +72,6 @@ export default function AsistenteReclamo({
   const [firmaDataUrl, setFirmaDataUrl] = useState(null);
   const [opcionEscrita, setOpcionEscrita] = useState(null);
 
-  // Datos del paciente
   const [datos, setDatos] = useState({
     nombre: "",
     dni: "",
@@ -243,10 +98,9 @@ export default function AsistenteReclamo({
 
   function generar() {
     setStep("generando");
-    const esPublicoOS = os.id === "hospital_publico";
-    const tipoDoc = esPublicoOS ? "reclamo_publico" : (yaSolicito === false ? "carta_documento" : tipoDocumento);
+    const esPublicoOS = os.id === OS_ID.HOSPITAL_PUBLICO;
+    const tipoDoc = esPublicoOS ? TIPO_DOCUMENTO.RECLAMO_PUBLICO : (yaSolicito === false ? TIPO_DOCUMENTO.CARTA_DOCUMENTO : tipoDocumento);
 
-    // Generar desde template pre-armado (sin API)
     let carta = generarTemplateFallback({
       obraSocial: os.nombre,
       plan: plan?.nombre || null,
@@ -256,16 +110,14 @@ export default function AsistenteReclamo({
       fechaSolicitud: fechaSolicitud || null,
       tipoDocumento: tipoDoc,
       patologiaId,
+      nivelCobertura,
     });
 
-    // Reemplazar placeholders con datos reales del formulario
     carta = reemplazarDatos(carta, datos);
 
-    // Agregar jurisprudencia relevante al pie
     const jurisp = getJurisprudenciaRelevante(patologiaId, subtipo?.id);
     let fallosAplicables = filtrarFallosPorAplicabilidad(jurisp.especificos, "alto");
 
-    // Para hospital publico, priorizar fallos contra el Estado/PAMI
     if (esPublicoOS) {
       const fallosEstado = [...jurisp.principios, ...fallosAplicables].filter((f) => {
         const car = (f.caratula || "").toLowerCase();
@@ -279,7 +131,6 @@ export default function AsistenteReclamo({
         .slice(0, 3)
         .map(formatCitaJurisprudencial)
         .join(";\n");
-      // Insertar antes del cierre (Uds o Ud)
       const cierre = carta.includes("Sin otro particular, saludo a Uds.")
         ? "Sin otro particular, saludo a Uds. atentamente."
         : "Sin otro particular, saludo a Ud. atentamente.";
@@ -291,8 +142,6 @@ export default function AsistenteReclamo({
 
     setDocumento(carta);
     setUsandoFallback(false);
-
-    // Simular breve delay para UX (no instantaneo = mas confianza)
     setTimeout(() => setStep("resultado"), 400);
   }
 
@@ -323,165 +172,6 @@ export default function AsistenteReclamo({
     URL.revokeObjectURL(url);
   }
 
-  function formatDNI(dni) {
-    const nums = (dni || "").replace(/\D/g, "");
-    if (nums.length <= 2) return nums;
-    return nums.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
-
-  async function descargarPDF() {
-    const { jsPDF } = await import("jspdf");
-    const pdf = new jsPDF({ unit: "mm", format: "a4" });
-    const M = 20; // margin
-    const W = 170; // content width
-    const PAGE_H = 297;
-    const FOOTER_Y = PAGE_H - 15;
-    const MAX_Y = FOOTER_Y - 10;
-    const fecha = new Date().toLocaleDateString("es-AR", {
-      day: "2-digit", month: "long", year: "numeric",
-    });
-
-    function addFooter(doc, pageNum) {
-      doc.setDrawColor(200, 200, 200);
-      doc.line(M, FOOTER_Y - 3, M + W, FOOTER_Y - 3);
-      doc.setFontSize(7);
-      doc.setTextColor(160, 160, 160);
-      doc.setFont("helvetica", "normal");
-      doc.text(
-        "MapaSalud — mapa-salud.vercel.app | Documento orientativo. No reemplaza asesoramiento legal profesional.",
-        M + W / 2, FOOTER_Y, { align: "center" }
-      );
-    }
-
-    function newPage(doc) {
-      doc.addPage();
-      addFooter(doc, doc.getNumberOfPages());
-      return 30;
-    }
-
-    function checkY(doc, y, needed = 8) {
-      if (y + needed > MAX_Y) return newPage(doc);
-      return y;
-    }
-
-    // ── Header (page 1 only) ──────────────────────────────────
-    pdf.setFillColor(239, 246, 255); // azul muy claro
-    pdf.rect(M, 10, W, 18, "F");
-    pdf.setFontSize(13);
-    pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(27, 79, 114); // azul-700
-    pdf.text("MapaSalud", M + 4, 19);
-    pdf.setFontSize(8);
-    pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(130, 130, 130);
-    pdf.text("mapa-salud.vercel.app", M + 4, 24);
-    pdf.text(`Generado el ${fecha}`, M + W - 4, 19, { align: "right" });
-    if (datos.nombre) {
-      pdf.text(`Documento generado para: ${datos.nombre}`, M + W - 4, 24, { align: "right" });
-    }
-    pdf.setDrawColor(27, 79, 114);
-    pdf.setLineWidth(0.5);
-    pdf.line(M, 29, M + W, 29);
-    addFooter(pdf, 1);
-
-    // ── Parse markdown and render ─────────────────────────────
-    // Strip markdown bold markers and track which segments are bold
-    const rawLines = documento.split("\n");
-    let y = 36;
-
-    for (const rawLine of rawLines) {
-      // Empty line = paragraph spacing
-      if (!rawLine.trim()) {
-        y += 3;
-        continue;
-      }
-
-      // Process bold segments: **text** or __text__
-      const segments = [];
-      let remaining = rawLine;
-      const boldRe = /\*\*(.+?)\*\*|__(.+?)__/g;
-      let lastIdx = 0;
-      let match;
-      while ((match = boldRe.exec(rawLine)) !== null) {
-        if (match.index > lastIdx) {
-          segments.push({ text: rawLine.slice(lastIdx, match.index), bold: false });
-        }
-        segments.push({ text: match[1] || match[2], bold: true });
-        lastIdx = match.index + match[0].length;
-      }
-      if (lastIdx < rawLine.length) {
-        segments.push({ text: rawLine.slice(lastIdx), bold: false });
-      }
-      if (segments.length === 0) {
-        segments.push({ text: rawLine, bold: false });
-      }
-
-      // Check if entire line is bold (heading-like)
-      const allBold = segments.every((s) => s.bold || !s.text.trim());
-      const fontSize = allBold && segments.some((s) => s.bold) ? 11 : 10;
-
-      // Wrap the plain text version to get line count
-      const plainText = segments.map((s) => s.text).join("");
-      pdf.setFontSize(fontSize);
-      pdf.setFont("helvetica", "normal");
-      const wrapped = pdf.splitTextToSize(plainText, W);
-
-      for (const wLine of wrapped) {
-        y = checkY(pdf, y, 5);
-        // Determine if this wrapped line has bold parts
-        // Simple approach: render the whole line as bold if allBold, otherwise normal
-        if (allBold) {
-          pdf.setFont("helvetica", "bold");
-        } else {
-          pdf.setFont("helvetica", "normal");
-        }
-        pdf.setFontSize(fontSize);
-        pdf.setTextColor(30, 30, 30);
-        pdf.text(wLine, M, y);
-        y += fontSize === 11 ? 5.5 : 4.5;
-      }
-
-      // Extra spacing after bold headings
-      if (allBold && segments.some((s) => s.bold)) {
-        y += 1;
-      }
-    }
-
-    // ── Firma ─────────────────────────────────────────────────
-    const firmaNeeded = firmaDataUrl ? 40 : 15;
-    if (y + firmaNeeded > MAX_Y) {
-      y = newPage(pdf);
-    }
-
-    y += 8;
-    if (firmaDataUrl) {
-      pdf.addImage(firmaDataUrl, "PNG", M, y, 55, 20);
-      y += 23;
-    } else {
-      // Signature line
-      pdf.setDrawColor(180, 180, 180);
-      pdf.line(M, y + 10, M + 60, y + 10);
-      y += 14;
-    }
-
-    pdf.setFontSize(10);
-    pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(30, 30, 30);
-    if (datos.nombre) {
-      pdf.text(datos.nombre, M, y);
-      y += 4.5;
-    }
-    if (datos.dni) {
-      pdf.setFont("helvetica", "normal");
-      pdf.text(`DNI: ${formatDNI(datos.dni)}`, M, y);
-    }
-
-    // ── Save ──────────────────────────────────────────────────
-    pdf.save(`MapaSalud_reclamo_${os.nombre.replace(/[^a-zA-Z0-9]/g, "_")}.pdf`);
-  }
-
-  const pasoNum = step === "preguntas" ? 1 : step === "datos" ? 2 : 3;
-
   // ── PASO 1: Preguntas ─────────────────────────────────────────
   if (step === "preguntas") {
     return (
@@ -504,14 +194,14 @@ export default function AsistenteReclamo({
             Asistente de reclamo
           </h2>
           <p className="text-gris-600">
-            {os.id === "hospital_publico"
+            {os.id === OS_ID.HOSPITAL_PUBLICO
               ? <>Te ayudamos a redactar una nota formal al hospital para solicitar <strong>{tratamiento}</strong>.</>
               : <>Te ayudamos a redactar la comunicacion formal para reclamar la cobertura de <strong>{tratamiento}</strong>.</>}
           </p>
         </div>
 
         {/* Hospital publico: ir directo a datos */}
-        {os.id === "hospital_publico" && (
+        {os.id === OS_ID.HOSPITAL_PUBLICO && (
           <div className="space-y-6">
             <div className="bg-azul-50 border border-azul-100 rounded-lg p-4 text-sm text-azul-700">
               <p>Vamos a generar una <strong>nota formal al Director del hospital</strong> solicitando la provision del tratamiento, con cita de la normativa y jurisprudencia que respalda tu derecho.</p>
@@ -525,7 +215,7 @@ export default function AsistenteReclamo({
         )}
 
         {/* OS/Prepaga: preguntas normales */}
-        {os.id !== "hospital_publico" && <div className="space-y-6">
+        {os.id !== OS_ID.HOSPITAL_PUBLICO && <div className="space-y-6">
           <div className="bg-white border border-gris-200 rounded-xl p-5">
             <p className="font-semibold text-gris-800 mb-3">
               ¿Ya pediste este tratamiento formalmente a {os.nombre}?
@@ -571,7 +261,6 @@ export default function AsistenteReclamo({
             </div>
           )}
 
-          {/* Elegir entre carta documento y PROMESA cuando hay negativa escrita */}
           {respuestaOS === "negativa_escrita" && (
             <div className="bg-white border border-gris-200 rounded-xl p-5">
               <p className="font-semibold text-gris-800 mb-3">¿Como queres reclamar?</p>
@@ -652,7 +341,7 @@ export default function AsistenteReclamo({
 
         <div className="bg-azul-50 border border-azul-100 rounded-lg p-3 mb-6 text-sm text-azul-700">
           <strong>Vamos a generar:</strong>{" "}
-          {yaSolicito === false ? TIPO_LABELS.carta_documento : TIPO_LABELS[tipoDocumento]}
+          {yaSolicito === false ? TIPO_LABELS[TIPO_DOCUMENTO.CARTA_DOCUMENTO] : TIPO_LABELS[tipoDocumento]}
           {" "}para {os.nombre}
         </div>
 
@@ -672,12 +361,10 @@ export default function AsistenteReclamo({
             </div>
           ))}
 
-          {/* Panel de firma */}
           <div className="pt-4 border-t border-gris-200">
             <PanelFirma onFirmaChange={setFirmaDataUrl} />
           </div>
 
-          {/* Botón generar */}
           <button
             onClick={generar}
             disabled={!datosCompletos}
@@ -725,7 +412,7 @@ export default function AsistenteReclamo({
           Tu documento esta listo
         </h2>
         <p className="text-sm text-gris-600">
-          {yaSolicito === false ? TIPO_LABELS.carta_documento : TIPO_LABELS[tipoDocumento]}
+          {yaSolicito === false ? TIPO_LABELS[TIPO_DOCUMENTO.CARTA_DOCUMENTO] : TIPO_LABELS[tipoDocumento]}
           {" "}para {os.nombre}
         </p>
       </div>
@@ -763,7 +450,7 @@ export default function AsistenteReclamo({
           <Download className="w-4 h-4" /> Descargar .txt
         </button>
         <button
-          onClick={descargarPDF}
+          onClick={() => generarReclamoPDF({ documento, datos, firmaDataUrl, osNombre: os.nombre })}
           className="flex-1 inline-flex items-center justify-center gap-2 bg-verde-500 hover:bg-verde-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm border-none min-h-[44px]"
         >
           <Download className="w-4 h-4" /> PDF {firmaDataUrl ? "con firma" : ""}
@@ -784,25 +471,30 @@ export default function AsistenteReclamo({
       <div className="bg-naranja-50 border border-naranja-500/30 rounded-lg p-4 mt-4 text-sm text-gris-700">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-naranja-600 shrink-0 mt-0.5" />
-          <p>
-            <strong>Revisa este documento con un abogado o la Defensoria del
-            Pueblo antes de enviarlo.</strong> MapaSalud no es un estudio
-            juridico. Este documento es orientativo y no constituye
-            asesoramiento legal profesional.
-          </p>
+          <div>
+            <p>
+              <strong>Revisa este documento con un abogado o la Defensoria del
+              Pueblo antes de enviarlo.</strong> MapaSalud no es un estudio
+              juridico. Este documento es orientativo y no constituye
+              asesoramiento legal profesional.
+            </p>
+            <p className="mt-2 text-xs text-gris-500">
+              Un abogado puede evaluar si la demora o negativa tiene justificacion medica o regulatoria, y adaptar el reclamo a las circunstancias de tu caso.
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="mt-6 bg-verde-50 border border-verde-200 rounded-xl p-5">
         <p className="font-semibold text-verde-800 mb-2">Proximo paso</p>
-        {(tipoDocumento === "pedir_negativa" || tipoDocumento === "seguimiento") ? (
+        {(tipoDocumento === TIPO_DOCUMENTO.PEDIR_NEGATIVA || tipoDocumento === TIPO_DOCUMENTO.SEGUIMIENTO) ? (
           <div className="text-sm text-verde-700 space-y-2">
             <p>Envia este email a la auditoria medica de tu obra social:</p>
             {os.auditoria?.email && <p>Email: <strong>{os.auditoria.email}</strong></p>}
             {os.auditoria?.telefono && <p>Telefono: <strong>{os.auditoria.telefono}</strong></p>}
             <p className="text-xs text-verde-600">Si no responden, el siguiente paso es la carta documento.</p>
           </div>
-        ) : tipoDocumento === "promesa" ? (
+        ) : tipoDocumento === TIPO_DOCUMENTO.PROMESA ? (
           <div className="text-sm text-verde-700 space-y-2">
             <p className="font-medium">Como presentar la solicitud PROMESA:</p>
             <ol className="list-decimal pl-5 space-y-1 text-xs">
@@ -834,3 +526,9 @@ export default function AsistenteReclamo({
     </div>
   );
 }
+
+AsistenteReclamo.propTypes = {
+  tratamiento: PropTypes.string.isRequired,
+  nivelCobertura: PropTypes.string,
+  onBack: PropTypes.func.isRequired,
+};

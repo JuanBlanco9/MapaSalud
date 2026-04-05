@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { cargarPatologia } from "../data/patologias";
+import { CoberturaProvider } from "../context/CoberturaContext";
 import BarraProgreso from "../components/cobertura/BarraProgreso";
 import Paso1Cobertura from "../components/cobertura/Paso1Cobertura";
 import Paso1Plan from "../components/cobertura/Paso1Plan";
@@ -11,7 +12,7 @@ import AsistenteReclamo from "../components/AsistenteReclamo";
 export default function Cobertura() {
   const { patologiaId } = useParams();
   const [patologia, setPatologia] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [paso, setPaso] = useState(1);
   const [os, setOs] = useState(null);
   const [plan, setPlan] = useState(null);
@@ -22,13 +23,18 @@ export default function Cobertura() {
   const [nivelReclamo, setNivelReclamo] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    cargarPatologia(patologiaId).then((data) => {
-      setPatologia(data);
-      setLoading(false);
-    });
+    let cancelled = false;
+    setLoaded(false);
+    setPatologia(null);
     setPaso(1); setOs(null); setPlan(null); setShowPlanSelect(false);
     setCancer(null); setSubtipo(null); setTratamientoReclamo(null); setNivelReclamo(null);
+    cargarPatologia(patologiaId).then((data) => {
+      if (!cancelled) {
+        setPatologia(data);
+        setLoaded(true);
+      }
+    });
+    return () => { cancelled = true; };
   }, [patologiaId]);
 
   const handleSelectOs = (selectedOs) => {
@@ -54,7 +60,18 @@ export default function Cobertura() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading) return <div className="py-24 text-center text-gris-500">Cargando...</div>;
+  const config = patologia?.config ?? null;
+  const tipos = patologia?.tipos ?? null;
+  const getNivelDroga = patologia?.getNivelDroga ?? null;
+  const nivelesInfo = patologia?.nivelesInfo ?? null;
+  const pmo = patologia?.pmo ?? null;
+  const pasoActual = showPlanSelect ? 1 : paso;
+
+  const coberturaCtx = useMemo(() => ({
+    os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, config, patologiaId,
+  }), [os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, config, patologiaId]);
+
+  if (!loaded) return <div className="py-24 text-center text-gris-500">Cargando...</div>;
   if (!patologia) return (
     <div className="py-24 text-center">
       <p className="text-xl text-gris-600 mb-4">Patologia no encontrada</p>
@@ -62,11 +79,8 @@ export default function Cobertura() {
     </div>
   );
 
-  const { config, tipos, getNivelDroga, nivelesInfo, pmo } = patologia;
-  const pasoActual = showPlanSelect ? 1 : paso;
-
   return (
-    <div>
+    <CoberturaProvider value={coberturaCtx}>
       <section className="bg-azul-700 text-white py-10 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">Tu cobertura — {config.nombre}</h1>
@@ -86,15 +100,14 @@ export default function Cobertura() {
         <Paso2Diagnostico os={os} plan={plan} tipos={tipos} config={config} onSelectSubtipo={handleSelectSubtipo} onBack={handleBackToPaso1} />
       )}
       {paso === 3 && os && cancer && subtipo && (
-        <Paso3Mapa os={os} plan={plan} cancer={cancer} subtipo={subtipo} pmo={pmo}
-          getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} config={config}
+        <Paso3Mapa
           onBack={handleBackToPaso2} onReset={handleReset} onIniciarReclamo={handleIniciarReclamo} />
       )}
       {paso === 4 && os && cancer && subtipo && tratamientoReclamo && (
-        <AsistenteReclamo os={os} plan={plan} cancer={cancer} subtipo={subtipo}
+        <AsistenteReclamo
           tratamiento={tratamientoReclamo} nivelCobertura={nivelReclamo}
-          patologiaId={patologiaId} onBack={handleBackToPaso3} />
+          onBack={handleBackToPaso3} />
       )}
-    </div>
+    </CoberturaProvider>
   );
 }

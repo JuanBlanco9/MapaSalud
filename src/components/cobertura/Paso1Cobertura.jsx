@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { obrasSociales } from "../../data/coberturas";
+import { obrasSociales } from "../../data/obrasSociales";
 
 export default function Paso1Cobertura({ onSelect }) {
   return (

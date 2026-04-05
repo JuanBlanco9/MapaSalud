@@ -1,4 +1,5 @@
-import { getNivelDroga, nivelesInfo } from "../data/coberturas";
+import { getNivelDroga } from "../data/coberturas";
+import { NIVEL_COBERTURA } from "../constants";
 
 const MARGIN = 20;
 const PAGE_W = 210;
@@ -17,12 +18,12 @@ function checkPage(doc, y, needed = 20) {
 function nivelText(nombre) {
   const n = getNivelDroga(nombre);
   if (!n) return "[?]";
-  if (n === "nacional") return "[CUBIERTO - Res. 3377/2022]";
-  if (n === "pba") return "[CUBIERTO PBA - IPC]";
+  if (n === NIVEL_COBERTURA.NACIONAL) return "[CUBIERTO - Res. 3377/2022]";
+  if (n === NIVEL_COBERTURA.PBA) return "[CUBIERTO PBA - IPC]";
   return "[REQUIERE GESTION]";
 }
 
-export async function generarMapaPDF({ os, plan, cancer, subtipo, pmo }) {
+export async function generarMapaPDF({ os, plan, cancer, subtipo }) {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "mm", format: "a4" });
   const fecha = new Date().toLocaleDateString("es-AR", {

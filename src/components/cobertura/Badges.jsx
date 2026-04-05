@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useState, memo } from "react";
+import PropTypes from "prop-types";
 import { Check, Clock, AlertTriangle, Info, ChevronDown } from "lucide-react";
-import { nivelStyles, dificultadStyles } from "./estilos";
+import { nivelStyles } from "./estilos";
 import { getDificultadAcceso, dificultadInfo, getFundamentacion } from "../../data/dificultadAcceso";
 import { getExplicacion } from "../../data/explicacionesDrogas";
+import { NIVEL_COBERTURA, DIFICULTAD } from "../../constants";
 
 // ── Semaforo de cobertura legal ─────────────────────────────────
+
+const NIVEL_COLORS = {
+  [NIVEL_COBERTURA.NACIONAL]: "text-verde-700", [NIVEL_COBERTURA.LEY]: "text-verde-700", [NIVEL_COBERTURA.PMO]: "text-verde-700",
+  [NIVEL_COBERTURA.PBA]: "text-naranja-600",
+  [NIVEL_COBERTURA.GESTION]: "text-red-600",
+};
+const NIVEL_DOTS = {
+  [NIVEL_COBERTURA.NACIONAL]: "bg-verde-500", [NIVEL_COBERTURA.LEY]: "bg-verde-500", [NIVEL_COBERTURA.PMO]: "bg-verde-500",
+  [NIVEL_COBERTURA.PBA]: "bg-naranja-500",
+  [NIVEL_COBERTURA.GESTION]: "bg-red-500",
+};
+const DIFICULTAD_CONFIGS = {
+  [DIFICULTAD.DIRECTO]: { icon: Check, style: "text-verde-600" },
+  [DIFICULTAD.TRAMITE]: { icon: Clock, style: "text-naranja-600" },
+  [DIFICULTAD.DIFICIL]: { icon: AlertTriangle, style: "text-red-500" },
+};
 
 export function NivelBadge({ nivel, niveles }) {
   const info = niveles && niveles[nivel];
   if (!nivel || !info) return null;
-  const colors = {
-    nacional: "text-verde-700", ley: "text-verde-700", pmo: "text-verde-700",
-    pba: "text-naranja-600",
-    gestion: "text-red-600",
-  };
-  const dots = {
-    nacional: "bg-verde-500", ley: "bg-verde-500", pmo: "bg-verde-500",
-    pba: "bg-naranja-500",
-    gestion: "bg-red-500",
-  };
   return (
-    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold ${colors[nivel] || colors.gestion}`}>
-      <span className={`w-2 h-2 rounded-full ${dots[nivel] || dots.gestion}`} />
+    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold ${NIVEL_COLORS[nivel] || NIVEL_COLORS[NIVEL_COBERTURA.GESTION]}`}>
+      <span className={`w-2 h-2 rounded-full ${NIVEL_DOTS[nivel] || NIVEL_DOTS[NIVEL_COBERTURA.GESTION]}`} />
       {info.label}
     </span>
   );
@@ -33,12 +41,7 @@ export function DificultadBadge({ nombre }) {
   const dif = getDificultadAcceso(nombre);
   if (!dif || !dificultadInfo[dif]) return null;
   const info = dificultadInfo[dif];
-  const configs = {
-    directo: { icon: Check, style: "text-verde-600" },
-    tramite: { icon: Clock, style: "text-naranja-600" },
-    dificil: { icon: AlertTriangle, style: "text-red-500" },
-  };
-  const c = configs[dif];
+  const c = DIFICULTAD_CONFIGS[dif];
   const Icon = c.icon;
   return (
     <span className={`inline-flex items-center gap-1 text-xs font-medium ${c.style}`}>
@@ -88,11 +91,11 @@ export function EvidenciaPanel({ fund }) {
 
 // ── Droga con semaforo + advertencia + (i) ──────────────────────
 
-export function DrogaConNivel({ nombre, getNivel, niveles }) {
+export const DrogaConNivel = memo(function DrogaConNivel({ nombre, getNivel, niveles }) {
   const [showInfo, setShowInfo] = useState(false);
   const [showExplicacion, setShowExplicacion] = useState(false);
   const nivel = getNivel ? getNivel(nombre) : null;
-  const style = nivel && nivelStyles[nivel] ? nivelStyles[nivel] : nivelStyles.gestion;
+  const style = nivel && nivelStyles[nivel] ? nivelStyles[nivel] : nivelStyles[NIVEL_COBERTURA.GESTION];
   const fund = getFundamentacion(nombre);
   const expl = getExplicacion(nombre);
 
@@ -115,7 +118,7 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5">
-          <NivelBadge nivel={nivel || "gestion"} niveles={niveles} />
+          <NivelBadge nivel={nivel || NIVEL_COBERTURA.GESTION} niveles={niveles} />
           <DificultadBadge nombre={nombre} />
         </div>
       </div>
@@ -147,7 +150,7 @@ export function DrogaConNivel({ nombre, getNivel, niveles }) {
       {showInfo && <EvidenciaPanel fund={fund} />}
     </div>
   );
-}
+});
 
 // ── Item de PMO con semaforo + advertencia ──────────────────────
 
@@ -189,7 +192,7 @@ export function PmoTratamientoItem({ t }) {
 
 // ── Leyenda expandible (link al final) ──────────────────────────
 
-export function LeyendaExpandible({ nivelesInfo }) {
+export function LeyendaExpandible({ nivelesInfo: _nivelesInfo }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="mt-6">
@@ -221,3 +224,41 @@ export function LeyendaExpandible({ nivelesInfo }) {
     </div>
   );
 }
+
+// ── PropTypes ──────────────────────────────────────────────────
+
+NivelBadge.propTypes = {
+  nivel: PropTypes.string,
+  niveles: PropTypes.object,
+};
+
+DificultadBadge.propTypes = {
+  nombre: PropTypes.string.isRequired,
+};
+
+EvidenciaPanel.propTypes = {
+  fund: PropTypes.shape({
+    porque: PropTypes.string,
+    datosLitigiosidad: PropTypes.string,
+    fallos: PropTypes.arrayOf(PropTypes.shape({ titulo: PropTypes.string, tribunal: PropTypes.string, url: PropTypes.string })),
+    normativa: PropTypes.arrayOf(PropTypes.shape({ titulo: PropTypes.string, url: PropTypes.string })),
+  }),
+};
+
+DrogaConNivel.propTypes = {
+  nombre: PropTypes.string.isRequired,
+  getNivel: PropTypes.func,
+  niveles: PropTypes.object,
+};
+
+PmoTratamientoItem.propTypes = {
+  t: PropTypes.shape({
+    tipo: PropTypes.string.isRequired,
+    cobertura: PropTypes.string.isRequired,
+    nota: PropTypes.string,
+  }).isRequired,
+};
+
+LeyendaExpandible.propTypes = {
+  nivelesInfo: PropTypes.object.isRequired,
+};

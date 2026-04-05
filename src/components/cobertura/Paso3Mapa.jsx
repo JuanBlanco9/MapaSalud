@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Download, Check, Shield, AlertTriangle, FileText, Phone, Stethoscope, Clock, XCircle } from "lucide-react";
 import { Verificando, mostrarDato } from "./Verificando";
@@ -6,6 +7,8 @@ import { DrogaConNivel, PmoTratamientoItem, LeyendaExpandible } from "./Badges";
 import { getDisclaimerDificultad } from "../../data/dificultadPorOS";
 import { getOrganizaciones } from "../../data/organizacionesPorPatologia";
 import { generarMapaPDF } from "../../utils/generarPDF";
+import { OS_ID } from "../../constants";
+import { useCobertura } from "../../context/CoberturaContext";
 
 const TABS = [
   { id: "cobertura", label: "Tu cobertura", icon: Shield },
@@ -13,9 +16,10 @@ const TABS = [
   { id: "reclamo", label: "Tu reclamo", icon: AlertTriangle },
 ];
 
-export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, config, onBack, onReset, onIniciarReclamo }) {
+export default function Paso3Mapa({ onBack, onReset, onIniciarReclamo }) {
+  const { os, plan, cancer, subtipo, pmo, getNivelDroga, nivelesInfo, config } = useCobertura();
   const [tab, setTab] = useState("cobertura");
-  const esPublico = os.id === "hospital_publico";
+  const esPublico = os.id === OS_ID.HOSPITAL_PUBLICO;
 
   return (
     <div className="max-w-4xl mx-auto px-4 pb-12">
@@ -82,7 +86,7 @@ export default function Paso3Mapa({ os, plan, cancer, subtipo, pmo, getNivelDrog
       {/* ── Contenido de tabs ─────────────────────────────────── */}
       <div className="bg-white border-x border-b border-gris-200 rounded-b-xl p-5">
         {tab === "cobertura" && <TabCobertura os={os} plan={plan} pmo={pmo} esPublico={esPublico} onNextTab={() => setTab("tratamiento")} />}
-        {tab === "tratamiento" && <TabTratamiento cancer={cancer} subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} os={os} onNextTab={() => setTab("reclamo")} />}
+        {tab === "tratamiento" && <TabTratamiento subtipo={subtipo} getNivelDroga={getNivelDroga} nivelesInfo={nivelesInfo} os={os} onNextTab={() => setTab("reclamo")} />}
         {tab === "reclamo" && <TabReclamo os={os} subtipo={subtipo} config={config} esPublico={esPublico} onIniciarReclamo={onIniciarReclamo} getNivelDroga={getNivelDroga} />}
       </div>
 
@@ -226,7 +230,7 @@ function TabCobertura({ os, plan, pmo, esPublico, onNextTab }) {
 
 // ── TAB 2: Tu tratamiento ───────────────────────────────────────
 
-function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os, onNextTab }) {
+function TabTratamiento({ subtipo, getNivelDroga, nivelesInfo, os, onNextTab }) {
   const disclaimer = getDisclaimerDificultad(os.id);
 
   return (
@@ -239,6 +243,7 @@ function TabTratamiento({ cancer, subtipo, getNivelDroga, nivelesInfo, os, onNex
             : "bg-gris-50 border border-gris-200 text-gris-500"
         }`}>
           <p>{disclaimer.texto}</p>
+          <p className="mt-1 italic">La dificultad de acceso es una estimacion basada en normativa y fallos judiciales — no es un dato exacto. Tu experiencia real puede variar.</p>
           {disclaimer.confianza === "baja" && (
             <p className="mt-1 italic">Si tenes experiencia con {os.nombre} en oncologia o diabetes, tu feedback nos ayuda a mejorar estos datos.</p>
           )}
@@ -410,3 +415,9 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
     </div>
   );
 }
+
+Paso3Mapa.propTypes = {
+  onBack: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  onIniciarReclamo: PropTypes.func.isRequired,
+};
