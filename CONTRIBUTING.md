@@ -54,16 +54,16 @@ Si sos abogado/a especializado/a en salud:
 ## Setup de desarrollo
 
 ```bash
-git clone https://github.com/mapasalud/mapasalud.git
+git clone https://github.com/JuanBlanco9/MapaSalud.git
 cd mapasalud
 npm install
 npm run dev
 ```
 
-Para el asistente de reclamos con IA (opcional):
-
 ```bash
-echo "ANTHROPIC_API_KEY=tu_key" > .env.local
+npm run test        # 36 tests
+npm run lint        # ESLint strict
+npm run build       # Build de produccion
 ```
 
 ## Principios

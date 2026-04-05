@@ -6,9 +6,15 @@
 </p>
 
 <p align="center">
+  <a href="https://mapa-salud.vercel.app">mapa-salud.vercel.app</a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite" />
   <img src="https://img.shields.io/badge/Vercel-Deploy-000?style=for-the-badge&logo=vercel" />
+  <img src="https://img.shields.io/badge/Tests-36_passing-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
 </p>
 
@@ -16,9 +22,7 @@
 
 ## El problema
 
-En 2024 se iniciaron **10.072 amparos de salud** en Argentina — un crecimiento del 471% respecto a 2023 ([Decreto 379/2025, Boletin Oficial](https://www.boletinoficial.gob.ar/detalleAviso/primera/326414/20250604)). Mas del 80% se resuelven favorablemente para el paciente ([OLEGISAR](https://olegisar.org/amparos-de-salud-estadistica-doctrina-y-registro-nacional/)). El problema no es la ley — es que la mayoria de los pacientes no sabe que puede reclamar, como hacerlo, ni a quien llamar.
-
----
+En 2024 se iniciaron **10.072 amparos de salud** en Argentina ([Registro SSS](https://www.sssalud.gob.ar/index.php?page=bus_regamparo)). Mas del 80% se resuelven favorablemente para el paciente ([OLEGISAR](https://olegisar.csjn.gob.ar/)). El problema no es la ley — es que la mayoria de los pacientes no sabe que puede reclamar, como hacerlo, ni a quien llamar.
 
 ## Que hace
 
@@ -26,13 +30,12 @@ MapaSalud toma la situacion del paciente (obra social + diagnostico) y le muestr
 
 | Funcion | Descripcion |
 |---------|-------------|
-| **Mapa de cobertura** | Que tratamientos le corresponden, cruzados contra el listado oficial de medicamentos (Res. 3377/2022, Anexo I verificado contra PDF del Ministerio de Salud) |
-| **Cobertura + dificultad** | Dos indicadores por droga: derecho legal (semaforo) + dificultad de acceso real (advertencia), con evidencia expandible |
-| **Explicaciones de drogas** | Cada droga/insumo clickeable con explicacion en lenguaje simple, forma de administracion, y links a fuentes medicas |
-| **Asistente de reclamos** | Genera cartas documento, emails formales, y solicitudes PROMESA con base legal verificada y jurisprudencia aplicable |
-| **PROMESA** | Soporte para el nuevo procedimiento de mediacion prejudicial (Decreto 379/2025) — primera herramienta que genera la solicitud formal |
-| **PDF descargable** | Mapa personalizado con header, firma digital, y disclaimer legal |
-| **Guia de amparos** | Paso a paso, documentacion, modelos de carta, organizaciones, defensores del pueblo, jurisprudencia |
+| **Mapa de cobertura** | Que tratamientos le corresponden, con semaforo legal + dificultad de acceso real |
+| **Explicaciones de drogas** | Cada droga clickeable con explicacion simple, administracion, precio aproximado |
+| **Asistente de reclamos** | Genera cartas documento, emails, intimaciones y resumen PROMESA con base legal diferenciada segun nivel de cobertura |
+| **Jurisprudencia** | 47 fallos verificados contra fuentes primarias (Microjuris, SAIJ, CIJ) |
+| **Guia de amparos** | Paso a paso, PROMESA (DNU 379/2025), organizaciones, defensores del pueblo |
+| **PDF descargable** | Mapa personalizado con firma digital |
 
 ### No es una herramienta medica
 
@@ -40,17 +43,57 @@ No recomienda tratamientos, no dice si el medico tiene razon, no garantiza resul
 
 ---
 
-## Patologias
+## Patologias cubiertas
 
 | Patologia | Estado | Datos |
 |-----------|--------|-------|
-| **Oncologia** | Completa | 103 drogas (Res. 3377/2022). 5 canceres, 15+ subtipos. 10 OS con telefonos. Precios abril 2026. 30 drogas con explicacion. |
-| **Diabetes Tipo 1** | Completa | Insulinas, sensores CGM, bombas. Ley 23.753 + Ley 26.914 + Res. 2091/2025. Organizaciones especificas. |
-| Enfermedades poco frecuentes | Planificado | Ley 26.689 |
-| Reumatologicas | Planificado | — |
-| VIH / Hepatitis | Planificado | Ley 27.675 |
+| **Oncologia** | Completa | 75+ drogas mapeadas (Res. 3377/2022). 5 canceres, 15 subtipos. 10 OS con telefonos verificados. |
+| **Diabetes Tipo 1** | Completa | Insulinas, sensores (FreeStyle Libre al 100% por Res. 2091/2025), bombas. |
+| Enfermedades poco frecuentes | Planificado | — |
+| VIH / Hepatitis | Planificado | — |
 
-Agregar una patologia nueva = crear 3 archivos JS (`config.js`, `tipos.js`, `cobertura.js`) y registrarla en `patologias/index.js`.
+---
+
+## Datos verificados
+
+Todas las citas legales fueron cruzadas contra el texto oficial descargado de InfoLEG y Boletin Oficial.
+
+| Dato | Fuente | Verificacion |
+|------|--------|-------------|
+| Normativa (12 regulaciones) | PDFs oficiales de InfoLEG/B.O. | Abril 2026 — [ver docs/normas_pdf/](docs/normas_pdf/) |
+| 47 fallos judiciales | Microjuris (14 con cita MJ), SAIJ (7 CSJN), CIJ, poderes judiciales | Abril 2026 — [ver JURISPRUDENCIA_VERIFICADA.md](JURISPRUDENCIA_VERIFICADA.md) |
+| Precios medicamentos | preciosdemedicamentos.com.ar, alfabeta.net | Abril 2026 (nota visible: "pueden haber cambiado") |
+| 10 OS con telefonos | Sitios oficiales de cada OS | Abril 2026 |
+| Drogas no disponibles en ARG | Verificacion ANMAT | Marcadas con "(no disponible en ARG)" y excluidas del reclamo |
+
+### Regulaciones usadas
+
+1. Res. 201/2002 — PMO (Anexo I, punto 7.3: oncologia al 100%)
+2. Res. 3377/2022 — Listado Complementario de Medicamentos Oncologicos
+3. Res. 1926/2024 — Oncologia exceptuada de coseguros
+4. Ley 26.682 Art. 7 — Prepagas deben cubrir PMO
+5. Ley 23.660 Art. 3 — Obras sociales
+6. Ley 24.754 — Prepagas = mismas prestaciones que OS
+7. Ley 26.872 — Reconstruccion mamaria obligatoria
+8. Ley 23.753 Art. 5 — Cobertura 100% diabetes
+9. Ley 26.914 — Ampliacion cobertura diabetes
+10. Res. 2091/2025 — Sensores flash al 100% para insulinodependientes
+11. CN Art. 42 y 43 — Proteccion de la salud y amparo
+12. DNU 379/2025 — PROMESA (mediacion prejudicial en salud)
+
+Cada una verificada contra el texto oficial. Ver [docs/normas_pdf/](docs/normas_pdf/).
+
+### Jurisprudencia
+
+47 fallos organizados por tipo de reclamo. Cada uno con:
+- Caratula real, tribunal, fecha
+- Cita verificable (14 con numero MJ, 7 con Fallos CSJN)
+- Nivel de aplicabilidad (alto/medio/bajo) para evitar citas incorrectas
+- URL a la fuente cuando esta disponible
+
+Cobertura: 11 provincias, todos los tipos de reclamo (QT, dirigida, estudios, cirugia, sensores, bombas, insulinas).
+
+Ver [JURISPRUDENCIA_VERIFICADA.md](JURISPRUDENCIA_VERIFICADA.md) para el detalle completo.
 
 ---
 
@@ -58,132 +101,81 @@ Agregar una patologia nueva = crear 3 archivos JS (`config.js`, `tipos.js`, `cob
 
 ```
 src/
+  constants.js                         # Constantes globales (elimina magic strings)
+  context/CoberturaContext.jsx         # Context para prop drilling
   components/
-    layout/                          # Header, Footer, Layout
-    cobertura/                       # UI del flujo de cobertura
-      BarraProgreso.jsx
-      Paso1Cobertura.jsx             # Selector de OS
-      Paso1Plan.jsx                  # Selector de plan
-      Paso2Diagnostico.jsx           # Selector de diagnostico
-      Paso3Mapa.jsx                  # Mapa con tabs (cobertura/tratamiento/reclamo)
-      Badges.jsx                     # NivelBadge, DificultadBadge, DrogaConNivel, EvidenciaPanel
-      Verificando.jsx
-    AsistenteReclamo.jsx             # Formulario + firma + generacion de cartas
+    ErrorBoundary.jsx                  # Catch de errores global
+    layout/                            # Header, Footer, Layout
+    cobertura/                         # UI del flujo de cobertura
+      Badges.jsx                       # NivelBadge, DificultadBadge, DrogaConNivel (memo)
+      Paso3Mapa.jsx                    # Mapa con tabs (cobertura/tratamiento/reclamo)
+    reclamo/
+      ProgresoCarta.jsx                # Barra de progreso del asistente
+      PanelFirma.jsx                   # Canvas de firma touch
+    AsistenteReclamo.jsx               # Flujo de reclamo (525 lineas)
   pages/
-    Home.jsx                         # Landing con stats y selector de patologia
-    Cobertura.jsx                    # Orquestador del flujo (100 lineas)
-    SeleccionPatologia.jsx           # Oncologia / Diabetes
-    Amparo.jsx                       # Guia de amparos (10 secciones)
+    Home.jsx                           # Landing con stats linkeadas a fuentes
+    Cobertura.jsx                      # Orquestador (CoberturaProvider)
+    Amparo.jsx                         # Guia de amparos + PROMESA
   data/
-    coberturas.js                    # 10 OS con datos reales
-    explicacionesDrogas.js           # 30 drogas explicadas en lenguaje simple
-    dificultadAcceso.js              # Dificultad real + fundamentacion con links a fallos
-    dificultadPorOS.js               # Ajustes por OS con disclaimers de confianza
-    textosLegales.js                 # 15 articulos verificados contra InfoLEG/BO
-    templatesCarta.js                # 6 templates (seguimiento, negativa, carta doc, intimacion, PROMESA onco, PROMESA diabetes)
-    organizacionesPorPatologia.js    # LALCEC/FUCA para onco, CUI.D.AR/LAPDI/SAD para diabetes
-    datosAmparosReales.js            # Informe Min. Salud 2022 (datos oficiales)
-    indiceLitigiosidad.js            # Evidencia cualitativa SAIJ (279K fallos procesados)
+    coberturas.js                      # 10 OS + nivelCobertura (75+ drogas)
+    obrasSociales.js                   # Re-export separado de OS (compartido entre patologias)
+    templatesCarta.js                  # 7 templates diferenciados por cobertura (cubierto/pba/gestion)
+    textosLegales.js                   # 16 textos legales verificados con URL
+    explicacionesDrogas.js             # 49 drogas con explicacion simple
+    dificultadAcceso.js                # Dificultad real + fundamentacion con fallos
+    dificultadPorOS.js                 # Ajustes por OS + disclaimer visible
+    organizacionesPorPatologia.js      # LALCEC, FUCA, CUI.D.AR, etc.
     jurisprudencia/
-      fallos.js                      # 40 fallos verificados con caratula, tribunal, fecha
-      contexto.js                    # Aplicabilidad (alto/medio/bajo) por fallo
+      fallos.js                        # 47 fallos verificados
+      contexto.js                      # Aplicabilidad por fallo (34 entradas)
+      index.js                         # Re-exports
     patologias/
-      index.js                       # Registry + loader dinamico
-      oncologia/                     # config + tipos + cobertura
-      diabetes1/                     # config + tipos + cobertura
+      index.js                         # Registry + dynamic import()
+      oncologia/                       # config + tipos + cobertura
+      diabetes1/                       # config + tipos + cobertura
   utils/
-    generarPDF.js                    # PDF con header MapaSalud, firma, footer
-api/
-  generar-carta.js                   # Edge Function (Claude API, deshabilitado por default)
-pipeline/                            # Scripts de procesamiento de datos judiciales
-  01_descargar_datos.py              # datos.jus.gob.ar
-  02_procesar_amparos.py             # Filtrar y clasificar
-  04_saij_huggingface.py             # Streaming de 279K fallos SAIJ
+    generarPDF.js                      # PDF mapa de cobertura
+    generarReclamoPDF.js               # PDF reclamo con firma
+  test/
+    setup.js                           # Vitest + jsdom
+    constants.test.js
+    templatesCarta.test.js             # 14 tests (por cobertura, por patologia, PBA, CNACAF, error)
+    textosLegales.test.js
+    jurisprudencia.test.js
 ```
 
-### Dos indicadores por droga
+### Templates diferenciados por nivel de cobertura
 
-| Indicador | Que mide | Ejemplo |
-|-----------|----------|---------|
-| **Semaforo** (derecho legal) | Si la ley obliga a cubrirlo | 🟢 Cubierto Res. 3377 / 🟡 Provincial / 🔴 Requiere gestion |
-| **Advertencia** (acceso real) | Que tan facil es conseguirlo | ✓ Directo / ⏱ Tramite / ⚠ Dificil |
+Cada template genera argumentacion legal distinta segun el nivel de la droga:
 
-Cada droga tiene un boton (i) que expande la evidencia: por que esa clasificacion, fallos judiciales con links, y normativa. El nombre de la droga es clickeable y muestra una explicacion en lenguaje simple.
+| Nivel | Argumento legal | Ejemplo |
+|-------|----------------|---------|
+| **Cubierto** (nacional/ley/pmo) | "Se encuentra en los listados oficiales" + cita Res. 3377 o Ley 23.753 | Trastuzumab, FreeStyle Libre |
+| **PBA** (provincial) | "Incluido en el IPC provincial Buenos Aires" | T-DM1, Atezolizumab |
+| **Gestion** | "PMO es piso no techo" + cita CSJN Benghalensis (Fallos 323:1339) + CNACAF B.J.G. c/ OSPLAD | Osimertinib, Dexcom G7 |
 
-**Metodologia de dificultad:**
-- Basada en fallos judiciales verificados, datos de OS (`queAprueban`/`queNiegan`), precio, y disponibilidad
-- Es un **promedio nacional**, no especifico por OS. Donde tenemos datos de una OS, la UI muestra un disclaimer con la fuente
-- Donde NO tenemos datos, lo decimos explicitamente
-- Fundamentacion completa en `dificultadAcceso.js` con links a fuentes
+La CSJN y la CNACAF se citan en **oraciones separadas** para no confundir jurisdicciones.
 
 ### Asistente de reclamos
 
 ```
 Paciente completa su mapa → elige tratamiento a reclamar
     ↓
-3 preguntas: ¿ya lo pediste? ¿que respondieron? ¿cuando?
+3 preguntas: ya lo pediste? / que respondieron? / cuando?
     ↓
 Si negativa escrita → elige: Carta documento o PROMESA
     ↓
-Formulario de datos (nombre, DNI, medico, matricula) + firma touch
+Formulario de datos + firma touch
     ↓
-Template pre-generado con:
-  - Datos reales del paciente (no [COMPLETAR])
-  - Base legal por patologia (PMO 7.3 para onco, Ley 23.753 para diabetes)
-  - Jurisprudencia filtrada por aplicabilidad (solo fallos de nivel alto/medio)
-  - Tono calibrado (firme, respetuoso, sin ultimatums)
+Template con base legal diferenciada + jurisprudencia de nivel alto
     ↓
-Copiar texto / Descargar .txt / PDF con firma
+Copiar / .txt / PDF con firma
+    ↓
+Proximo paso: escalacion en 3 pasos con plazos (10 dias, SSS, amparo)
 ```
 
-### Jurisprudencia
-
-40 fallos verificados con caratula, tribunal, y fecha. Cada uno con:
-- Nivel de aplicabilidad (alto/medio/bajo) para evitar citas incorrectas
-- Links a fuentes verificables (Microjuris, SAIJ, CIJ, poderes judiciales provinciales)
-- Archivo de respaldo en [mapasalud-fallos](https://github.com/JuanBlanco9/mapasalud-fallos) (CC0)
-
-Cobertura: 7/7 tipos de reclamo, 11 provincias, 12+ OS/prepagas.
-
-### PROMESA (nuevo)
-
-Soporte para el Procedimiento de Mediacion Prejudicial en Materia de Salud (Decreto 379/2025):
-- Template de solicitud formal para presentar por TAD
-- Explicacion paso a paso del procedimiento
-- La OS no puede negarse a participar
-- Primera audiencia en 5 dias
-- Requiere abogado (patrocinio gratuito disponible)
-
----
-
-## Datos verificados
-
-| Dato | Fuente | Verificacion |
-|------|--------|-------------|
-| 103 drogas oncologicas | Anexo I, Res. 3377/2022 (PDF oficial) | Abril 2026 |
-| 15 textos legales | InfoLEG, Boletin Oficial, SAIJ | Abril 2026, 5 correcciones aplicadas |
-| 10 OS con telefonos | Sitios oficiales + Mundo Cancer | Abril 2026 |
-| Precios medicamentos | preciosdemedicamentos.com.ar, alfabeta.net | Abril 2026 |
-| 40 fallos judiciales | Microjuris, SAIJ, CIJ, poderes judiciales provinciales | Abril 2026 |
-| 10.072 amparos 2024 | Decreto 379/2025, Boletin Oficial | Dato oficial |
-| Drogas mas litigadas | SciELO (Medicina Buenos Aires, 405 amparos 2017-2020) | Paper peer-reviewed |
-| Res. 2091/2025 (sensores diabetes) | Boletin Oficial, InfoLEG | Julio 2025 |
-| PROMESA | Decreto 379/2025, Res. Conjunta 1/2025, guia FADEPOF | Septiembre 2025 |
-
-### Obras sociales
-
-| OS | Telefono auditoria | Canal | Datos especificos |
-|----|-------------------|-------|-------------------|
-| IOMA | 0810-999-4662 / WA +54 911 5050 4662 | App IOMA Digital | Programa Cuidarte, alertas de demora |
-| OSDE | 0810-555-6733 | App OSDE / web | Formulario oncologico ene 2024 |
-| Swiss Medical | 0810-444-7700 | Mi Swiss Medical | 3 dias habiles / 15-30 auditoria |
-| Galeno | 0810-999-7828 | App Galeno | Por plan: Oro/Plata/Azul |
-| Medife | 0800-999-9000 / WA | Portal web | Politica off-label explicita |
-| OSECAC | 0800-666-0400 | App OSECAC | — |
-| OMINT | 0800-777-6246 | Web (2 niveles) | Consulta internacional |
-| AMOBP | 0800-555-6722 | Presencial | Planes S-100/200/300 |
-| DOSEP | 266-4452000 x4045 | Hospitales designados | Alertas: denegaciones sistematicas |
-| Hospital publico | bndo@msal.gov.ar | BNDE via hospital | INC → Dir. Nac. Cancer (2025) |
+El template de PROMESA se genera como **resumen del caso para el abogado**, no como documento final (requiere patrocinio letrado obligatorio).
 
 ---
 
@@ -196,11 +188,12 @@ npm install
 npm run dev
 ```
 
-La app funciona completa sin API key ni backend. El asistente de reclamos usa templates pre-generados.
+La app funciona completa sin API key ni backend.
 
 ```bash
 npm run build       # Build de produccion
-npm run preview     # Preview local
+npm run test        # 36 tests (Vitest)
+npm run lint        # ESLint strict (0 errores)
 ```
 
 ### Deploy en Vercel
@@ -209,20 +202,32 @@ npm run preview     # Preview local
 2. Framework: **Vite**
 3. Deploy
 
-Opcionalmente, agregar `ANTHROPIC_API_KEY` en Environment Variables para habilitar personalizacion con IA (deshabilitada por default, el boton dice "Proximamente").
+---
+
+## Testing
+
+```bash
+npm test            # 36 tests
+```
+
+Tests cubren:
+- Constantes (PATOLOGIA, OS_ID, NIVEL_COBERTURA, DIFICULTAD, TIPO_DOCUMENTO)
+- Templates por nivel de cobertura (cubierto/pba/gestion x oncologia/diabetes)
+- Separacion CSJN vs CNACAF en citas
+- Texto legal por patologia (no contaminacion onco↔diabetes)
+- Jurisprudencia (routing por tipo de reclamo)
+- Fallback de error para tipo de documento desconocido
 
 ---
 
-## Pipeline de datos
+## Calidad de codigo
 
-```bash
-cd pipeline
-python 01_descargar_datos.py     # Descarga datos.jus.gob.ar (66MB)
-python 02_procesar_amparos.py    # Filtra 56K amparos de 23K+ causas
-python 04_saij_huggingface.py    # Procesa 279K fallos SAIJ, extrae 832 amparos salud
-```
-
-Resultados en `pipeline/output/`. Los datos procesados alimentan `indiceLitigiosidad.js`.
+- **ESLint strict**: eqeqeq, no-var, prefer-const, no-console, no-debugger, exhaustive-deps
+- **PropTypes** en todos los componentes con props
+- **ErrorBoundary** global
+- **CoberturaContext** (elimina prop drilling — Paso3Mapa: 11 props → 3)
+- **memo()** en DrogaConNivel, style maps a nivel de modulo
+- **constants.js** elimina magic strings en 7 archivos
 
 ---
 
@@ -232,12 +237,16 @@ Ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
 | Area | Descripcion | Requiere programar |
 |------|-------------|-------------------|
-| **Curado de datos** | Verificar telefonos, precios, procesos de OS | No |
-| **Nuevas patologias** | EPF (Ley 26.689), reumatologicas, VIH | Si (3 archivos JS) |
-| **Explicaciones de drogas** | Agregar las que faltan en lenguaje simple | No |
-| **Accesibilidad** | Testing con lectores de pantalla | No |
-| **Legal** | Revision de textos por abogados en salud | No |
-| **Datos** | Procesar informes de Defensoria del Pueblo, CONETEC | Si (Python) |
+| **Verificar datos** | Telefonos, precios, procesos de OS | No |
+| **Nuevas patologias** | Crear 3 archivos JS (`config.js`, `tipos.js`, `cobertura.js`) | Si |
+| **Explicaciones de drogas** | Las que faltan, en lenguaje simple | No |
+| **Nuevos fallos** | Con caratula, tribunal, fecha, cita MJ/SAIJ | No |
+| **Revision legal** | Revision por abogados en derecho a la salud | No |
+
+### Reportar un error
+
+- **Email**: mapasalud.contacto@gmail.com
+- **GitHub**: [Abrir issue](https://github.com/JuanBlanco9/MapaSalud/issues/new?template=dato-incorrecto.md)
 
 ---
 
