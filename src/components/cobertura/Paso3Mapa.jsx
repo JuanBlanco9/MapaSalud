@@ -315,7 +315,7 @@ function TabReclamo({ os, subtipo, config, esPublico, onIniciarReclamo, getNivel
   const pasosOS = [
     { n: 1, t: "Pedi la negativa por escrito", d: "Es tu derecho. Si no te la dan, manda un email pidiendo formalmente." },
     { n: 2, t: "Reclamo a la SSS (gratis, sin abogado)", d: "Llama al 0800-222-72583 o ingresa a sssalud.gob.ar. No necesitas abogado." },
-    { n: 3, t: "PROMESA — mediacion prejudicial", d: "Via tramitesadistancia.gob.ar. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado (hay patrocinio gratuito)." },
+    { n: 3, t: "PROMESA — mediacion prejudicial (DNU 379/2025)", d: "La OS no puede negarse a participar. Primera audiencia en 5 dias. Requiere abogado (hay patrocinio gratuito via Ministerio de Justicia o Defensoria del Pueblo)." },
     { n: 4, t: "Amparo judicial", d: "Si ninguna via anterior resuelve. Mas del 80% de los amparos de salud se han resuelto favorablemente segun registros publicos." },
   ];
 

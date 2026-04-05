@@ -145,7 +145,7 @@ function TabPromesa() {
         <p className="font-semibold text-verde-800 mb-3">Como funciona</p>
         <div className="space-y-3">
           {[
-            { n: 1, t: "Inicialo por TAD", d: "Entra a tramitesadistancia.gob.ar y busca 'Mediacion prejudicial en materia de salud (PROMESA)'. Completa el formulario." },
+            { n: 1, t: "Consulta con un abogado", d: "PROMESA requiere patrocinio letrado obligatorio. Si no tenes abogado, podes solicitar patrocinio gratuito al Ministerio de Justicia o a la Defensoria del Pueblo." },
             { n: 2, t: "Se sortea un mediador", d: "El Ministerio de Justicia asigna un mediador especializado en salud." },
             { n: 3, t: "Primera audiencia en 5 dias", d: "El mediador fija la audiencia. Tu OS esta obligada a participar — no puede negarse." },
             { n: 4, t: "Si hay acuerdo, tiene fuerza legal", d: "Se firma un acta con validez legal. La OS debe cumplir." },

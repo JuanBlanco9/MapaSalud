@@ -62,7 +62,7 @@ export const textosLegales = {
   // ── PROMESA (mediacion prejudicial) ───────────────────────────
 
   decreto_379_2025:
-    `Decreto 379/2025 (publicado B.O. 2025): Establece el Procedimiento de Mediacion Prejudicial en Materia de Salud (PROMESA). Crea un mecanismo de mediacion obligatoria previo a la via judicial para controversias entre usuarios y agentes del sistema de salud. La entidad requerida no puede negarse a participar. Primera audiencia dentro de los 5 dias habiles. Requiere patrocinio letrado obligatorio. Se tramita a traves de TAD (tramitesadistancia.gob.ar). [Fuente: boletinoficial.gob.ar — verificar numero exacto de publicacion]`,
+    `DNU 379/2025 (publicado B.O. 04/06/2025, vigencia 02/09/2025): Establece el Procedimiento de Mediacion Prejudicial en Materia de Salud (PROMESA). Modifica la Ley 26.589 de mediacion prejudicial. Es optativo para el reclamante pero obligatorio para la entidad requerida (OS, prepagas). El mediador debe convocar la primera audiencia dentro de los 5 dias de su designacion. Requiere patrocinio letrado obligatorio (quienes no cuenten con recursos pueden solicitar patrocinio gratuito al Ministerio de Justicia). Se aplica a controversias con entidades comprendidas en las Leyes 23.660, 23.661 y 26.682. Reglamentado por Resolucion Conjunta 1/2025 (Min. Justicia y Min. Salud). [Fuente: boletinoficial.gob.ar/detalleAviso/primera/326414/20250604 — InfoLEG id 413574]`,
 
   // ── Jurisprudencia (pendiente de fallos especificos) ──────────
 

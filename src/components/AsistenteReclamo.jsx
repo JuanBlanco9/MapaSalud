@@ -31,7 +31,7 @@ const PREGUNTAS_RESPUESTA = [
 
 const OPCIONES_NEGATIVA_ESCRITA = [
   { id: TIPO_DOCUMENTO.CARTA_DOCUMENTO, label: "Carta documento (enviar por correo a la OS)", desc: "Intima a la OS a responder. Paso previo al amparo." },
-  { id: TIPO_DOCUMENTO.PROMESA, label: "PROMESA — mediacion prejudicial (mas rapido)", desc: "Mediacion oficial via TAD. La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado — te armamos el resumen del caso." },
+  { id: TIPO_DOCUMENTO.PROMESA, label: "PROMESA — mediacion prejudicial (mas rapido)", desc: "Mediacion oficial (DNU 379/2025). La OS no puede negarse. Primera audiencia en 5 dias. Requiere abogado — te armamos el resumen del caso." },
 ];
 
 function determinarTipoDocumento(respuestaOS, opcionEscrita) {
@@ -499,7 +499,7 @@ export default function AsistenteReclamo({
           <div className="text-sm text-verde-700 space-y-2">
             <p className="font-medium">Como presentar la solicitud PROMESA:</p>
             <ol className="list-decimal pl-5 space-y-1 text-xs">
-              <li>Ingresa a <strong>tramitesadistancia.gob.ar</strong> con tu DNI o CUIT</li>
+              <li>Consulta con tu abogado el canal de presentacion vigente</li>
               <li>Busca el tramite: "Mediacion prejudicial en materia de salud (PROMESA)"</li>
               <li>Completa el formulario con los datos de este documento</li>
               <li>Adjunta la documentacion (prescripcion medica, negativa de la OS, etc.)</li>

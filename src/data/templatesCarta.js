@@ -211,9 +211,9 @@ Copia a: Servicio Social del hospital`;
   // ── PROMESA: resumen del caso para abogado ────────────────
   if (tipoDocumento === TIPO_DOCUMENTO.PROMESA) {
     return `RESUMEN DEL CASO PARA PRESENTAR A TU ABOGADO — PROMESA
-Decreto 379/2025 — Procedimiento de Mediacion Prejudicial en Materia de Salud
+DNU 379/2025 — Procedimiento de Mediacion Prejudicial en Materia de Salud
 
-NOTA: Este documento es un resumen de tu caso para facilitar la consulta con un abogado. La presentacion formal ante TAD (tramitesadistancia.gob.ar) requiere patrocinio letrado obligatorio. Tu abogado usara estos datos como base para redactar la solicitud definitiva.
+NOTA: Este documento es un resumen de tu caso para facilitar la consulta con un abogado. El procedimiento PROMESA requiere patrocinio letrado obligatorio. Tu abogado usara estos datos como base para redactar la solicitud definitiva.
 
 Datos del requirente:
 Nombre: [COMPLETAR NOMBRE COMPLETO]
@@ -244,7 +244,7 @@ El tratamiento solicitado se enmarca en la normativa vigente: ${getBaseLegalProm
 
 PRETENSION:
 
-Se solicita que en el marco del procedimiento de mediacion PROMESA (Decreto 379/2025), la entidad requerida autorice y provea la cobertura integral de ${tratamiento} conforme prescripcion medica.
+Se solicita que en el marco del procedimiento de mediacion PROMESA (DNU 379/2025), la entidad requerida autorice y provea la cobertura integral de ${tratamiento} conforme prescripcion medica.
 
 DOCUMENTACION ADJUNTA:
 - Prescripcion medica de ${tratamiento} (Dr/a. [COMPLETAR NOMBRE DEL MEDICO])
@@ -264,7 +264,7 @@ Firma del abogado patrocinante:
 [COMPLETAR]
 Matricula: [COMPLETAR]
 
-NOTA: Este documento se presenta a traves de la plataforma TAD (tramitesadistancia.gob.ar). Buscar el tramite "Mediacion prejudicial en materia de salud (PROMESA)".
+NOTA: Consultar con tu abogado el canal de presentacion vigente. La SSS informa sobre el procedimiento en sssalud.gob.ar.
 
 SI NO TENES ABOGADO: Podes solicitar patrocinio juridico gratuito en la Defensoria del Pueblo de tu provincia o en el Ministerio Publico de la Defensa (mpd.gov.ar). Tambien podes consultar a organizaciones como LALCEC (0800-222-1166) o CUI.D.AR ((011) 4732-9000) que orientan sobre asistencia legal.
 
