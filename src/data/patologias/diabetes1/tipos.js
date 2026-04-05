@@ -35,7 +35,7 @@ export const tipos = [
           "Insulina Glulisina (Apidra)",
         ],
         terapiasDirigidas: [
-          "Insulina Lispro ultrarapida (Lyumjev)",
+          "Insulina Lispro ultrarapida (Lyumjev — no disponible en ARG)",
           "Insulina Aspart ultrarapida (Fiasp)",
         ],
         estudios: [
@@ -58,7 +58,7 @@ export const tipos = [
         biomarcadores: [],
         primeraLinea: [
           "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias",
-          "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias",
+          "FreeStyle Libre 3 (Abbott) — sensor flash, 14 dias",
         ],
         terapiasDirigidas: [
           "Dexcom G6 — sensor continuo con alertas",

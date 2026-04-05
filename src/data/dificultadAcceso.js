@@ -53,6 +53,9 @@ const oncoAcceso = {
   "Nilotinib": "tramite",
   "Dasatinib": "tramite",
   "Ibrutinib": "tramite",
+  "Crizotinib": "tramite",
+  "Ceritinib": "tramite",
+  "Cabazitaxel": "tramite",
 
   // Inmunoterapia — tramite a dificil (alto costo, auditoria estricta)
   "Pembrolizumab": "tramite",
@@ -88,6 +91,9 @@ const oncoAcceso = {
   "Dostarlimab": "dificil",
   "Cemiplimab": "dificil",
   "Apalutamida": "dificil",
+  "Amivantamab": "dificil",
+  "Brigatinib": "dificil",
+  "Lutetio-177 PSMA": "dificil",
   "Atezolizumab": "dificil",
 
   // Estudios — variable
@@ -125,7 +131,7 @@ const diabetesAcceso = {
   "Sensor flash CGM (FreeStyle Libre)": "tramite",
   "Sensor flash CGM": "tramite",
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": "tramite",
-  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": "tramite",
+  "FreeStyle Libre 3 (Abbott) — sensor flash, 14 dias": "tramite",
 
   // Sensores Dexcom — dificil (no en Res 2091, poca disponibilidad ARG)
   "Sensor CGM con alertas (Dexcom)": "dificil",
@@ -152,7 +158,7 @@ export function getDificultadAcceso(nombre) {
 
   // For combinations, take the hardest
   const prioridad = { dificil: 3, tramite: 2, directo: 1 };
-  const partes = nombre.split(/\s*[\+\/]\s*/);
+  const partes = nombre.split(/\s*[+/]\s*/);
   if (partes.length > 1) {
     let peor = null;
     for (const parte of partes) {
@@ -387,7 +393,7 @@ export const fundamentacion = {
       { titulo: "Ley 26.914 (equipos y dispositivos diabetes)", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/220000-224999/224327/norma.htm" },
     ],
   },
-  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": {
+  "FreeStyle Libre 3 (Abbott) — sensor flash, 14 dias": {
     porque: "Mismo marco que Libre 2. Res. 2091/2025 cubre 'sistemas flash'. ~$117.936/sensor precio particular (abril 2026).",
     datosLitigiosidad: "Misma normativa que Libre 2.",
     fallos: [],

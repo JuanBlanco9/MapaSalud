@@ -308,7 +308,7 @@ export const explicaciones = {
       { titulo: "CUI.D.AR — Sensores de glucosa", url: "https://cuidar.org" },
     ],
   },
-  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": {
+  "FreeStyle Libre 3 (Abbott) — sensor flash, 14 dias": {
     nombre: "Sensor FreeStyle Libre 3 (Abbott)",
     queEs: "Version mas nueva y mas chica del Libre 2. Envia las lecturas automaticamente al celular sin necesidad de escanear. Tiene alertas de glucosa alta y baja.",
     administracion: "Igual que el Libre 2: se coloca en el brazo, dura 14 dias.",
@@ -373,6 +373,152 @@ export const explicaciones = {
     administracion: "Oral (capsulas), 1 vez por dia.",
     links: [
       { titulo: "Cancer.org — BRAF colorrectal", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-colon-o-recto/tratamiento/terapia-dirigida.html" },
+    ],
+  },
+
+  // ── Pulmon — ALK ────────────────────────────────────────────────
+
+  "Crizotinib": {
+    nombre: "Crizotinib (Xalkori)",
+    queEs: "Primer inhibidor de ALK aprobado. Hoy se usa menos en primera linea (reemplazado por alectinib) pero sigue siendo una opcion valida.",
+    administracion: "Oral (capsulas), 2 veces por dia.",
+    links: [
+      { titulo: "MedlinePlus — Crizotinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a612018-es.html" },
+    ],
+  },
+  "Ceritinib": {
+    nombre: "Ceritinib (Zykadia)",
+    queEs: "Inhibidor de ALK de segunda generacion. Se usa cuando hay progresion a crizotinib o como opcion alternativa.",
+    administracion: "Oral (capsulas), 1 vez por dia con comida (reduce efectos gastrointestinales).",
+    links: [
+      { titulo: "MedlinePlus — Ceritinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a614055-es.html" },
+    ],
+  },
+  "Lorlatinib": {
+    nombre: "Lorlatinib (Lorbrena)",
+    queEs: "Inhibidor de ALK de tercera generacion. Tiene la mejor penetracion cerebral de los ALK-i. Se usa cuando hay progresion a otros inhibidores o metastasis cerebrales.",
+    administracion: "Oral (comprimidos), 1 vez por dia.",
+    links: [
+      { titulo: "Cancer.org — Terapia dirigida pulmon", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-pulmon/tratamiento/terapia-dirigida.html" },
+    ],
+  },
+
+  // ── Pulmon — EGFR ───────────────────────────────────────────────
+
+  "Erlotinib": {
+    nombre: "Erlotinib (Tarceva)",
+    queEs: "Inhibidor de EGFR de primera generacion. Se usa en cancer de pulmon con mutacion EGFR (del19 o L858R).",
+    administracion: "Oral (comprimidos), 1 vez por dia en ayunas.",
+    links: [
+      { titulo: "MedlinePlus — Erlotinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a605008-es.html" },
+    ],
+  },
+  "Gefitinib": {
+    nombre: "Gefitinib (Iressa)",
+    queEs: "Inhibidor de EGFR de primera generacion. Similar a erlotinib. Se usa en cancer de pulmon EGFR mutado.",
+    administracion: "Oral (comprimidos), 1 vez por dia.",
+    links: [
+      { titulo: "MedlinePlus — Gefitinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a607002-es.html" },
+    ],
+  },
+  "Afatinib": {
+    nombre: "Afatinib (Gilotrif)",
+    queEs: "Inhibidor de EGFR de segunda generacion (irreversible). Se usa en cancer de pulmon EGFR mutado, especialmente mutaciones poco comunes.",
+    administracion: "Oral (comprimidos), 1 vez por dia en ayunas.",
+    links: [
+      { titulo: "MedlinePlus — Afatinib", url: "https://medlineplus.gov/spanish/druginfo/meds/a613054-es.html" },
+    ],
+  },
+  "Amivantamab": {
+    nombre: "Amivantamab (Rybrevant)",
+    queEs: "Anticuerpo biespecifico anti-EGFR/MET. Se usa en cancer de pulmon con mutacion EGFR exon 20 insercion, donde los inhibidores clasicos no funcionan bien.",
+    administracion: "Infusion intravenosa, cada 2 semanas.",
+    links: [
+      { titulo: "Cancer.org — Terapia dirigida pulmon", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-pulmon/tratamiento/terapia-dirigida.html" },
+    ],
+  },
+
+  // ── Colorrectal — adicionales ────────────────────────────────────
+
+  "Dostarlimab": {
+    nombre: "Dostarlimab (Jemperli)",
+    queEs: "Inmunoterapia anti-PD-1. Se usa en colorrectal MSI-H/dMMR. Estudios recientes mostraron remision completa en pacientes con cancer rectal dMMR.",
+    administracion: "Infusion intravenosa cada 3 semanas (6 ciclos), luego cada 6 semanas.",
+    links: [
+      { titulo: "Cancer.org — Inmunoterapia colorrectal", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-colon-o-recto/tratamiento/inmunoterapia.html" },
+    ],
+  },
+
+  // ── Mama — adicionales ──────────────────────────────────────────
+
+  "Alpelisib": {
+    nombre: "Alpelisib (Piqray)",
+    queEs: "Inhibidor de PI3K alfa. Se usa en cancer de mama ER+/HER2- con mutacion PIK3CA, en combinacion con fulvestrant.",
+    administracion: "Oral (comprimidos), 1 vez por dia con comida.",
+    links: [
+      { titulo: "Cancer.org — Terapia dirigida mama", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-seno/tratamiento/terapia-dirigida-para-el-cancer-de-seno.html" },
+    ],
+  },
+  "Tucatinib": {
+    nombre: "Tucatinib (Tukysa)",
+    queEs: "Inhibidor de HER2 de molecula pequena. Especialmente util en metastasis cerebrales por cancer de mama HER2+. Se combina con trastuzumab y capecitabina.",
+    administracion: "Oral (comprimidos), 2 veces por dia.",
+    links: [
+      { titulo: "Cancer.org — Terapia dirigida mama", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-seno/tratamiento/terapia-dirigida-para-el-cancer-de-seno.html" },
+    ],
+  },
+  "Sacituzumab govitecan": {
+    nombre: "Sacituzumab govitecan (Trodelvy)",
+    queEs: "Anticuerpo conjugado anti-Trop-2. Se usa en cancer de mama triple negativo metastasico despues de 2+ lineas previas. Tambien aprobado para mama ER+/HER2-.",
+    administracion: "Infusion intravenosa, dias 1 y 8 de cada ciclo de 21 dias.",
+    links: [
+      { titulo: "Cancer.org — Anticuerpos conjugados", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-seno/tratamiento/terapia-dirigida-para-el-cancer-de-seno.html" },
+    ],
+  },
+  "Talazoparib": {
+    nombre: "Talazoparib (Talzenna)",
+    queEs: "Inhibidor de PARP. Se usa en cancer de mama HER2- con mutacion BRCA germinal. Similar a olaparib pero con distinto perfil de efectos secundarios.",
+    administracion: "Oral (capsulas), 1 vez por dia.",
+    links: [
+      { titulo: "Cancer.org — Inhibidores PARP", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-seno/tratamiento/terapia-dirigida-para-el-cancer-de-seno.html" },
+    ],
+  },
+
+  // ── Prostata — adicionales ──────────────────────────────────────
+
+  "Apalutamida": {
+    nombre: "Apalutamida (Erleada)",
+    queEs: "Antiandrógeno de nueva generacion. Se usa en cancer de prostata hormono-sensible metastasico (mHSPC) junto con ADT. Mejora supervivencia vs ADT sola.",
+    administracion: "Oral (comprimidos), 1 vez por dia.",
+    links: [
+      { titulo: "MedlinePlus — Apalutamida", url: "https://medlineplus.gov/spanish/druginfo/meds/a618024-es.html" },
+    ],
+  },
+  "Cabazitaxel": {
+    nombre: "Cabazitaxel (Jevtana)",
+    queEs: "Quimioterapia taxano de segunda linea para cancer de prostata resistente a castracion, despues de progresion a docetaxel.",
+    administracion: "Infusion intravenosa cada 3 semanas.",
+    links: [
+      { titulo: "MedlinePlus — Cabazitaxel", url: "https://medlineplus.gov/spanish/druginfo/meds/a611006-es.html" },
+    ],
+  },
+  "Rucaparib": {
+    nombre: "Rucaparib (Rubraca)",
+    queEs: "Inhibidor de PARP. Se usa en cancer de prostata mCRPC con mutacion BRCA, despues de progresion a tratamiento hormonal y quimioterapia.",
+    administracion: "Oral (comprimidos), 2 veces por dia.",
+    links: [
+      { titulo: "Cancer.org — PARP prostata", url: "https://www.cancer.org/es/cancer/tipos/cancer-de-prostata/tratamiento/terapia-dirigida.html" },
+    ],
+  },
+
+  // ── Diabetes — adicionales ──────────────────────────────────────
+
+  "Dexcom G7 — sensor continuo, mas pequeno": {
+    nombre: "Sensor Dexcom G7",
+    queEs: "Sensor de monitoreo continuo de glucosa (CGM real-time). Mas pequeno y rapido de colocar que el G6. Mide glucosa cada 5 minutos con alertas de hipo/hiperglucemia. Requiere prescripcion medica.",
+    administracion: "Sensor adhesivo en el brazo o abdomen. Se cambia cada 10 dias. Se conecta al celular por Bluetooth.",
+    links: [
+      { titulo: "Dexcom — G7", url: "https://www.dexcom.com/es-es/dexcom-g7" },
     ],
   },
 };

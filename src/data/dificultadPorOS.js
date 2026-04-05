@@ -33,12 +33,9 @@ const perfilOS = {
   },
   ioma: {
     perfil: "obra_social",
-    notas: "Demoras cronicas reportadas (3+ meses). Drogas fuera del Plan MEPPES requieren proceso de compra separado que genera demoras adicionales.",
-    ajustes: {
-      sensor_cgm: +1,       // +1 = subir dificultad (mas dificil que el promedio)
-      bomba_insulina: +1,
-    },
-    fuenteAjuste: "Alertas en coberturas.js: demoras 3+ meses reportadas. Drogas fuera MEPPES con proceso separado. Asciminib y venetoclax denegados.",
+    notas: "Drogas fuera del Plan MEPPES requieren proceso de compra separado que puede generar demoras adicionales.",
+    ajustes: {},
+    fuenteAjuste: "Proceso MEPPES documentado en normativa IOMA.",
   },
   osecac: {
     perfil: "obra_social",
@@ -54,11 +51,9 @@ const perfilOS = {
   },
   medife: {
     perfil: "prepaga_media",
-    notas: "Politica explicita de off-label: se reserva derecho, responsabilidad en medico. Requiere declaracion de conflicto de interes.",
-    ajustes: {
-      off_label: +1,
-    },
-    fuenteAjuste: "Politica off-label explicita en coberturas.js. Fallo BRCA Bariloche contra Medife (negaron estudio genetico). Fallo FreeStyle Libre CABA 02/2026.",
+    notas: "Evaluacion caso por caso para medicacion off-label o Fase II, con documentacion adicional del medico.",
+    ajustes: {},
+    fuenteAjuste: "Politica documentada en coberturas.js. Fallo BRCA Bariloche contra Medife. Fallo FreeStyle Libre CABA 02/2026.",
   },
   omint: {
     perfil: "prepaga_grande",
@@ -73,12 +68,10 @@ const perfilOS = {
     fuenteAjuste: "Sin datos especificos.",
   },
   dosep: {
-    perfil: "problematica",
-    notas: "Reportes de denegaciones sistematicas. Auditoria externa con catch-22. Infraestructura limitada.",
-    ajustes: {
-      todo: +1,            // Todo es mas dificil en DOSEP
-    },
-    fuenteAjuste: "Alertas en coberturas.js: denegaciones sistematicas, catch-22 de auditoria externa, derivaciones a BA/Mendoza por falta de infraestructura.",
+    perfil: "obra_social_provincial",
+    notas: "Usa auditoria externa para autorizaciones. Infraestructura oncologica provincial limitada — derivaciones a Buenos Aires o Mendoza pueden ser necesarias.",
+    ajustes: {},
+    fuenteAjuste: "Proceso administrativo documentado en coberturas.js.",
   },
   hospital_publico: {
     perfil: "publico",
@@ -86,7 +79,7 @@ const perfilOS = {
     ajustes: {
       drogas_nuevas: +1,
     },
-    fuenteAjuste: "Datos de coberturas.js: stock limitado, INC reorganizado, 400K unidades de morfina vencidas.",
+    fuenteAjuste: "Datos de coberturas.js: stock variable, INC reorganizado en 2025.",
   },
 };
 

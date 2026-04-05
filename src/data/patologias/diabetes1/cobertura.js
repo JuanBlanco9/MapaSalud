@@ -11,7 +11,7 @@ export const nivelCobertura = {
   "Insulina Lispro (Humalog)": "ley",
   "Insulina Aspart (NovoRapid)": "ley",
   "Insulina Glulisina (Apidra)": "ley",
-  "Insulina Lispro ultrarapida (Lyumjev)": "gestion", // No confirmada registracion ANMAT ni disponibilidad en Argentina
+  "Insulina Lispro ultrarapida (Lyumjev — no disponible en ARG)": "gestion",
   "Insulina Aspart ultrarapida (Fiasp)": "ley",
 
   // No disponible en Argentina
@@ -25,7 +25,7 @@ export const nivelCobertura = {
 
   // Sensores flash — Res 2091/2025: 100% cobertura para insulinodependientes
   "FreeStyle Libre 2 (Abbott) — sensor flash, 14 dias": "ley",
-  "FreeStyle Libre 3 (Abbott) — sensor continuo, 14 dias": "ley",
+  "FreeStyle Libre 3 (Abbott) — sensor flash, 14 dias": "ley",
 
   // Sensores Dexcom — no incluidos expresamente en Res 2091/2025 (dice "flash")
   "Dexcom G6 — sensor continuo con alertas": "gestion",
@@ -47,7 +47,7 @@ const prioridad = { gestion: 3, pmo: 2, ley: 1 };
 export function getNivelDroga(nombre) {
   if (nivelCobertura[nombre]) return nivelCobertura[nombre];
 
-  const partes = nombre.split(/\s*[\+\/]\s*/);
+  const partes = nombre.split(/\s*[+/]\s*/);
   if (partes.length > 1) {
     let peor = null;
     for (const parte of partes) {

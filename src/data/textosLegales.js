@@ -2,6 +2,8 @@
 // Verificacion: abril 2026 contra InfoLEG, Boletin Oficial, SAIJ
 // Cada cita indica la fuente de verificacion.
 
+import { PATOLOGIA } from "../constants";
+
 export const textosLegales = {
   // ── Constitucionales (CONFIRMADOS) ────────────────────────────
 
@@ -54,6 +56,11 @@ export const textosLegales = {
   res_2091_2025_diabetes:
     `Resolucion 2091/2025 Ministerio de Salud (publicada B.O. 01/07/2025): Aprueba las nuevas Normas de Provision de Medicamentos e Insumos para Personas con Diabetes. Deroga expresamente la Res. 2820/2022. El Anexo I establece cobertura del 100% de sensores de monitoreo de glucosa flash (MG-i) para personas insulinodependientes, embarazadas, o que planifiquen embarazo, con indicacion documentada del medico tratante. Aplica a todos los agentes del sistema: obras sociales (Ley 23.660/23.661), prepagas (Ley 26.682), PAMI (Ley 19.032), Obra Social del Poder Judicial, IOSFA, y obras sociales universitarias (Ley 24.741). Tambien incluye cobertura 100% de bombas de insulina y duplica minimos de agujas, lancetas y tiras reactivas. [Fuente: servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=414617 y boletinoficial.gob.ar/detalleAviso/primera/327710/20250701 — Nota: el 100% para sensores esta en el Anexo I (IF-2025-31857900-APN), no en el articulado principal.]`,
 
+  // ── PROMESA (mediacion prejudicial) ───────────────────────────
+
+  decreto_379_2025:
+    `Decreto 379/2025 (publicado B.O. 2025): Establece el Procedimiento de Mediacion Prejudicial en Materia de Salud (PROMESA). Crea un mecanismo de mediacion obligatoria previo a la via judicial para controversias entre usuarios y agentes del sistema de salud. La entidad requerida no puede negarse a participar. Primera audiencia dentro de los 5 dias habiles. Requiere patrocinio letrado obligatorio. Se tramita a traves de TAD (tramitesadistancia.gob.ar). [Fuente: boletinoficial.gob.ar — verificar numero exacto de publicacion]`,
+
   // ── Jurisprudencia (pendiente de fallos especificos) ──────────
 
   jurisprudencia_sensor_cgm:
@@ -65,7 +72,7 @@ export const textosLegales = {
 
 // ── Selector de textos legales por patologia y situacion ────────
 
-export function getTextosParaCarta(patologiaId, nivelCobertura) {
+export function getTextosParaCarta(patologiaId) {
   const base = [
     textosLegales.constitucion_art42,
     textosLegales.constitucion_art43,
@@ -74,7 +81,7 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
     textosLegales.jurisprudencia_piso,
   ];
 
-  if (patologiaId === "oncologia") {
+  if (patologiaId === PATOLOGIA.ONCOLOGIA) {
     base.push(
       textosLegales.pmo_art73,
       textosLegales.pmo_art74,
@@ -83,7 +90,7 @@ export function getTextosParaCarta(patologiaId, nivelCobertura) {
     );
   }
 
-  if (patologiaId === "diabetes1") {
+  if (patologiaId === PATOLOGIA.DIABETES1) {
     base.push(
       textosLegales.ley_23753_diabetes,
       textosLegales.ley_26914_diabetes,

@@ -98,6 +98,38 @@ export const falloPMOPiso = {
 
 export const jurisprudenciaDiabetesSensor = [
   {
+    caratula: "B.V.G. c/ Galeno Argentina S.A. s/ amparo de salud",
+    tribunal: "Camara Nacional de Apelaciones en lo Civil y Comercial Federal, Sala III",
+    cita: "MJ-JU-M-116486-AR",
+    fecha: "01/11/2018",
+    ordeno: "Cobertura integral del sensor FreeStyle Libre para paciente con Diabetes Mellitus Tipo 1, segun prescripcion del medico tratante. Ley 23.753 mod. Ley 26.914: cobertura 100% de medicamentos y reactivos de diagnostico para autocontrol.",
+    tipo: "DIABETES_SENSOR",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2019/03/29/diabetes-controlada-cobertura-integral-del-sensor-de-glucemia-freeystyle-libre-a-una-paciente-con-diagnostico-de-diabetes-mellitus-tipo-i/",
+  },
+  {
+    caratula: "M. V. A. c/ IOMA s/ amparo",
+    tribunal: "Juzgado de Garantias N.2 de Azul, Buenos Aires",
+    cita: "MJ-JU-M-113179-AR",
+    fecha: "07/08/2018",
+    ordeno: "Ordeno a IOMA provisionar permanentemente el kit de sensor de glucemia FreeStyle Libre para menor con diabetes T1, en 30 dias, bajo apercibimiento de ley. IOMA habia ofrecido alternativas inferiores que causaban angustia al menor.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "Buenos Aires",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2018/10/16/denegatoria-arbitraria-a-cubrir-la-aparatologia-solicitada-por-quien-padece-diabetes-ya-que-los-sustitutos-concedidos-resultaron-validos/",
+  },
+  {
+    caratula: "A. P. A. s/ amparo s/ apelacion (menor con diabetes T1)",
+    tribunal: "Superior Tribunal de Justicia de la Provincia de Rio Negro",
+    cita: "MJ-JU-M-121910-AR",
+    fecha: "09/10/2019",
+    ordeno: "Ordeno a Ospecon (OS Construccion) cobertura inmediata, permanente y continua de insulina rapida y prolongada, tiras reactivas, insumos de aplicacion y sensores de monitoreo continuo FreeStyle Libre segun prescripcion medica, para menor con diabetes T1.",
+    tipo: "DIABETES_SENSOR",
+    provincia: "Rio Negro",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2019/12/11/suministro-de-insulina-cobertura-de-los-medicamentos-y-reactivos-de-diagnostico-para-autocontrol-de-la-diabetes-que-sufre-un-menor-afiliado/",
+  },
+  {
     caratula: "S.I- H. R. c/ Omint S.A. de Servicios s/ amparo de salud",
     tribunal:
       "Camara Nacional de Apelaciones en lo Civil y Comercial Federal, Sala I",
@@ -145,6 +177,17 @@ export const jurisprudenciaDiabetesBomba = [
 
 export const jurisprudenciaOncoQT = [
   {
+    caratula: "F., C. A. c/ INSSJYP (PAMI) s/ amparo ley 16.986",
+    tribunal: "Camara Federal de Apelaciones de Parana",
+    cita: "MJ-JU-M-153791-AR",
+    fecha: "14/10/2024",
+    ordeno: "Cobertura de Paclitaxel 150 mg, Carboplatino 150 mg y Pembrolizumab 100 mg en 48 horas para cancer de mama derecho avanzado con adenopatias axilares. PAMI habia demorado la autorizacion.",
+    tipo: "ONCO_QT",
+    provincia: "Entre Rios",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2024/11/07/fallos-derecho-a-la-salud-se-ordena-a-una-obra-social-otorgar-la-cobertura-del-medicamento-solicitado-por-el-medico-tratante-de-una-afiliada-que-padece-cancer-de-mama-en-estado-avanzado/",
+  },
+  {
     caratula: "N.N. c/ Obra Social s/ Amparo (caso Brigatinib)",
     tribunal: "Camara Federal de Apelaciones de Cordoba, Sala A (Navarro, Avalos, Montesi)",
     fecha: "10/2024",
@@ -175,6 +218,7 @@ export const jurisprudenciaOncoEstudio = [
     tipo: "ONCO_ESTUDIO",
     provincia: "Buenos Aires",
     fuente: "Justicia de Primera",
+    url: "https://justiciadeprimera.com/2026/03/30/prepaga-debe-cubrir-un-estudio-genetico-por-cancer-de-mama/",
   },
   {
     caratula: "N.N. c/ OSDE s/ Amparo de salud (reintegro Oncotype DX)",
@@ -258,37 +302,23 @@ export const jurisprudenciaPorOS = {
 // ── Tucuman — fallos específicos ────────────────────────────────
 
 export const jurisprudenciaTucuman = [
-  {
-    caratula: "Gomez, Elsa Dora c/ IPSST y Provincia de Tucuman s/ Amparo",
-    tribunal: "Poder Judicial de Tucuman",
-    fecha: "s/f",
-    ordeno: "Cobertura integral de tratamiento de cancer de mama incluyendo radioterapia con acelerador lineal bajo tecnica 3D conformacional y toda medicacion que la enfermedad requiera.",
-    tipo: "ONCO_QT",
-    provincia: "Tucuman",
-    fuente: "Comunicacion Tucuman / Blog Derecho a la Salud",
-  },
+  // Removido: Gomez c/ IPSST — sin fecha, sin tribunal especifico, fuente no verificable (blog offline)
 ];
 
 // ── Oncologia — terapia dirigida / inmunoterapia ────────────────
 
 export const jurisprudenciaOncoDirigida = [
+  // Removido: Amparo c/ OS UNR (T-DM1 Rosario 2018) — no verificable en web
   {
-    caratula: "Amparo c/ Obra Social UNR (Trastuzumab Emtansina)",
-    tribunal: "Camara Federal de Apelaciones de Rosario",
-    fecha: "2018",
-    ordeno: "Cobertura integral de Trastuzumab Emtansina (Kadcyla) 3.6 mg/kg cada 21 dias + acido zoledronico + goserelina + tamoxifeno para cancer de mama HER2+ metastasico.",
-    tipo: "ONCO_DIRIGIDA",
-    provincia: "Santa Fe",
-    fuente: "Version Rosario",
-  },
-  {
-    caratula: "Expediente QXP 8159/21 (cancer renal, Pembrolizumab no ANMAT)",
-    tribunal: "Juzgado Civil, Comercial y Laboral de Esquina, Corrientes (Jueza Silvero)",
-    fecha: "17/12/2021",
-    ordeno: "Condeno a OSDE a proveer Pembrolizumab para cancer renal, aun sin aprobacion ANMAT para esa indicacion en Argentina. Aprobado en EE.UU. y UE. Costo ~$600.000/ampolla.",
+    caratula: "I. J. R. c/ OSDE s/ procesos urgentes (autosatisfactiva)",
+    tribunal: "Juzgado Civil, Comercial, Laboral, Familia y Menores de Esquina, Corrientes",
+    cita: "MJ-JU-M-135570-AR",
+    fecha: "17/11/2021",
+    ordeno: "Cobertura de Pembrolizumab (Keytruda) para carcinoma de celulas renales, aun sin aprobacion ANMAT para esa indicacion. 2 ampollas cada 21 dias por 1 ano.",
     tipo: "ONCO_DIRIGIDA",
     provincia: "Corrientes",
-    fuente: "Poder Judicial de Corrientes / Microjuris",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2022/02/03/fallos-medida-autosatisfactiva-se-ordena-a-una-empresa-de-medicina-prepaga-suministrar-a-un-afiliado-un-medicamento-aun-no-aprobado-por-la-anmat-para-el-tratamiento-del-cancer-de-rinon-que-padece/",
   },
   {
     caratula: "Amparo c/ PAMI (Trastuzumab Deruxtecan / Enhertu, Rosario)",
@@ -300,13 +330,14 @@ export const jurisprudenciaOncoDirigida = [
     fuente: "El Ciudadano Web / Version Rosario",
   },
   {
-    caratula: "Amparo c/ OSDE (Trastuzumab Deruxtecan, Chaco)",
+    caratula: "N.N. c/ OSDE s/ Amparo de salud (Trastuzumab Deruxtecan)",
     tribunal: "Camara Federal de Apelaciones de Resistencia (Garcia, Bosch)",
     fecha: "09/04/2025",
-    ordeno: "Confirmo cautelar que ordeno a OSDE cobertura 100% de Trastuzumab-Deruxtecan (Enhertu). Rechazo argumento de desequilibrio financiero: 'en materia de salud el tratamiento adecuado no admite demoras'.",
+    ordeno: "Confirmo cautelar que ordeno a OSDE cobertura 100% de Trastuzumab-Deruxtecan (Enhertu). Rechazo argumento de desequilibrio financiero: 'en materia de salud el tratamiento adecuado no admite demoras'. Prioridad a evaluacion del medico tratante.",
     tipo: "ONCO_DIRIGIDA",
     provincia: "Chaco",
     fuente: "Litigio.com.ar",
+    url: "https://litigio.com.ar/2025/04/09/confirman-un-fallo-que-ordeno-a-osde-la-cobertura-de-un-medicamento-oncologico/",
   },
   {
     caratula: "Amparo c/ PAMI (Pembrolizumab ca. uterino, Rosario)",
@@ -318,13 +349,37 @@ export const jurisprudenciaOncoDirigida = [
     fuente: "Version Rosario",
   },
   {
-    caratula: "R. CH., G. c/ Min. Salud Pcia. Salta s/ Amparo (medicamento no registrado ANMAT)",
-    tribunal: "Camara de Apelaciones de Salta",
+    caratula: "R. CH., G. c/ Min. Salud Pcia. Salta s/ Amparo",
+    tribunal: "Corte de Justicia de la Provincia de Salta",
+    cita: "MJ-JU-M-152040-AR",
     fecha: "26/04/2024",
-    ordeno: "Cobertura de medicamento no registrado en ANMAT pero aprobado en UE con respaldo cientifico. Negar cobertura por falta de certeza absoluta es incompatible con cobertura integral.",
+    ordeno: "Cobertura de Volanesorsen, medicamento no registrado en ANMAT pero aprobado en UE, para quilomicronemia familiar. Negar cobertura por falta de certeza absoluta es incompatible con cobertura integral. Aplica Disposicion ANMAT 4616/2019 (acceso excepcion).",
     tipo: "ONCO_DIRIGIDA",
     provincia: "Salta",
     fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2024/07/16/fallos-primero-el-paciente-una-obra-social-debe-brindar-cobertura-de-un-medicamento-no-registrado-ante-el-anmat-pero-que-cuenta-con-respaldo-cientifico/",
+  },
+  {
+    caratula: "A. I. c/ INSSJYP (PAMI) s/ amparo ley 16.986",
+    tribunal: "Camara Federal de Apelaciones de Posadas",
+    cita: "MJ-JU-M-154415-AR",
+    fecha: "08/01/2025",
+    ordeno: "Cobertura continua e ininterrumpida de Atezolizumab 120 mg y Bevacizumab 15/kg al 100% para hepatocarcinoma irresecable. El medico tratante tiene amplia libertad para escoger el tratamiento.",
+    tipo: "ONCO_DIRIGIDA",
+    provincia: "Misiones",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2025/02/19/fallos-derecho-a-la-salud-se-ordena-a-una-obra-social-otorgar-el-medicamento-oncologico-prescripto-por-los-medicos-tratantes-a-favor-de-una-afiliada-que-padece-cancer-de-higado/",
+  },
+  {
+    caratula: "R. J. L. c/ OS Union del Personal Civil de la Nacion s/ medida autosatisfactiva",
+    tribunal: "Camara Federal de Apelaciones de Posadas",
+    cita: "MJ-JU-M-156543-AR",
+    fecha: "12/06/2025",
+    ordeno: "Cobertura 100% de radioterapia IMRT para carcinoma nasofaringeo en CEMENER (Oro Verde, Entre Rios), incluyendo traslado y alojamiento para paciente y acompanante a 832 km, con astreintes de $200.000/dia.",
+    tipo: "ONCO_ESTUDIO",
+    provincia: "Misiones",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2025/08/05/fallos-derecho-a-la-salud-se-ordena-a-una-obra-social-brindar-cobertura-total-para-un-tratamiento-oncologico-a-mas-de-800-km-del-domicilio-del-paciente-incluyendo-traslado-y-alojamiento/",
   },
 ];
 
@@ -332,13 +387,14 @@ export const jurisprudenciaOncoDirigida = [
 
 export const jurisprudenciaOncoEstudioPET = [
   {
-    caratula: "Amparo c/ OSECAC (PET-TC oncologico, Rio Negro)",
-    tribunal: "Juzgado de Primera Instancia de General Roca, Rio Negro",
+    caratula: "N.N. c/ OSECAC s/ Amparo (PET-TC oncologico)",
+    tribunal: "Juzgado Civil, Comercial, Mineria y Sucesiones de General Roca, Rio Negro",
     fecha: "2021",
-    ordeno: "Autorizacion y cobertura de PET-TC en 3 dias, con astreintes de $10.000/dia y apercibimiento de desobediencia. OSECAC no habia respondido la solicitud desde febrero.",
+    ordeno: "Autorizacion y cobertura de PET-TC en 3 dias, con astreintes de $10.000/dia y apercibimiento de desobediencia. Amparo integramente digital. OSECAC no habia respondido la solicitud desde febrero.",
     tipo: "ONCO_ESTUDIO",
     provincia: "Rio Negro",
     fuente: "Poder Judicial de Rio Negro",
+    url: "http://servicios.jusrionegro.gov.ar/inicio/comunicacionjudicial/index.php/noticias/item/2892-amparo-integramente-digital-ordena-a-obra-social-cubrir-estudios-oncologicos",
   },
 ];
 
@@ -371,34 +427,40 @@ export const jurisprudenciaDiabetesBombaAdicional = [
   {
     caratula: "M.A.N. c/ OS Union del Personal Civil de la Nacion s/ Amparo de salud",
     tribunal: "Camara Nacional de Apelaciones en lo Civil y Comercial Federal",
+    cita: "MJ-JU-M-107418-AR",
     fecha: "01/08/2017",
     ordeno: "Cobertura 100% de microinfusora Paradigm Veo 754 Medtronic con bolo inteligente, medicion continua, alarma y corte automatico. La OS habia ofrecido modelo distinto al prescripto.",
     tipo: "DIABETES_BOMBA",
     provincia: "Nacional",
     fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2017/11/23/obligacion-de-la-obra-social-de-proveer-al-actor-la-microinfusora-de-insulina-con-bolo-inteligente-y-medicion-continua-de-glucosa-en-tiempo-real/",
   },
-  {
-    caratula: "Z., Y. E. c/ Union Personal s/ Amparo (Expediente 12548/2021)",
-    tribunal: "Primera y segunda instancia",
-    fecha: "2021",
-    ordeno: "Cobertura 100% de bomba Medtronic prescripta. La OS habia ofrecido alternativa (Accu-Check Solo) que el medico considero menos adecuada. El medico tratante prevalece.",
-    tipo: "DIABETES_BOMBA",
-    provincia: "Nacional",
-    fuente: "Amparando Salud",
-  },
+  // Removido: Z.Y.E. c/ Union Personal — tribunal no especificado ("primera y segunda instancia"), fuente no verificable
 ];
 
 // ── Diabetes — insulina / insumos denegados adicional ───────────
 
 export const jurisprudenciaDiabetesInsulinaAdicional = [
   {
+    caratula: "P., A. A. c/ OSPACA STAFF MEDICO S.A. s/ accion de amparo",
+    tribunal: "Camara Quinta de Apelaciones en lo Civil, Comercial, Minas, de Paz y Tributario de Mendoza",
+    cita: "MJ-JU-M-104506-AR",
+    fecha: "28/04/2017",
+    ordeno: "Cobertura 100% de medicacion para diabetes (Zomarist Met + Avastian). La OS no puede condicionar la cobertura por voluntarismo; debe justificar razonablemente cualquier negativa.",
+    tipo: "DIABETES_INSULINA",
+    provincia: "Mendoza",
+    fuente: "Microjuris Argentina",
+    url: "https://aldiaargentina.microjuris.com/2017/06/29/es-obligacion-de-la-obra-social-demandada-la-de-cubrir-los-medicamentos-que-indica-el-medico-tratante-para-el-tratamiento-de-la-diabetes-padecida-por-la-actora/",
+  },
+  {
     caratula: "Amparo c/ PAMI (insulina Glargina Basaglar + Sitagliptina)",
-    tribunal: "No especificado (referido Microjuris)",
+    tribunal: "Justicia Federal (tribunal no identificado en fuente)",
     fecha: "02/2020",
-    ordeno: "Cobertura integral 100% de insulina Glargina Basaglar y Sitagliptina. La OS no puede sustituir la medicacion prescripta por el tratante.",
+    ordeno: "Cobertura integral 100% de insulina Glargina Basaglar y Sitagliptina. La OS no puede sustituir la medicacion prescripta por el tratante. Condicionamiento de PAMI de exigir uso previo de NPH fue considerado arbitrario.",
     tipo: "DIABETES_INSULINA",
     provincia: "Nacional",
-    fuente: "Microjuris Argentina",
+    fuente: "Microjuris Argentina (aldiaargentina.microjuris.com, 26/02/2020)",
+    url: "https://aldiaargentina.microjuris.com/2020/02/26/diabetes-con-cobertura-obra-social-debe-cubrir-integramente-la-insulina-y-medicacion-para-el-tratamiento-de-la-diabetes/",
   },
   {
     caratula: "Amparo c/ OSDE (FreeStyle Libre, Parana)",
@@ -436,15 +498,7 @@ export const jurisprudenciaOncologiaEspecifica = [
     provincia: "Buenos Aires",
     fuente: "CIJ",
   },
-  {
-    caratula: "[Amparista] c/ [Obra Social] s/ Amparo (cancer de pulmon avanzado)",
-    tribunal: "Juzgado Federal N.2 de Cordoba, confirmado por Camara Federal de Cordoba",
-    fecha: "11/2024",
-    ordeno: "Cobertura 100% de Brigatinib 180 mg (aprobado ANMAT julio 2023) para cancer de pulmon estadio IV con metastasis osea.",
-    tipo: "ONCO_DIRIGIDA",
-    provincia: "Cordoba",
-    fuente: "Infobae Judiciales",
-  },
+  // Removido: Brigatinib Cordoba — duplicado de jurisprudenciaOncoQT[0]
   {
     caratula: "[Amparista] c/ Economicas Salud s/ Amparo",
     tribunal: "Juzgado Federal de Rosario",
@@ -497,13 +551,14 @@ export const jurisprudenciaDiabetesProvincial = [
     fuente: "LXForce",
   },
   {
-    caratula: "[Amparista] c/ [Obra Social] s/ Amparo",
-    tribunal: "Camara Federal de Apelaciones de Mendoza, Sala A",
+    caratula: "N.N. c/ Obra Social s/ Amparo (Semaglutida, Mendoza)",
+    tribunal: "Camara Federal de Apelaciones de Mendoza, Sala A (Castiñeira de Dios, Perez Curci, Pizarro)",
     fecha: "10/2024",
-    ordeno: "Cobertura 100% de Semaglutida por unanimidad para diabetes tipo 2 avanzada. El PMO es un 'piso basico irrenunciable', no un techo.",
+    ordeno: "Cobertura 100% de Semaglutida por unanimidad para diabetes tipo 2 avanzada con obesidad. El PMO es un 'piso basico irrenunciable', no un techo.",
     tipo: "DIABETES_INSULINA",
     provincia: "Mendoza",
     fuente: "Infobae Judiciales",
+    url: "https://www.infobae.com/judiciales/2024/10/22/obligan-a-una-obra-social-a-cubrir-el-tratamiento-completo-de-una-paciente-con-diabetes-avanzada/",
   },
 ];
 
@@ -544,12 +599,14 @@ export const estadisticasAmparos = {
 export const fallosPorProvincia = {
   "Buenos Aires": { cantidad: 4, patologias: ["Oncologia", "Diabetes T1", "General"] },
   "CABA": { cantidad: 1, patologias: ["Diabetes T1"] },
-  "Cordoba": { cantidad: 3, patologias: ["Oncologia", "General"] },
-  "Santa Fe": { cantidad: 3, patologias: ["Oncologia", "Diabetes T2", "General"] },
-  "Mendoza": { cantidad: 2, patologias: ["Diabetes T2"] },
-  "Tucuman": { cantidad: 2, patologias: ["General"] },
-  "Salta": { cantidad: 1, patologias: ["Diabetes"] },
-  "Entre Rios": { cantidad: 3, patologias: ["Oncologia", "General"] },
+  "Cordoba": { cantidad: 1, patologias: ["Oncologia"] },
+  "Corrientes": { cantidad: 1, patologias: ["Oncologia"] },
+  "Entre Rios": { cantidad: 4, patologias: ["Oncologia", "Diabetes T1", "General"] },
+  "Mendoza": { cantidad: 2, patologias: ["Diabetes T1", "Diabetes T2"] },
+  "Misiones": { cantidad: 2, patologias: ["Oncologia"] },
+  "Rio Negro": { cantidad: 2, patologias: ["Oncologia", "Diabetes T1"] },
+  "Salta": { cantidad: 2, patologias: ["Oncologia", "Diabetes"] },
+  "Santa Fe": { cantidad: 3, patologias: ["Oncologia", "Diabetes T2"] },
 };
 
 // ── Helper: obtener jurisprudencia relevante por patologia y tipo
@@ -570,7 +627,10 @@ export function getJurisprudenciaRelevante(patologiaId, tipoReclamo) {
         ...jurisprudenciaDiabetesProvincial.filter((f) => f.tipo === "DIABETES_SENSOR"),
       ];
     } else if (tipoReclamo === "bomba" || tipoReclamo === "tec_bomba") {
-      resultado.especificos = jurisprudenciaDiabetesBomba;
+      resultado.especificos = [
+        ...jurisprudenciaDiabetesBomba,
+        ...jurisprudenciaDiabetesBombaAdicional,
+      ];
     } else {
       resultado.especificos = [
         ...jurisprudenciaDiabetesSensor,

@@ -38,11 +38,17 @@ export default function Home() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
             <p className="text-2xl md:text-3xl font-bold">10.072</p>
-            <p className="text-azul-200 text-sm">amparos de salud en 2024 (Registro SSS)</p>
+            <a href="https://www.sssalud.gob.ar/index.php?page=bus_regamparo" target="_blank" rel="noopener noreferrer"
+              className="text-azul-200 text-sm no-underline hover:underline hover:text-white">
+              amparos de salud en 2024 — Registro SSS ↗
+            </a>
           </div>
           <div>
             <p className="text-2xl md:text-3xl font-bold">&gt;80%</p>
-            <p className="text-azul-200 text-sm">de fallos favorables al paciente (OLEGISAR)</p>
+            <a href="https://olegisar.csjn.gob.ar/" target="_blank" rel="noopener noreferrer"
+              className="text-azul-200 text-sm no-underline hover:underline hover:text-white">
+              fallos favorables al paciente — OLEGISAR ↗
+            </a>
           </div>
           <div>
             <p className="text-2xl md:text-3xl font-bold">2</p>

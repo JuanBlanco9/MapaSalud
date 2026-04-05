@@ -69,13 +69,11 @@ export const obrasSociales = [
       "100% cobertura de medicacion oncologica — costo cero para el afiliado. Cubre QT, cirugia, internacion, radioterapia (convencional, 3D, IMRT, braquiterapia, estereotaxica). Drogas fuera del Plan MEPPES se gestionan por Departamento de Compras (proceso digitalizado).",
     procesoAutorizacion: {
       canal: "Online: el prestador solicita autorizacion a IOMA por sistema. Tambien via App IOMA Digital. Requiere: DNI, diagnostico histopatologico, estadificacion, ficha oncologica (peso, talla, superficie corporal, drogas, dosis, dias, interciclo, ciclos).",
-      tiempoTipico: "Objetivo: 15 dias. Realidad: demoras frecuentes de semanas a 3+ meses reportadas.",
+      tiempoTipico: "Objetivo: 15 dias habiles. Drogas fuera del Plan MEPPES requieren proceso de compra separado con tiempos adicionales.",
     },
     queNiegan: [
       "Drogas off-label / experimentales",
-      "Asciminib (LMC) — denegado reportado",
-      "Venetoclax (LMA) — denegado reportado",
-      "Drogas fuera del MEPPES (demora por proceso de compra separado)",
+      "Drogas fuera del MEPPES (requieren proceso de compra separado)",
     ],
     queAprueban: [
       "Medicacion dentro del protocolo oncologico IOMA",
@@ -89,8 +87,7 @@ export const obrasSociales = [
     programaOncologico:
       "Programa Enfermedad Oncologica (dedicado) + Programa Cuidarte (cuidados paliativos domiciliarios — unico a nivel nacional). Contacto Cuidarte: cuidarte@ioma.gba.gob.ar",
     alertas: [
-      "Demoras cronicas en entrega de medicacion oncologica reportadas (semanas a 3+ meses)",
-      "Pedir medicacion con 30-40 dias de anticipacion",
+      "Drogas fuera del Plan MEPPES requieren un proceso de compra separado que puede generar demoras adicionales",
     ],
   },
   {
@@ -141,19 +138,19 @@ export const obrasSociales = [
     tipo: "Prepaga",
     planes: [],
     coberturaOncologica:
-      "100% medicacion oncologica por PMO. Se reserva el derecho de autorizar medicacion Fase II / off-label, colocando responsabilidad exclusiva en el medico tratante. Requiere declaracion de conflicto de interes del medico.",
+      "100% medicacion oncologica por PMO. Para medicacion off-label o en Fase II, aplica evaluacion caso por caso con documentacion adicional del medico tratante.",
     procesoAutorizacion: {
       canal: "Portal Medife (Autorizaciones Online). Planilla Oncologicos dedicada. Documentacion incompleta causa demoras. Para 2+ presentaciones comerciales: detallar consumo diario, prescribir por denominacion comun internacional.",
       tiempoTipico: null,
     },
-    queNiegan: ["Medicacion Fase II / off-label (evaluacion caso por caso)"],
+    queNiegan: ["Drogas off-label / experimentales sin aprobacion ANMAT para la indicacion"],
     queAprueban: ["QT estandar", "Radioterapia", "Cirugia", "Dirigidas/inmuno aprobadas ANMAT"],
     auditoria: {
       telefono: "0800-999-9000 (24hs) / WhatsApp: +54 9 11 2242 0091 (8-22h)",
       email: null,
     },
     programaOncologico:
-      "Sin programa dedicado. Notable: politica explicita de off-label y requisito de declaracion de conflicto de interes.",
+      "Sin programa dedicado. Politica de evaluacion caso por caso para medicacion off-label.",
   },
   {
     id: "omint",
@@ -207,13 +204,12 @@ export const obrasSociales = [
       "100% cobertura oncologica por PMO, sin coseguro. Derivaciones oncologicas deben ser presentadas por el Centro Oncologico Provincial con copia de biopsia. Usa auditoria externa.",
     procesoAutorizacion: {
       canal: "Presentar en hospitales publicos designados. Requiere: prescripcion con diagnostico + firmas medico/director, formulario de admision, resumen clinico, estudios, DNI, negativa ANSES, informe socioeconomico. Prescripciones validas 30 dias, renovacion cada 3 ciclos.",
-      tiempoTipico: "Variable. Reportes de demoras sistematicas y denegaciones.",
+      tiempoTipico: "Variable. Prescripciones validas 30 dias, renovacion cada 3 ciclos.",
     },
     queNiegan: [
-      "Reportes de denegaciones sistematicas y demoras en entrega",
-      "Auditoria externa rechaza por 'solicitud anticipada excesiva' (catch-22 reportado)",
+      "Drogas off-label / experimentales",
     ],
-    queAprueban: ["QT estandar cuando el proceso funciona"],
+    queAprueban: ["QT estandar segun protocolo oncologico"],
     auditoria: {
       telefono: "266-4452000 ext 4045",
       email: "auditoriamedicadosepvm@gmail.com",
@@ -221,8 +217,8 @@ export const obrasSociales = [
     programaOncologico:
       "Circuito provincial: Centro Oncologico Integral San Luis, Policlinico Juan D. Peron (Villa Mercedes), Hospital De Merlo. Banco provincial drogas oncologicas: bpdoncologicosanluis@gmail.com / 266-4452000 int 3466.",
     alertas: [
-      "Reportes persistentes de no entrega de medicacion oncologica",
-      "Infraestructura oncologica limitada en la provincia — derivaciones frecuentes a Buenos Aires o Mendoza",
+      "Usa auditoria externa para autorizaciones oncologicas",
+      "Infraestructura oncologica provincial limitada — derivaciones a Buenos Aires o Mendoza pueden ser necesarias",
     ],
   },
   {
@@ -247,7 +243,7 @@ export const obrasSociales = [
     bancoDeDrogas:
       "BNDE — Av. 9 de Julio 1925, Piso 8, Ala Belgrano. Lun-Vie 9-13h. Medicamentos deben estar en el Listado Complementario (Res 3377/2022).",
     limitaciones:
-      "Turnos con espera larga. INC reorganizado en 2025 (irregularidades detectadas: 400.000 unidades de morfina vencidas). Cambios de medicacion requieren negativa escrita de la jurisdiccion.",
+      "Turnos con espera larga. INC reorganizado en 2025 (absorbido por Ministerio de Salud). Cambios de medicacion requieren negativa escrita de la jurisdiccion.",
     provincialBuenosAires: {
       telefono: "(221) 429-2700",
       direccion: "Av. 51 No. 1120, La Plata 1900",
@@ -486,12 +482,35 @@ export const nivelCobertura = {
   "Apalutamida": "gestion",
   "Amivantamab": "gestion",
   "Lazertinib": "gestion",
+  "Lazertinib (no disponible en ARG)": "gestion",
   "Tisotumab vedotin": "gestion",
+  "Tisotumab vedotin (segunda linea — no disponible en ARG)": "gestion",
   "Elacestrant": "gestion",
+  "Elacestrant (no disponible en ARG)": "gestion",
   "Datopotamab deruxtecan": "gestion",
+  "Datopotamab deruxtecan (no disponible en ARG)": "gestion",
+  "Capivasertib (no disponible en ARG)": "gestion",
   "Lutetio-177 PSMA": "gestion",
   "Cabazitaxel": "nacional",
   "Docetaxel": "nacional",
+  // QT estandar — cubiertos por PMO Res. 201/2002 punto 7.3
+  "Paclitaxel": "nacional",
+  "Carboplatino": "nacional",
+  "Cisplatino": "nacional",
+  "Ciclofosfamida": "nacional",
+  "Doxorrubicina": "nacional",
+  "Oxaliplatino": "nacional",
+  "Fluorouracilo": "nacional",
+  "Irinotecan": "nacional",
+  "Capecitabina": "nacional",
+  "Gemcitabina": "nacional",
+  "Vinorelbina": "nacional",
+  "Pemetrexed": "nacional",
+  "Etoposido": "nacional",
+  // ALK — Res. 3377/2022
+  "Crizotinib": "nacional",
+  "Ceritinib": "nacional",
+  "Brigatinib": "gestion",
 };
 
 export function getNivelDroga(nombre) {
@@ -501,7 +520,7 @@ export function getNivelDroga(nombre) {
   // For combinations (A + B, A/B), find the MOST RESTRICTIVE level
   // gestion > pba > nacional
   const prioridad = { gestion: 3, pba: 2, nacional: 1 };
-  const partes = nombre.split(/\s*[\+\/]\s*/);
+  const partes = nombre.split(/\s*[+/]\s*/);
 
   if (partes.length > 1) {
     let peor = null;
@@ -590,7 +609,7 @@ export const tiposCancer = [
           "Oncotype DX o MammaPrint (estadio temprano)",
           "PIK3CA si metastasico",
         ],
-        opcionesNuevas: ["Elacestrant", "Capivasertib"],
+        opcionesNuevas: ["Elacestrant (no disponible en ARG)", "Capivasertib (no disponible en ARG)"],
       },
       {
         id: "mama_tnbc",
@@ -612,7 +631,7 @@ export const tiposCancer = [
         ],
         opcionesNuevas: [
           "Sacituzumab govitecan (disponibilidad variable en ARG)",
-          "Datopotamab deruxtecan",
+          "Datopotamab deruxtecan (no disponible en ARG)",
         ],
       },
     ],
@@ -632,7 +651,7 @@ export const tiposCancer = [
           "EGFR por PCR o NGS",
           "T790M si progresion a TKI de 1ra/2da gen",
         ],
-        opcionesNuevas: ["Amivantamab (exon20ins)", "Lazertinib"],
+        opcionesNuevas: ["Amivantamab (exon20ins)", "Lazertinib (no disponible en ARG)"],
       },
       {
         id: "pulmon_alk",
@@ -803,7 +822,7 @@ export const tiposCancer = [
         terapiasDirigidas: [
           "Bevacizumab",
           "Pembrolizumab (si PD-L1+ CPS >= 1)",
-          "Tisotumab vedotin (segunda linea)",
+          "Tisotumab vedotin (segunda linea — no disponible en ARG)",
         ],
         estudios: [
           "PD-L1 (CPS)",

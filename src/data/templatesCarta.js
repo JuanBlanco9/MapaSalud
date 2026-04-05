@@ -1,10 +1,99 @@
-// ── Templates fallback — se usan si la API falla ────────────────
+// ── Templates de reclamo — base legal diferenciada por nivel de cobertura ──
+
+import { TIPO_DOCUMENTO, PATOLOGIA, NIVEL_COBERTURA } from "../constants";
 
 const fecha = new Date().toLocaleDateString("es-AR", {
   day: "2-digit",
   month: "long",
   year: "numeric",
 });
+
+// ── Clasificacion de cobertura para argumentacion legal ────────
+// "cubierto" = listado oficial nacional o ley especifica
+// "pba"      = listado complementario provincial Buenos Aires (IPC)
+// "gestion"  = no en listados oficiales, requiere argumento jurisprudencial
+const NIVELES_CUBIERTOS = [NIVEL_COBERTURA.NACIONAL, NIVEL_COBERTURA.LEY, NIVEL_COBERTURA.PMO];
+
+function clasificarCobertura(nivel) {
+  if (NIVELES_CUBIERTOS.includes(nivel)) return "cubierto";
+  if (nivel === NIVEL_COBERTURA.PBA) return "pba";
+  return "gestion";
+}
+
+// ── Fundamentos legales por patologia y cobertura ──────────────
+
+function fundamentoOncologia(tipo) {
+  if (tipo === "cubierto") {
+    return `El tratamiento prescripto se encuentra incluido en los listados oficiales de medicamentos oncologicos (Res. 3377/2022 — Listado Complementario), correspondiendo su cobertura integral conforme el Programa Medico Obligatorio (Res. 201/2002, Anexo I, punto 7.3: medicamentos oncologicos al 100% segun protocolos aprobados por la autoridad de aplicacion).
+
+Asimismo, la Res. 1926/2024 del Ministerio de Salud establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+  }
+  if (tipo === "pba") {
+    return `El tratamiento prescripto se encuentra incluido en el listado complementario provincial de Buenos Aires (IPC — Inclusion de Prestaciones de Cobertura), correspondiendo su cobertura para afiliados en la jurisdiccion de la Provincia de Buenos Aires. Asimismo, el Programa Medico Obligatorio (Res. 201/2002, Anexo I, punto 7.3) establece la cobertura integral de medicamentos oncologicos.
+
+La Res. 1926/2024 establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+  }
+  // gestion
+  return `El tratamiento prescripto ha sido indicado por el medico tratante como medicamente necesario para mi cuadro clinico. Si bien el medicamento no se encuentra actualmente en los listados oficiales de cobertura obligatoria (Res. 3377/2022), la CSJN ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo ("Asociacion Benghalensis c/ Ministerio de Salud", Fallos 323:1339). En el mismo sentido, la Justicia Federal ha sostenido este criterio (CNACAF Sala III, "B. J. G. c/ OSPLAD", 16/07/2015).
+
+La Res. 1926/2024 establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+}
+
+function fundamentoDiabetes(tipo) {
+  if (tipo === "cubierto") {
+    return `El tratamiento prescripto se enmarca en la normativa vigente sobre diabetes:
+
+- Ley 23.753 Art. 5: establece la cobertura del 100% de medicamentos y reactivos de diagnostico para autocontrol.
+- Ley 26.914 (modifica Ley 23.753): amplia la cobertura. La jurisprudencia ha interpretado que incluye sistemas de monitoreo continuo de glucosa.
+- Res. 2091/2025: establece la cobertura del 100% de sensores de monitoreo flash para personas insulinodependientes.
+- Art. 42 de la Constitucion Nacional (proteccion de la salud).`;
+  }
+  if (tipo === "pba") {
+    return `El tratamiento prescripto se encuentra incluido en el listado complementario provincial de Buenos Aires (IPC) y se enmarca en la normativa vigente sobre diabetes:
+
+- Ley 23.753 Art. 5: cobertura del 100% de medicamentos y reactivos.
+- Ley 26.914 (modifica Ley 23.753): amplia la cobertura.
+- Art. 42 de la Constitucion Nacional (proteccion de la salud).`;
+  }
+  // gestion
+  return `El tratamiento prescripto ha sido indicado por el medico tratante como medicamente necesario para el control de mi diabetes tipo 1. Si bien el insumo o dispositivo no se encuentra actualmente en los listados de cobertura obligatoria, la Ley 23.753 Art. 5 establece la cobertura integral de la diabetes. La CSJN ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo ("Asociacion Benghalensis c/ Ministerio de Salud", Fallos 323:1339). En el mismo sentido, la Justicia Federal ha sostenido este criterio (CNACAF Sala III, "B. J. G. c/ OSPLAD", 16/07/2015).
+
+- Art. 42 de la Constitucion Nacional (proteccion de la salud).
+- Ley 23.753 / 26.914 (marco legal diabetes).`;
+}
+
+function getFundamento(patologiaId, tipoCobertura) {
+  if (patologiaId === PATOLOGIA.DIABETES1) return fundamentoDiabetes(tipoCobertura);
+  return fundamentoOncologia(tipoCobertura);
+}
+
+// ── Base legal resumida para PROMESA ───────────────────────────
+
+function getBaseLegalPromesa(patologiaId, tipoCobertura) {
+  if (patologiaId === PATOLOGIA.DIABETES1) {
+    if (tipoCobertura === "cubierto") return `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914, y Res. 2091/2025 (sensores flash al 100%)`;
+    if (tipoCobertura === "pba") return `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914, e IPC provincial Buenos Aires`;
+    return `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914, Art. 42 CN, y jurisprudencia de la CSJN que establece el PMO como piso minimo (Fallos 323:1339, "Asociacion Benghalensis"). El tratamiento es medicamente necesario segun prescripcion del medico tratante`;
+  }
+  if (tipoCobertura === "cubierto") return `PMO Res. 201/2002 Anexo I punto 7.3 (medicamentos oncologicos al 100%), Res. 3377/2022 (Listado Complementario), y Res. 1926/2024 (exencion de coseguros)`;
+  if (tipoCobertura === "pba") return `PMO Res. 201/2002 Anexo I punto 7.3, IPC provincial Buenos Aires (listado complementario), y Res. 1926/2024 (exencion de coseguros)`;
+  return `Art. 42 CN, Res. 1926/2024 (exencion de coseguros oncologicos), y jurisprudencia de la CSJN que establece el PMO como piso minimo (Fallos 323:1339, "Asociacion Benghalensis"). El tratamiento es medicamente necesario segun prescripcion del medico tratante`;
+}
+
+// ── Referencia legal breve para seguimiento ───────────────────
+
+function getRefSeguimiento(patologiaId, tipoCobertura) {
+  if (tipoCobertura === "cubierto") {
+    if (patologiaId === PATOLOGIA.DIABETES1) return "se enmarca en la Ley 23.753, la Ley 26.914 y la Res. 2091/2025, que establecen la cobertura integral de la diabetes";
+    return "se encuentra incluido en los listados oficiales de medicamentos oncologicos (Res. 3377/2022) y el PMO (Res. 201/2002, Anexo I, punto 7.3)";
+  }
+  if (tipoCobertura === "pba") {
+    return "se encuentra incluido en el listado complementario provincial (IPC Buenos Aires) y el PMO";
+  }
+  return "ha sido indicado como medicamente necesario por mi medico tratante";
+}
+
+// ── Templates ──────────────────────────────────────────────────
 
 export function generarTemplateFallback({
   obraSocial,
@@ -15,13 +104,15 @@ export function generarTemplateFallback({
   fechaSolicitud,
   tipoDocumento,
   patologiaId,
+  nivelCobertura,
 }) {
   const os = `${obraSocial}${plan ? ` (${plan})` : ""}`;
   const fechaSol = fechaSolicitud || "[COMPLETAR FECHA]";
   const diag = `${diagnostico}${subtipo ? ` — ${subtipo}` : ""}`;
+  const tipoCobertura = clasificarCobertura(nivelCobertura);
 
   // ── Email: pedir negativa por escrito ──────────────────────
-  if (tipoDocumento === "pedir_negativa") {
+  if (tipoDocumento === TIPO_DOCUMENTO.PEDIR_NEGATIVA) {
     return `${fecha}
 
 A la Direccion Medica de ${os}:
@@ -43,7 +134,7 @@ DNI [COMPLETAR]`;
   }
 
   // ── Email: seguimiento por falta de respuesta ─────────────
-  if (tipoDocumento === "seguimiento") {
+  if (tipoDocumento === TIPO_DOCUMENTO.SEGUIMIENTO) {
     return `${fecha}
 
 A la Direccion Medica / Auditoria Medica de ${os}:
@@ -52,7 +143,7 @@ Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO
 
 Habiendo transcurrido un plazo razonable desde la presentacion de la solicitud sin haber recibido respuesta formal de vuestra parte, solicito se expidan sobre la autorizacion requerida.
 
-El tratamiento prescripto se enmarca en ${patologiaId === "diabetes1" ? "la Ley 23.753, la Ley 26.914 y la Res. 2091/2025, que establecen la cobertura integral de la diabetes incluyendo medicacion, insumos, equipos y dispositivos" : "los protocolos aprobados por ANMAT y el Programa Medico Obligatorio (Res. 201/2002, punto 7.3), que establece la cobertura integral de medicamentos oncologicos"}. La demora en la autorizacion afecta mi derecho a la salud consagrado en el Art. 42 de la Constitucion Nacional.
+El tratamiento prescripto ${getRefSeguimiento(patologiaId, tipoCobertura)}. La demora en la autorizacion afecta mi derecho a la proteccion de la salud consagrado en el Art. 42 de la Constitucion Nacional.
 
 En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
 
@@ -63,23 +154,23 @@ DNI [COMPLETAR]`;
   }
 
   // ── Carta documento: tratamiento aprobado pero no entregado
-  if (tipoDocumento === "intimacion_entrega") {
+  if (tipoDocumento === TIPO_DOCUMENTO.INTIMACION_ENTREGA) {
     return `CARTA DOCUMENTO
 
-De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
+De: [COMPLETAR NOMBRE COMPLETO], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
 A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: SOLICITUD DE ENTREGA DE TRATAMIENTO AUTORIZADO — ${tratamiento.toUpperCase()}
+OBJETO: INTIMACION A LA ENTREGA DE TRATAMIENTO AUTORIZADO — ${tratamiento.toUpperCase()}
 
 Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion al tratamiento de ${tratamiento}, el cual fue debidamente autorizado con fecha [COMPLETAR FECHA DE AUTORIZACION] para el tratamiento de ${diag}.
 
 A pesar de contar con la autorizacion correspondiente, a la fecha no se ha concretado la provision efectiva del tratamiento, situacion que afecta mi derecho a la salud y al acceso oportuno al tratamiento prescripto por mi medico tratante.
 
-La jurisprudencia reiterada de la Justicia Federal ha establecido que la demora injustificada en la provision de tratamientos autorizados configura un incumplimiento de las obligaciones legales a cargo de la obra social o prepaga.
+La CSJN ha establecido la obligacion de las obras sociales de garantizar el acceso efectivo y oportuno a las prestaciones de salud ("Asociacion Benghalensis c/ Ministerio de Salud", Fallos 323:1339).
 
-Solicito se proceda a la entrega efectiva del tratamiento en un plazo razonable.
+Intimo a que se proceda a la entrega efectiva del tratamiento en un plazo de 48 horas.
 
-En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
+En caso de incumplimiento, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
 
 Sin otro particular, saludo a Uds. atentamente.
 
@@ -89,7 +180,7 @@ DNI [COMPLETAR]`;
   }
 
   // ── Hospital publico: nota al Director del hospital ────────
-  if (tipoDocumento === "reclamo_publico") {
+  if (tipoDocumento === TIPO_DOCUMENTO.RECLAMO_PUBLICO) {
     return `${fecha}
 
 Al Sr/a Director/a del [COMPLETAR NOMBRE DEL HOSPITAL]
@@ -101,7 +192,7 @@ Me dirijo a Ud. en mi caracter de paciente atendido en ese establecimiento, a fi
 
 El tratamiento prescripto resulta medicamente necesario segun criterio del equipo tratante. La obligacion del Estado de garantizar el acceso a la salud se encuentra consagrada en:
 
-- Art. 42 de la Constitucion Nacional (derecho a la salud)
+- Art. 42 de la Constitucion Nacional (proteccion de la salud)
 - Art. 75 inc. 22 de la Constitucion Nacional (tratados internacionales con jerarquia constitucional, incluyendo el Pacto Internacional de Derechos Economicos, Sociales y Culturales — Art. 12, derecho a la salud)
 - La CSJN ha establecido que el Estado es garante subsidiario del derecho a la salud: "Campodonico de Beviacqua, Ana Carina c/ Ministerio de Salud y Accion Social" (CSJN, Fallos 323:3229, 24/10/2000)
 
@@ -111,26 +202,23 @@ En caso de no obtener respuesta, me reservo el derecho de recurrir a la Defensor
 
 Sin otro particular, saludo a Ud. atentamente.
 
-${fecha}
 [COMPLETAR NOMBRE COMPLETO]
 DNI [COMPLETAR]
 
 Copia a: Servicio Social del hospital`;
   }
 
-  // ── PROMESA: solicitud de mediacion prejudicial ────────────
-  if (tipoDocumento === "promesa") {
-    const baselegal = patologiaId === "diabetes1"
-      ? `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914 (equipos y dispositivos), y Res. 2091/2025 (sensores flash)`
-      : `PMO Res. 201/2002 punto 7.3 (medicamentos oncologicos al 100%), Res. 3377/2022 (Listado Complementario), y Res. 1926/2024 (exencion de coseguros)`;
-
-    return `SOLICITUD DE MEDIACION PREJUDICIAL EN MATERIA DE SALUD (PROMESA)
+  // ── PROMESA: resumen del caso para abogado ────────────────
+  if (tipoDocumento === TIPO_DOCUMENTO.PROMESA) {
+    return `RESUMEN DEL CASO PARA PRESENTAR A TU ABOGADO — PROMESA
 Decreto 379/2025 — Procedimiento de Mediacion Prejudicial en Materia de Salud
 
+NOTA: Este documento es un resumen de tu caso para facilitar la consulta con un abogado. La presentacion formal ante TAD (tramitesadistancia.gob.ar) requiere patrocinio letrado obligatorio. Tu abogado usara estos datos como base para redactar la solicitud definitiva.
+
 Datos del requirente:
-Nombre: [COMPLETAR NOMBRE]
+Nombre: [COMPLETAR NOMBRE COMPLETO]
 DNI: [COMPLETAR]
-Domicilio: [COMPLETAR]
+Domicilio: [COMPLETAR DOMICILIO]
 Email: [COMPLETAR]
 Telefono: [COMPLETAR]
 Abogado patrocinante: [COMPLETAR NOMBRE DEL ABOGADO]
@@ -152,16 +240,14 @@ ANTECEDENTES:
 
 FUNDAMENTO LEGAL:
 
-El tratamiento solicitado se enmarca en la normativa vigente: ${baselegal}
-
-La cobertura corresponde conforme el Art. 42 de la Constitucion Nacional (derecho a la salud) y la Ley 26.682 Art. 7 (cobertura minima PMO para prepagas).
+El tratamiento solicitado se enmarca en la normativa vigente: ${getBaseLegalPromesa(patologiaId, tipoCobertura)}
 
 PRETENSION:
 
 Se solicita que en el marco del procedimiento de mediacion PROMESA (Decreto 379/2025), la entidad requerida autorice y provea la cobertura integral de ${tratamiento} conforme prescripcion medica.
 
 DOCUMENTACION ADJUNTA:
-- Prescripcion medica de ${tratamiento} (Dr/a. [COMPLETAR])
+- Prescripcion medica de ${tratamiento} (Dr/a. [COMPLETAR NOMBRE DEL MEDICO])
 - Constancia de afiliacion
 - Constancia de solicitud previa (fecha ${fechaSol})
 - [Negativa por escrito de la entidad, si la tiene]
@@ -185,26 +271,28 @@ SI NO TENES ABOGADO: Podes solicitar patrocinio juridico gratuito en la Defensor
 Consultas sobre PROMESA: consultasmediacion@jus.gob.ar`;
   }
 
-  // ── Carta documento: diabetes tipo 1 ──────────────────────
-  if (patologiaId === "diabetes1") {
+  // ── Carta documento: por patologia ────────────────────────
+  if (tipoDocumento === TIPO_DOCUMENTO.CARTA_DOCUMENTO) {
+    const esdiab = patologiaId === PATOLOGIA.DIABETES1;
+    const fundamento = getFundamento(patologiaId, tipoCobertura);
+    const objeto = esdiab
+      ? `SOLICITUD DE COBERTURA DE ${tratamiento.toUpperCase()} — DIABETES TIPO 1`
+      : `SOLICITUD DE COBERTURA DE TRATAMIENTO — ${tratamiento.toUpperCase()}`;
+
     return `CARTA DOCUMENTO
 
-De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
+De: [COMPLETAR NOMBRE COMPLETO], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
 A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
 
-OBJETO: SOLICITUD DE COBERTURA DE ${tratamiento.toUpperCase()} — DIABETES TIPO 1
+OBJETO: ${objeto}
 
 Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la cobertura de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
 
-El tratamiento prescripto se enmarca en la normativa vigente sobre diabetes:
+${fundamento}
 
-- Ley 23.753 Art. 5: establece la cobertura integral de la diabetes, incluyendo medicacion, elementos e insumos necesarios para su tratamiento.
-- Ley 26.914 Art. 1 (modifica Ley 23.753): amplia la cobertura incluyendo "equipos y dispositivos", expresion que la jurisprudencia reiterada de la Justicia Federal ha interpretado como inclusiva de los sistemas de monitoreo continuo de glucosa.
-- Res. 2091/2025: establece la cobertura del 100% de sensores de monitoreo continuo sistema flash para personas insulinodependientes.
-- Art. 42 de la Constitucion Nacional (derecho a la salud).
-- Ley 26.682 Art. 7 (cobertura minima PMO para prepagas).
+Las obras sociales y prepagas deben fundar por escrito sus decisiones denegatorias, especificando los motivos medicos, tecnicos y legales que las sustentan.
 
-Solicito se considere la presente peticion y se proceda a autorizar la cobertura conforme la normativa citada, en un plazo razonable.
+Solicito se considere la presente peticion y se proceda a autorizar la cobertura en un plazo razonable.
 
 En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
 
@@ -215,29 +303,6 @@ ${fecha}
 DNI [COMPLETAR]`;
   }
 
-  // ── Carta documento: oncologia / generico ──────────────────
-  return `CARTA DOCUMENTO
-
-De: [COMPLETAR NOMBRE], DNI [COMPLETAR], con domicilio en [COMPLETAR DOMICILIO]
-A: ${os}, con domicilio en [COMPLETAR DIRECCION DE LA OBRA SOCIAL]
-
-OBJETO: SOLICITUD DE COBERTURA DE TRATAMIENTO — ${tratamiento.toUpperCase()}
-
-Me dirijo a Uds. en mi caracter de afiliado/a (N° [COMPLETAR NUMERO DE AFILIADO]) en relacion a la cobertura del tratamiento de ${tratamiento}, indicado por mi medico tratante Dr/a. [COMPLETAR NOMBRE DEL MEDICO] (MP [COMPLETAR MATRICULA]), segun prescripcion de fecha ${fechaSol}, para el tratamiento de ${diag}.
-
-El tratamiento prescripto se enmarca en los protocolos aprobados por ANMAT y las guias de practica clinica vigentes, correspondiendo su cobertura integral conforme el Programa Medico Obligatorio (Res. 201/2002, punto 7.3: medicamentos oncologicos al 100% segun protocolos aprobados por la autoridad de aplicacion).
-
-Asimismo, la Res. 1926/2024 del Ministerio de Salud establece la exencion de coseguros para tratamientos oncologicos. La Ley 26.682 Art. 7 obliga a las empresas de medicina prepaga a cubrir como minimo el PMO vigente.
-
-La jurisprudencia reiterada de la Justicia Federal ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo, y que las obras sociales deben fundar por escrito sus decisiones denegatorias, especificando los motivos medicos, tecnicos y legales que sustentan su negativa.
-
-Solicito se considere la presente peticion y se proceda a autorizar la cobertura conforme la normativa citada, en un plazo razonable.
-
-En caso de no recibir respuesta fundada, me reservo el derecho de recurrir a las instancias correspondientes, incluyendo la Superintendencia de Servicios de Salud y la via judicial de amparo.
-
-Sin otro particular, saludo a Uds. atentamente.
-
-${fecha}
-[COMPLETAR NOMBRE COMPLETO]
-DNI [COMPLETAR]`;
+  // Si llegamos aca, tipo de documento no reconocido
+  return `[Error: tipo de documento "${tipoDocumento}" no reconocido. Contactar soporte en github.com/JuanBlanco9/MapaSalud/issues]`;
 }
