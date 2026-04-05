@@ -39,6 +39,32 @@ export const contextoFallos = {
     nivel: "alto",
   },
 
+  "B.V.G. c/ Galeno Argentina S.A. s/ amparo de salud": {
+    circunstancias: "Paciente con diabetes T1 con prescripcion de FreeStyle Libre. Galeno rechazo cobertura.",
+    aplicabilidad: "AMPLIA. Caso estandar de sensor CGM. Ley 23.753/26.914 como fundamento directo.",
+    nivel: "alto",
+  },
+
+  "M. V. A. c/ IOMA s/ amparo": {
+    circunstancias: "Menor con diabetes T1. IOMA ofrecio alternativas inferiores que causaban angustia. Tribunal ordeno FreeStyle Libre especificamente.",
+    aplicabilidad: "AMPLIA contra IOMA. Aplica cuando la OS ofrece dispositivo alternativo inferior al prescripto. Principio: el medico tratante elige.",
+    nivel: "alto",
+  },
+
+  "A. P. A. s/ amparo s/ apelacion (menor con diabetes T1)": {
+    circunstancias: "Menor con diabetes T1. Superior Tribunal de Rio Negro ordeno cobertura integral incluyendo sensores, insulinas e insumos.",
+    aplicabilidad: "AMPLIA. Fallo de maximo tribunal provincial. Aplica a cualquier menor con diabetes T1.",
+    nivel: "alto",
+  },
+
+  // ── DIABETES INSULINA ─────────────────────────────────────
+
+  "P., A. A. c/ OSPACA STAFF MEDICO S.A. s/ accion de amparo": {
+    circunstancias: "Paciente joven con diabetes. OS rechazo cobertura de medicacion prescripta sin justificacion.",
+    aplicabilidad: "AMPLIA. La OS no puede negar cobertura sin justificacion razonable. Voluntarismo no es argumento.",
+    nivel: "alto",
+  },
+
   // ── DIABETES BOMBA ─────────────────────────────────────────
 
   "M. M. E. c/ Instituto Nac. de Serv. Soc. para Jubilados y Pensionados s/ amparo de salud": {
@@ -61,19 +87,37 @@ export const contextoFallos = {
 
   // ── ONCOLOGIA DIRIGIDA ─────────────────────────────────────
 
-  "Expediente QXP 8159/21 (cancer renal, Pembrolizumab no ANMAT)": {
+  "I. J. R. c/ OSDE s/ procesos urgentes (autosatisfactiva)": {
     circunstancias: "Pembrolizumab NO estaba aprobado por ANMAT para cancer renal en Argentina. Si aprobado en EE.UU. y UE. Caso EXCEPCIONAL.",
     aplicabilidad: "MUY LIMITADA. Solo aplica si el medicamento no tiene aprobacion ANMAT pero si tiene aprobacion internacional. Si el medicamento SI tiene aprobacion ANMAT, existen fallos mas directamente aplicables.",
     nivel: "bajo",
   },
 
   "R. CH., G. c/ Min. Salud Pcia. Salta s/ Amparo": {
-    circunstancias: "Medicamento no registrado en ANMAT para enfermedad rara. Aprobado en UE con respaldo cientifico.",
+    circunstancias: "Volanesorsen para quilomicronemia familiar. Medicamento no registrado en ANMAT, aprobado en UE. Enfermedad rara.",
     aplicabilidad: "MUY LIMITADA. Solo para enfermedades poco frecuentes con medicamentos no registrados en ANMAT. No aplica a drogas con aprobacion ANMAT.",
     nivel: "bajo",
   },
 
-  "Amparo c/ OSDE (Trastuzumab Deruxtecan, Chaco)": {
+  "A. I. c/ INSSJYP (PAMI) s/ amparo ley 16.986": {
+    circunstancias: "Atezolizumab + Bevacizumab para hepatocarcinoma irresecable. PAMI denego cobertura.",
+    aplicabilidad: "AMPLIA. Principio de libertad del medico tratante para escoger el tratamiento. Aplica a cualquier denegacion de inmunoterapia/dirigida con indicacion medica.",
+    nivel: "alto",
+  },
+
+  "R. J. L. c/ OS Union del Personal Civil de la Nacion s/ medida autosatisfactiva": {
+    circunstancias: "Radioterapia IMRT a 832 km del domicilio. Incluyo traslado y alojamiento.",
+    aplicabilidad: "AMPLIA cuando el tratamiento requiere traslado a otra provincia. Astreintes de $200.000/dia refuerzan la urgencia.",
+    nivel: "alto",
+  },
+
+  "F., C. A. c/ INSSJYP (PAMI) s/ amparo ley 16.986": {
+    circunstancias: "QT estandar (Paclitaxel + Carboplatino + Pembrolizumab) para cancer de mama avanzado. PAMI demoraba autorizacion.",
+    aplicabilidad: "AMPLIA. Caso estandar de demora en autorizacion de QT. Aplica a cualquier demora de PAMI u OS en quimioterapia indicada.",
+    nivel: "alto",
+  },
+
+  "N.N. c/ OSDE s/ Amparo de salud (Trastuzumab Deruxtecan)": {
     circunstancias: "Enhertu (T-DXd) para cancer de mama. OSDE argumento desequilibrio financiero. Tribunal rechazo el argumento.",
     aplicabilidad: "AMPLIA. Aplica a cualquier reclamo donde la OS argumente costo como motivo de denegacion. Principio: 'en materia de salud el tratamiento adecuado no admite demoras'.",
     nivel: "alto",
