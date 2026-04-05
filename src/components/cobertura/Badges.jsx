@@ -131,7 +131,7 @@ export const DrogaConNivel = memo(function DrogaConNivel({ nombre, getNivel, niv
             <div className="mt-1.5 bg-gris-50 rounded p-2">
               <p className="text-xs font-semibold text-gris-700">Precio particular: {expl.precio.rango}</p>
               {expl.precio.nota && <p className="text-xs text-gris-500">{expl.precio.nota}</p>}
-              <p className="text-xs text-gris-400">Precio aproximado a {expl.precio.fecha}. Fuente: preciosdemedicamentos.com.ar / alfabeta.net</p>
+              <p className="text-xs text-gris-400">Precio aproximado a {expl.precio.fecha}. Fuente: preciosdemedicamentos.com.ar / alfabeta.net. Los precios pueden haber cambiado.</p>
             </div>
           )}
           {expl.links && expl.links.length > 0 && (

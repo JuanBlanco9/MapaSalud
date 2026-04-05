@@ -490,22 +490,25 @@ export default function AsistenteReclamo({
         <p className="font-semibold text-verde-800 mb-2">Proximo paso</p>
         {(tipoDocumento === TIPO_DOCUMENTO.PEDIR_NEGATIVA || tipoDocumento === TIPO_DOCUMENTO.SEGUIMIENTO) ? (
           <div className="text-sm text-verde-700 space-y-2">
-            <p>Envia este email a la auditoria medica de tu obra social:</p>
+            <p className="font-medium">1. Envia este email a la auditoria medica de tu obra social:</p>
             {os.auditoria?.email && <p>Email: <strong>{os.auditoria.email}</strong></p>}
             {os.auditoria?.telefono && <p>Telefono: <strong>{os.auditoria.telefono}</strong></p>}
-            <p className="text-xs text-verde-600">Si no responden, el siguiente paso es la carta documento.</p>
+            <p className="font-medium mt-3">2. Si no responden en 10 dias habiles:</p>
+            <p className="text-xs text-verde-600">Podes enviar una carta documento (tiene efecto legal) o reclamar ante la SSS (0800-222-72583, gratuito, sin abogado).</p>
+            <p className="font-medium mt-3">3. Si siguen sin resolver:</p>
+            <p className="text-xs text-verde-600">Podes iniciar PROMESA (mediacion prejudicial, requiere abogado) o un amparo judicial.</p>
           </div>
         ) : tipoDocumento === TIPO_DOCUMENTO.PROMESA ? (
           <div className="text-sm text-verde-700 space-y-2">
-            <p className="font-medium">Como presentar la solicitud PROMESA:</p>
+            <p className="font-medium">Como usar este documento:</p>
             <ol className="list-decimal pl-5 space-y-1 text-xs">
-              <li>Consulta con tu abogado el canal de presentacion vigente</li>
-              <li>Busca el tramite: "Mediacion prejudicial en materia de salud (PROMESA)"</li>
-              <li>Completa el formulario con los datos de este documento</li>
-              <li>Adjunta la documentacion (prescripcion medica, negativa de la OS, etc.)</li>
-              <li>Un mediador sera asignado por sorteo. Primera audiencia en 5 dias.</li>
+              <li>Lleva este resumen a un abogado — es un brief de tu caso</li>
+              <li>Tu abogado redactara la solicitud formal de mediacion PROMESA</li>
+              <li>Un mediador sera asignado por sorteo. Primera audiencia en 5 dias</li>
+              <li>La OS esta obligada a participar — no puede negarse</li>
+              <li>Si hay acuerdo, tiene fuerza legal. Si no, podes ir al amparo</li>
             </ol>
-            <p className="text-xs text-verde-600 mt-2">Requiere abogado. Si no tenes, contacta a la Defensoria del Pueblo de tu provincia para patrocinio gratuito.</p>
+            <p className="text-xs text-verde-600 mt-2">Si no tenes abogado: Defensoria del Pueblo de tu provincia (patrocinio gratuito) o Ministerio Publico de la Defensa (mpd.gov.ar).</p>
             <p className="text-xs text-verde-500">Consultas: consultasmediacion@jus.gob.ar</p>
           </div>
         ) : (
@@ -519,8 +522,12 @@ export default function AsistenteReclamo({
               <li>Guarda el <strong>comprobante de envio</strong> — lo vas a necesitar si inicias amparo</li>
               <li>La carta documento tiene efecto legal desde que la OS la recibe</li>
             </ol>
-            <p className="text-xs text-verde-600 mt-2">Costo aproximado: $5.000 — $15.000 ARS (varia por destino).</p>
-            <p className="text-xs text-verde-600">Si no responden, podes iniciar PROMESA (mediacion) o amparo judicial.</p>
+            <p className="text-xs text-verde-600 mt-2">La OS tiene 10 dias habiles para responder. Si no responde:</p>
+            <ul className="list-disc pl-5 space-y-0.5 text-xs text-verde-600">
+              <li>Reclamo a la SSS: 0800-222-72583 (gratuito, sin abogado)</li>
+              <li>PROMESA: mediacion prejudicial (requiere abogado)</li>
+              <li>Amparo judicial (requiere abogado)</li>
+            </ul>
           </div>
         )}
       </div>

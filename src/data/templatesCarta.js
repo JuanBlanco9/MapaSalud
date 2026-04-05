@@ -26,17 +26,17 @@ function fundamentoOncologia(tipo) {
   if (tipo === "cubierto") {
     return `El tratamiento prescripto se encuentra incluido en los listados oficiales de medicamentos oncologicos (Res. 3377/2022 — Listado Complementario), correspondiendo su cobertura integral conforme el Programa Medico Obligatorio (Res. 201/2002, Anexo I, punto 7.3: medicamentos oncologicos al 100% segun protocolos aprobados por la autoridad de aplicacion).
 
-Asimismo, la Res. 1926/2024 del Ministerio de Salud establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+Asimismo, la Res. 1926/2024 del Ministerio de Salud exceptua a los tratamientos oncologicos de coseguros. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
   }
   if (tipo === "pba") {
     return `El tratamiento prescripto se encuentra incluido en el listado complementario provincial de Buenos Aires (IPC — Inclusion de Prestaciones de Cobertura), correspondiendo su cobertura para afiliados en la jurisdiccion de la Provincia de Buenos Aires. Asimismo, el Programa Medico Obligatorio (Res. 201/2002, Anexo I, punto 7.3) establece la cobertura integral de medicamentos oncologicos.
 
-La Res. 1926/2024 establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+La Res. 1926/2024 exceptua a los tratamientos oncologicos de coseguros. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
   }
   // gestion
   return `El tratamiento prescripto ha sido indicado por el medico tratante como medicamente necesario para mi cuadro clinico. Si bien el medicamento no se encuentra actualmente en los listados oficiales de cobertura obligatoria (Res. 3377/2022), la CSJN ha establecido que el PMO constituye un piso de prestaciones minimas, no un techo ("Asociacion Benghalensis c/ Ministerio de Salud", Fallos 323:1339). En el mismo sentido, la Justicia Federal ha sostenido este criterio (CNACAF Sala III, "B. J. G. c/ OSPLAD", 16/07/2015).
 
-La Res. 1926/2024 establece la exencion de coseguros para tratamientos oncologicos. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
+La Res. 1926/2024 exceptua a los tratamientos oncologicos de coseguros. El Art. 42 de la Constitucion Nacional consagra la proteccion de la salud en la relacion de consumo.`;
 }
 
 function fundamentoDiabetes(tipo) {
@@ -75,9 +75,9 @@ function getBaseLegalPromesa(patologiaId, tipoCobertura) {
     if (tipoCobertura === "pba") return `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914, e IPC provincial Buenos Aires`;
     return `Ley 23.753 Art. 5 (cobertura integral diabetes), Ley 26.914, Art. 42 CN, y jurisprudencia de la CSJN que establece el PMO como piso minimo (Fallos 323:1339, "Asociacion Benghalensis"). El tratamiento es medicamente necesario segun prescripcion del medico tratante`;
   }
-  if (tipoCobertura === "cubierto") return `PMO Res. 201/2002 Anexo I punto 7.3 (medicamentos oncologicos al 100%), Res. 3377/2022 (Listado Complementario), y Res. 1926/2024 (exencion de coseguros)`;
-  if (tipoCobertura === "pba") return `PMO Res. 201/2002 Anexo I punto 7.3, IPC provincial Buenos Aires (listado complementario), y Res. 1926/2024 (exencion de coseguros)`;
-  return `Art. 42 CN, Res. 1926/2024 (exencion de coseguros oncologicos), y jurisprudencia de la CSJN que establece el PMO como piso minimo (Fallos 323:1339, "Asociacion Benghalensis"). El tratamiento es medicamente necesario segun prescripcion del medico tratante`;
+  if (tipoCobertura === "cubierto") return `PMO Res. 201/2002 Anexo I punto 7.3 (medicamentos oncologicos al 100%), Res. 3377/2022 (Listado Complementario), y Res. 1926/2024 (oncologia exceptuada de coseguros)`;
+  if (tipoCobertura === "pba") return `PMO Res. 201/2002 Anexo I punto 7.3, IPC provincial Buenos Aires (listado complementario), y Res. 1926/2024 (oncologia exceptuada de coseguros)`;
+  return `Art. 42 CN, Res. 1926/2024 (oncologia exceptuada de coseguros), y jurisprudencia de la CSJN que establece el PMO como piso minimo (Fallos 323:1339, "Asociacion Benghalensis"). El tratamiento es medicamente necesario segun prescripcion del medico tratante`;
 }
 
 // ── Referencia legal breve para seguimiento ───────────────────

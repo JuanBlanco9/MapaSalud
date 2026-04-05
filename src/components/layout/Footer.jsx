@@ -12,21 +12,30 @@ export default function Footer() {
         </div>
 
         {/* Feedback */}
-        <div className="bg-white border border-gris-200 rounded-lg p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
+        <div className="bg-white border border-gris-200 rounded-lg p-4 mb-6">
+          <div className="flex items-center gap-2 mb-2">
             <MessageCircle className="w-4 h-4 text-azul-600 shrink-0" />
-            <p className="text-sm text-gris-600">
-              Encontraste un dato incorrecto o un telefono que no funciona?
+            <p className="text-sm font-medium text-gris-700">
+              Encontraste un dato incorrecto o queres sugerir algo?
             </p>
           </div>
-          <a
-            href="https://github.com/JuanBlanco9/MapaSalud/issues/new?template=dato-incorrecto.md&title=Dato+incorrecto:+"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-azul-600 font-medium no-underline hover:underline whitespace-nowrap"
-          >
-            Reportar dato incorrecto
-          </a>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <a
+              href="mailto:mapasalud.contacto@gmail.com?subject=MapaSalud%20-%20Feedback&body=Hola%2C%20quiero%20reportar%3A%0A%0A"
+              className="inline-flex items-center gap-1.5 text-sm text-azul-600 font-medium no-underline hover:underline"
+            >
+              Enviar email
+            </a>
+            <span className="text-gris-300 hidden sm:inline">|</span>
+            <a
+              href="https://github.com/JuanBlanco9/MapaSalud/issues/new?template=dato-incorrecto.md&title=Dato+incorrecto:+"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-gris-500 no-underline hover:underline"
+            >
+              Reportar en GitHub (developers)
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gris-500">
